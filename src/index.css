@@ -1,0 +1,38 @@
+/** @format */
+
+@import 'tailwindcss';
+
+@layer theme {
+	:root {
+		--font-family: 'Outfit', system-ui, sans-serif;
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: var(--font-family);
+	background-color: #000; /* Dark theme base */
+	color: #fff;
+	margin: 0;
+	padding: 0;
+}
+
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+.animate-scroll {
+	animation: scroll 30s linear infinite;
+}
+
+.animate-scroll:hover {
+	animation-play-state: paused;
+}
