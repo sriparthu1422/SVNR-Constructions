@@ -68,7 +68,7 @@ const SectionHeading = ({ sub, title }) => (
 	</div>
 );
 
-const Home = () => {
+const Home = ({ openBookVisit }) => {
 	const ongoingProjects = [
 		{
 			title: 'The Ayati',
@@ -206,7 +206,9 @@ const Home = () => {
 							the quality of SVNR Constructions firsthand.
 						</p>
 						<div className='flex flex-col space-y-4'>
-							<button className='w-full py-4 bg-white text-black font-bold tracking-wide hover:bg-gray-200 transition-colors text-center'>
+							<button
+								onClick={openBookVisit}
+								className='w-full py-4 bg-white text-black font-bold tracking-wide hover:bg-gray-200 transition-colors text-center'>
 								BOOK SITE VISIT
 							</button>
 							<Link to='/contact'>

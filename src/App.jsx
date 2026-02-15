@@ -23,6 +23,7 @@ import DeliveredProjects from './pages/projects/DeliveredProjects';
 import DeliveredProjectDetails from './pages/projects/DeliveredProjectDetails';
 import UpcomingProjects from './pages/projects/UpcomingProjects';
 
+
 // ScrollToTop component to reset scroll on route change
 const ScrollToTop = () => {
 	const { pathname } = useLocation();
@@ -47,7 +48,7 @@ function App() {
 					<Routes>
 						<Route
 							path='/'
-							element={<Home />}
+							element={<Home openBookVisit={openModal} />}
 						/>
 						<Route
 							path='/about-us'
