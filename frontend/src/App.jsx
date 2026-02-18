@@ -11,8 +11,6 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
-import OngoingProjects from './pages/projects/OngoingProjects';
-import CompletedProjects from './pages/projects/CompletedProjects';
 import News from './pages/News';
 import Contact from './pages/Contact';
 import ExploreVR from './pages/ExploreVR';
@@ -54,14 +52,7 @@ function App() {
 							path='/about-us'
 							element={<About />}
 						/>
-						<Route
-							path='/ongoing-projects'
-							element={<OngoingProjects />}
-						/>
-						<Route
-							path='/completed-projects'
-							element={<CompletedProjects />}
-						/>
+
 						<Route
 							path='/live-projects'
 							element={<LiveProjects />}
