@@ -18,28 +18,16 @@ const About = () => {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8 }}>
 					<h1 className='text-4xl md:text-6xl font-bold tracking-tight mb-8 leading-tight text-white'>
-						Building Trust,{' '}
-						<span className='text-stone-400'>Brick by Brick</span>
+						We are the leader in{' '}
+						<span className='text-stone-400'>Construction</span>
 					</h1>
 
 					<div className='max-w-4xl mx-auto space-y-6 text-lg md:text-xl text-stone-300 font-light leading-relaxed'>
 						<p>
-							At SVNR Constructions, we believe that a home is
-							more than just a structure—it is a foundation for
-							dreams, memories, and lasting legacies. Our
-							philosophy is rooted in unwavering integrity and a
-							commitment to transparency, ensuring that every
-							interaction builds confidence and every project
-							stands as a testament to our promise of quality.
+							SVNR Construction is one of the emerging real estate property developers in Hyderabad and nearby town areas such as Miryalaguda, Jadcharla, and Khammam. At SVNR Construction, we believe in building a strong emotional connection with our customers by valuing the investments and trust they place in us to fulfil their most awaited dream of owning a perfect home. Our primary focus is on creating meticulously planned and thoughtfully designed living spaces that feature modern architecture, luxurious fittings, ample open space, and best-in-class amenities — all crafted to bring comfort, happiness, and long-lasting value to every family.
 						</p>
 						<p>
-							We pride ourselves on delivering premium residential
-							landscapes that blend modern architecture with
-							functional elegance. From prime locations in the
-							Financial District to serene enclaves in Jubilee
-							Hills, our developments offer superior value,
-							sustainable construction quality, and a lifestyle
-							designed for generations to come.
+							Our mission is simple — to fulfil the housing needs of people who wish to live in inner-city Hyderabad as well as rural areas while serving the surrounding communities responsibly. This principle is reflected in every aspect of our construction process, from master planning and development strategy to architecture, location, and property management — down to every hinge, tile, and square inch. We continuously adapt to meet the changing needs of individuals and families, ensuring minimal impact on local communities and delivering exceptional customer satisfaction through dedicated sales and post-handover service teams.
 						</p>
 					</div>
 				</motion.div>

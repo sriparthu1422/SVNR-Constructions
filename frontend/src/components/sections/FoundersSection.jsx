@@ -30,6 +30,14 @@ const founders = [
 		description:
 			'Leading the technological integration at SVNR, Arjun ensures that all projects meet modern standards of smart living. From eco-friendly materials to automation-ready infrastructure, his forward-thinking strategies prepare our homes for the future generations.',
 	},
+	{
+		id: 4,
+		name: 'Ram Krishna',
+		role: 'Founder',
+		image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop',
+		description:
+			'A visionary leader and instrumental force behind SVNR, Ram Krishna brings strategic direction and profound expertise to the organization, shaping our long-term goals and commitment to excellence.',
+	},
 ];
 
 const FoundersSection = () => {

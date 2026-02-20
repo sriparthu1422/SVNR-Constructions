@@ -22,13 +22,7 @@ const AboutSection = () => {
 							</p>
 						</div>
 						<p className='text-gray-400 leading-relaxed text-sm md:text-base text-justify'>
-							At SVNR Constructions, we don't just build
-							structures; we create landmarks that stand the test
-							of time. With a decade of unwavering commitment to
-							quality and innovation, we have transformed the
-							skyline and the lives of hundreds of families. Our
-							philosophy blends sustainable engineering with
-							luxury aesthetics.
+							SVNR Construction is one of the emerging real estate property developers in Hyderabad and Town areas (like Miryalaguda, Jadcharla, Khammam). At SVNR Construction, we believe in building an emotional connect with all our customers. We value all the investments and the trust our customers place in us to fulfil their most awaited dream.
 						</p>
 					</div>
 				</div>
