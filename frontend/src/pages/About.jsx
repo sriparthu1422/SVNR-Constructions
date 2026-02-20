@@ -1,6 +1,7 @@
 /** @format */
 
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { ShieldCheck, Clock, Lightbulb, Users } from 'lucide-react';
 import FoundersSection from '../components/sections/FoundersSection';

@@ -1,7 +1,6 @@
 /** @format */
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import {
 	ArrowRight,
 	Box,
@@ -69,26 +68,7 @@ const SectionHeading = ({ sub, title }) => (
 );
 
 const Home = ({ openBookVisit }) => {
-	const ongoingProjects = [
-		{
-			title: 'The Ayati',
-			status: 'Ongoing',
-			location: 'Financial District',
-			img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop',
-		},
-		{
-			title: 'SVNR Heights',
-			status: 'Ongoing',
-			location: 'Jubilee Hills',
-			img: 'https://images.unsplash.com/photo-1600596542815-e36cb0654136?q=80&w=2070&auto=format&fit=crop',
-		},
-		{
-			title: 'Green Valley',
-			status: 'Ongoing',
-			location: 'Gachibowli',
-			img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop',
-		},
-	];
+
 
 	return (
 		<div className='bg-black min-h-screen text-white'>

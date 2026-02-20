@@ -1,11 +1,9 @@
 /** @format */
 
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { Download, MapPin, Quote } from 'lucide-react';
 
 const DeliveredProjectDetails = () => {
-	const { id } = useParams();
 	const [sliderValue, setSliderValue] = useState(50); // For before/after swipe
 
 	return (

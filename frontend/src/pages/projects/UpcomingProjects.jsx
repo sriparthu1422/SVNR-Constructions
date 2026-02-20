@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ArrowRight, Lock, MapPin, Calendar, Layout } from 'lucide-react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 
 const upcomingProjects = [

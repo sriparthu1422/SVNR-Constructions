@@ -1,7 +1,6 @@
 /** @format */
 
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import {
 	Camera,
 	Calendar,
@@ -14,9 +13,7 @@ import {
 } from 'lucide-react';
 
 const LiveProjectDetails = () => {
-	const { id } = useParams();
 	const [viewMode, setViewMode] = useState('render'); // 'render' or 'site'
-	const [activeTab, setActiveTab] = useState('overview');
 
 	return (
 		<div className='bg-black text-white min-h-screen pt-20 pb-20'>

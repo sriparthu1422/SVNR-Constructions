@@ -2,11 +2,10 @@
 
 import React, { useState } from 'react';
 import { X, ChevronDown } from 'lucide-react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 
 const BookSiteVisitModal = ({ isOpen, onClose }) => {
-	if (!isOpen) return null;
-
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',

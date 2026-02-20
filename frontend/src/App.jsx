@@ -31,6 +31,8 @@ const ScrollToTop = () => {
 	return null;
 };
 
+import TawkToChat from './components/common/TawkToChat';
+
 function App() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,6 +43,7 @@ function App() {
 		<Router>
 			<ScrollToTop />
 			<div className='flex flex-col min-h-screen bg-black text-white font-sans'>
+				<TawkToChat />
 				<Navbar onBookVisit={openModal} />
 				<main className='flex-grow'>
 					<Routes>

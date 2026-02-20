@@ -8,70 +8,41 @@ import logo from '../../assets/logo.png';
 
 const Navbar = ({ onBookVisit }) => {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const [isVisible, setIsVisible] = useState(false);
+	const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
 	const [isProjectsHovered, setIsProjectsHovered] = useState(false);
 	const [isMobileProjectsOpen, setIsMobileProjectsOpen] = useState(false);
 	const location = useLocation();
 
 	useEffect(() => {
-		// Logic:
-		// If NOT on home page -> Always visible.
-		// If ON home page -> Hidden initially, Visible ONLY when Section 2 (or past Hero) enters viewport.
-
+		// Only track scroll position on the home page
 		if (location.pathname !== '/') {
-			setIsVisible(true);
+			// setIsScrolledPastHero(true); // Unnecessary because isVisible derived value handles this
 			return;
 		}
-
-		// For Home Page: Use Intersection Observer
-		// We observe the "hero-sentinel" - a tiny element placed at the bottom of the Hero Section.
-		// When it leaves the viewport (scrolling down), we show the navbar.
-		// When it enters the viewport (scrolling up), we hide the navbar.
-
-		// Actually, robust way: Observe the Hero Section itself.
-		// If Hero is intersecting > 0, hide navbar? No, wait.
-		// "Navbar must appear only when Section 2 enters the viewport".
-		// So if we observe Section 2 ("about-section"), and it is intersecting, set visible?
-		// But if we scroll past Section 2 to Section 3, Section 2 is not intersecting but Navbar should stay visible.
-		// So, Logic: If Hero is NOT intersecting (or mostly scrolled out), show Navbar.
 
 		const heroElement = document.getElementById('home');
 		if (!heroElement) return;
 
 		const observer = new IntersectionObserver(
 			([entry]) => {
-				// If Hero is NOT intersecting (entry.isIntersecting === false), it means we scrolled past it. -> Show Navbar
-				// However, we want "The moment Section 2 enters".
-				// Section 2 enters when Hero leaves or nearly leaves.
-				// Let's use a threshold. If Hero visibility < 0.1, show Navbar.
-
-				// Better: setIsVisible(!entry.isIntersecting);
-				// This is safe. If Hero is ON screen, Navbar Hidden. If Hero OFF screen, Navbar Visible.
-				// But we want it to *slide in* as we enter Section 2.
-
-				setIsVisible(!entry.isIntersecting);
+				// If Hero is intersecting, we are seeing it -> Nav hidden
+				// If Hero is NOT intersecting, we scrolled past -> Nav visible
+				setIsScrolledPastHero(!entry.isIntersecting);
 			},
 			{
 				root: null,
-				threshold: 0, // Trigger as soon as even 1 pixel of Hero is visible/invisible?
-				// Actually, we want it to hide when ANY part of Hero is visible?
-				// Or show when Hero is completely gone?
-				// Prompt says: "When user scrolls back up to Section 1: Navbar hides again".
-				// "Navbar must appear only when Section 2 enters viewport".
-				// This implies: Section 2 top touches viewport bottom -> Navbar appears?
-				// Or Section 2 top touches viewport TOP?
-				// Usually, fixed navbars appear once you scroll PAST the hero.
-				// Let's stick to: Show when Hero is completely out of view (or nearly).
-				rootMargin: '-80px 0px 0px 0px', // Adjusted to trigger slightly before/after
+				threshold: 0,
+				rootMargin: '-80px 0px 0px 0px',
 			},
 		);
 
 		observer.observe(heroElement);
-
 		return () => {
 			if (heroElement) observer.unobserve(heroElement);
 		};
 	}, [location.pathname]);
+
+	const isVisible = location.pathname !== '/' || isScrolledPastHero;
 
 	const navLinks = [
 		{ name: 'Home', path: '/' },
@@ -84,11 +55,10 @@ const Navbar = ({ onBookVisit }) => {
 
 	return (
 		<nav
-			className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
-				isVisible
-					? 'translate-y-0 opacity-100'
-					: '-translate-y-full opacity-0'
-			} bg-black/90 backdrop-blur-md border-b border-white/10`}>
+			className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${isVisible
+				? 'translate-y-0 opacity-100'
+				: '-translate-y-full opacity-0'
+				} bg-black/90 backdrop-blur-md border-b border-white/10`}>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='flex items-center justify-between h-20'>
 					{/* Logo */}
@@ -127,11 +97,10 @@ const Navbar = ({ onBookVisit }) => {
 
 											{/* Mega Menu Dropdown */}
 											<div
-												className={`absolute left-1/2 -translate-x-1/2 mt-0 w-[800px] bg-stone-950 border border-white/10 rounded-xl shadow-2xl p-6 grid grid-cols-3 gap-6 transition-all duration-300 origin-top ${
-													isProjectsHovered
-														? 'opacity-100 scale-100 visible'
-														: 'opacity-0 scale-95 invisible'
-												}`}>
+												className={`absolute left-1/2 -translate-x-1/2 mt-0 w-[800px] bg-stone-950 border border-white/10 rounded-xl shadow-2xl p-6 grid grid-cols-3 gap-6 transition-all duration-300 origin-top ${isProjectsHovered
+													? 'opacity-100 scale-100 visible'
+													: 'opacity-0 scale-95 invisible'
+													}`}>
 												{/* Live Projects */}
 												<Link
 													to='/live-projects'
