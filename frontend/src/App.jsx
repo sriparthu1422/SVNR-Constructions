@@ -21,12 +21,23 @@ import DeliveredProjectDetails from './pages/projects/DeliveredProjectDetails';
 import UpcomingProjects from './pages/projects/UpcomingProjects';
 
 
+import ReactGA from 'react-ga4';
+
+// Initialize GA4
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
+if (GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
+	ReactGA.initialize(GA_MEASUREMENT_ID);
+}
+
 // ScrollToTop component to reset scroll on route change
 const ScrollToTop = () => {
-	const { pathname } = useLocation();
+	const { pathname, search } = useLocation();
 	useEffect(() => {
 		window.scrollTo(0, 0);
-	}, [pathname]);
+		if (GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
+			ReactGA.send({ hitType: 'pageview', page: pathname + search });
+		}
+	}, [pathname, search]);
 	return null;
 };
 
