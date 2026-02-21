@@ -73,13 +73,6 @@ const Footer = () => {
 						</li>
 						<li>
 							<Link
-								to='/news'
-								className='hover:text-yellow-500 transition-colors'>
-								News & Media
-							</Link>
-						</li>
-						<li>
-							<Link
 								to='/contact'
 								className='hover:text-yellow-500 transition-colors'>
 								Contact Us

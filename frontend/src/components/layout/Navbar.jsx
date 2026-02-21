@@ -48,7 +48,6 @@ const Navbar = ({ onBookVisit }) => {
 		{ name: 'Home', path: '/' },
 		{ name: 'About Us', path: '/about-us' },
 		{ name: 'Projects', path: '#', type: 'dropdown' },
-		{ name: 'News', path: '/news' },
 		{ name: 'Contact', path: '/contact' },
 		{ name: 'Explore VR', path: '/explore-vr' },
 	];

@@ -1,10 +1,38 @@
 /** @format */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+const carouselImages = [
+	{
+		src: 'https://plus.unsplash.com/premium_photo-1681989486976-9ec9d2eac57a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+		text: 'Precision Engineering'
+	},
+	{
+		src: 'https://plus.unsplash.com/premium_photo-1681691912442-68c4179c530c?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+		text: 'Award Winning Quality'
+	},
+	{
+		src: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+		text: 'Certified Standards'
+	},
+	{
+		src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+		text: 'Expert Team'
+	}
+];
+
 const AboutSection = () => {
+	const [currentSlide, setCurrentSlide] = useState(0);
+
+	useEffect(() => {
+		const timer = setInterval(() => {
+			setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+		}, 3000);
+		return () => clearInterval(timer);
+	}, []);
+
 	return (
 		<section className='bg-black text-white py-20 px-4 md:px-8 overflow-hidden'>
 			<div className='max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-3 gap-12 lg:gap-8 items-start'>
@@ -43,52 +71,35 @@ const AboutSection = () => {
 
 					<div className='flex flex-col items-center space-y-1'>
 						<span className='text-5xl font-bold text-white'>
-							276
+							1M
 						</span>
 						<span className='text-sm text-gray-400 border-t border-gray-700 pt-2 w-full text-center tracking-wider'>
-							UNITS DELIVERED
+							SQ FT CONSTRUCTED
 						</span>
 					</div>
 				</div>
 
 				{/* 3. Images (Desktop: Col 3, Mobile: Order 3) */}
-				<div className='flex flex-col space-y-6 order-3 lg:col-span-1 lg:row-span-2'>
-					{/* Main Large Image */}
-					<div className='relative h-64 lg:h-80 w-full overflow-hidden rounded-sm group'>
-						<img
-							src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
-							alt='Construction Site'
-							className='w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-110'
-						/>
-						<div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'></div>
-						<div className='absolute bottom-4 left-4 text-white font-medium tracking-wide'>
-							Precision Engineering
-						</div>
-					</div>
-
-					{/* Bottom Row: 3 Equal Image Cards */}
-					<div className='grid grid-cols-3 gap-2 h-24'>
-						<div className='relative group overflow-hidden border border-white/10 rounded-sm'>
-							<img
-								src='https://images.unsplash.com/photo-1531834685032-c34bf0d84c7c?q=80&w=1997&auto=format&fit=crop'
-								alt='Award'
-								className='w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all'
-							/>
-						</div>
-						<div className='relative group overflow-hidden border border-white/10 rounded-sm'>
-							<img
-								src='https://images.unsplash.com/photo-1556156653-e9998110eadd?q=80&w=2070&auto=format&fit=crop'
-								alt='Cert'
-								className='w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all'
-							/>
-						</div>
-						<div className='relative group overflow-hidden border border-white/10 rounded-sm'>
-							<img
-								src='https://images.unsplash.com/photo-1581094794329-cd1196532882?q=80&w=2070&auto=format&fit=crop'
-								alt='Team'
-								className='w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all'
-							/>
-						</div>
+				<div className='flex flex-col order-3 lg:col-span-1 lg:row-span-2 h-[350px] lg:h-[420px]'>
+					{/* Automated Carousel Slide */}
+					<div className='relative h-full w-full overflow-hidden rounded-sm group'>
+						{carouselImages.map((image, index) => (
+							<div
+								key={index}
+								className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+									}`}
+							>
+								<img
+									src={image.src}
+									alt={image.text}
+									className='w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 transform group-hover:scale-110'
+								/>
+								<div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none'></div>
+								<div className='absolute bottom-4 left-4 text-white font-medium tracking-wide'>
+									{image.text}
+								</div>
+							</div>
+						))}
 					</div>
 				</div>
 

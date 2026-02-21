@@ -11,7 +11,6 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
-import News from './pages/News';
 import Contact from './pages/Contact';
 import ExploreVR from './pages/ExploreVR';
 import BookSiteVisitModal from './components/common/BookSiteVisitModal';
@@ -75,10 +74,6 @@ function App() {
 						<Route
 							path='/upcoming-projects'
 							element={<UpcomingProjects />}
-						/>
-						<Route
-							path='/news'
-							element={<News />}
 						/>
 						<Route
 							path='/contact'
