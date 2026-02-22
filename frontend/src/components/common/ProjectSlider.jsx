@@ -108,7 +108,7 @@ const ProjectSlider = () => {
 			{/* Section Header */}
 			<div className='text-center mb-16 px-4'>
 				<h2 className='text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight'>
-					Ongoing Projects
+					Completed Projects
 				</h2>
 				<h3 className='text-gray-400 text-2xl font-light tracking-wide'>
 					Crafted with Passion,{' '}

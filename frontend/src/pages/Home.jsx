@@ -58,7 +58,7 @@ const ProjectCard = ({ title, status, location, img }) => (
 
 const SectionHeading = ({ sub, title }) => (
 	<div className='text-center mb-16'>
-		<span className='text-yellow-500 font-medium tracking-widest text-sm uppercase'>
+		<span className='text-yellow-500 font-medium tracking-widest text-xl uppercase'>
 			{sub}
 		</span>
 		<h2 className='text-3xl md:text-5xl font-bold text-white mt-3'>
@@ -85,24 +85,24 @@ const Home = ({ openBookVisit }) => {
 				<AboutSection />
 			</div>
 
-			{/* Section 3: Ongoing Projects (Slider) */}
+			{/* Section 3: Completed Projects (Slider) */}
 			<ProjectSlider />
 
-			{/* Section 4: Completed Projects Gallery */}
+			{/* Section 4: OnGoing Projects Gallery */}
 			<section className='py-24 px-4 md:px-8 bg-black'>
 				<div className='max-w-7xl mx-auto'>
 					<SectionHeading
-						sub='Excellence Delivered'
-						title='Completed Projects'
+						sub='OnGoing Project'
+						title='The Ayati'
 					/>
 					<div className='grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px]'>
 						<div className='col-span-2 row-span-2 relative group overflow-hidden rounded-md'>
 							<img
 								src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop'
 								alt='Project'
-								className='w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700'
+								className='w-full h-full object-cover transition-all duration-700'
 							/>
-							<div className='absolute inset-0 bg-black/60 group-hover:bg-transparent transition-all duration-500 flex items-end p-8'>
+							<div className='absolute inset-0 group-hover:bg-transparent transition-all duration-500 flex items-end p-8'>
 								<div className='text-white'>
 									<h3 className='text-2xl font-bold'>
 										Skyline Towers
@@ -117,9 +117,9 @@ const Home = ({ openBookVisit }) => {
 							<img
 								src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop'
 								alt='Project'
-								className='w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700'
+								className='w-full h-full object-cover transition-all duration-700'
 							/>
-							<div className='absolute inset-0 bg-black/50 group-hover:bg-transparent transition-all p-4 flex items-end'>
+							<div className='absolute inset-0 group-hover:bg-transparent transition-all p-4 flex items-end'>
 								<h3 className='font-bold'>Urban Villas</h3>
 							</div>
 						</div>
@@ -127,9 +127,9 @@ const Home = ({ openBookVisit }) => {
 							<img
 								src='https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop'
 								alt='Project'
-								className='w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700'
+								className='w-full h-full object-cover transition-all duration-700'
 							/>
-							<div className='absolute inset-0 bg-black/50 group-hover:bg-transparent transition-all p-4 flex items-end'>
+							<div className='absolute inset-0 group-hover:bg-transparent transition-all p-4 flex items-end'>
 								<h3 className='font-bold'>The Grand</h3>
 							</div>
 						</div>
@@ -137,9 +137,9 @@ const Home = ({ openBookVisit }) => {
 							<img
 								src='https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=2070&auto=format&fit=crop'
 								alt='Project'
-								className='w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700'
+								className='w-full h-full object-cover transition-all duration-700'
 							/>
-							<div className='absolute inset-0 bg-black/50 group-hover:bg-transparent transition-all p-4 flex items-end'>
+							<div className='absolute inset-0 group-hover:bg-transparent transition-all p-4 flex items-end'>
 								<h3 className='font-bold'>Emerald Gardens</h3>
 							</div>
 						</div>

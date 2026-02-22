@@ -102,7 +102,7 @@ const AboutSection = () => {
 							1M
 						</span>
 						<span className='text-sm text-gray-400 border-t border-gray-700 pt-2 w-full text-center tracking-wider'>
-							SQ FT CONSTRUCTED
+							SFT CONSTRUCTED
 						</span>
 					</div>
 				</div>
