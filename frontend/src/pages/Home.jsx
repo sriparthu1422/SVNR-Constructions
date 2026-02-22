@@ -13,6 +13,7 @@ import HeroSection from '../components/sections/HeroSection';
 import AboutSection from '../components/sections/AboutSection';
 import ProjectSlider from '../components/common/ProjectSlider';
 import { Link } from 'react-router-dom';
+import SvnrConstruction from '../assets/images/HomeImage/svnrconstruction.png';
 
 const ProjectCard = ({ title, status, location, img }) => (
 	<div className='group relative overflow-hidden rounded-lg bg-stone-900 border border-white/10'>
@@ -200,7 +201,7 @@ const Home = ({ openBookVisit }) => {
 					</div>
 					<div className='md:w-1/2 relative bg-gray-800 h-64 md:h-auto'>
 						<img
-							src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop'
+							src={SvnrConstruction}
 							alt='Contact'
 							className='absolute inset-0 w-full h-full object-cover opacity-80'
 						/>

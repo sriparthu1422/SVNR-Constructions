@@ -19,7 +19,7 @@ const Footer = () => {
 				{/* Brand Info */}
 				<div>
 					<h2 className='text-2xl font-bold tracking-wider mb-6'>
-						SVNR<span className='text-yellow-500'>.</span>
+						SVNR Constructions<span className='text-yellow-500'>.</span>
 					</h2>
 					<p className='text-gray-400 text-sm leading-relaxed mb-6'>
 						Building dreams with concrete precision. Trusted by
