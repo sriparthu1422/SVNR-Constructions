@@ -1,27 +1,43 @@
 /** @format */
 
 import React, { useState } from 'react';
-import { Download, MapPin, Quote } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
+import { Download, MapPin, Quote, ArrowLeft } from 'lucide-react';
+import { deliveredProjects } from './DeliveredProjects';
 
 const DeliveredProjectDetails = () => {
+	const { id } = useParams();
 	const [sliderValue, setSliderValue] = useState(50); // For before/after swipe
+
+	const project = deliveredProjects.find(p => p.id === parseInt(id));
+
+	if (!project) {
+		return (
+			<div className='min-h-screen bg-black text-white flex flex-col items-center justify-center'>
+				<h1 className='text-4xl font-bold mb-4'>Project Not Found</h1>
+				<Link to='/delivered-projects' className='text-yellow-500 hover:text-yellow-400 flex items-center gap-2'>
+					<ArrowLeft size={20} /> Back to Delivered Projects
+				</Link>
+			</div>
+		);
+	}
 
 	return (
 		<div className='bg-black text-white min-h-screen pt-20 pb-20'>
 			{/* HERRO */}
 			<div className='relative h-[60vh] w-full overflow-hidden'>
 				<img
-					src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'
+					src={project.image}
 					className='w-full h-full object-cover'
 					alt='Hero'
 				/>
 				<div className='absolute inset-0 bg-black/40 flex flex-col justify-end p-8 md:p-16'>
 					<div className='max-w-7xl mx-auto'>
-						<h1 className='text-4xl md:text-6xl font-bold mb-2'>
-							Skyline Luxury Apartments
+						<h1 className='text-4xl md:text-6xl font-bold mb-2 uppercase'>
+							{project.name}
 						</h1>
 						<p className='text-xl text-gray-300 flex items-center gap-2'>
-							<MapPin size={20} /> Gachibowli, Hyderabad
+							<MapPin size={20} /> {project.location}, Telangana
 						</p>
 					</div>
 				</div>
@@ -32,7 +48,7 @@ const DeliveredProjectDetails = () => {
 				<div className='grid grid-cols-2 md:grid-cols-4 gap-6 bg-stone-900 border border-white/10 p-8 rounded-xl text-center divide-x divide-white/10'>
 					<div>
 						<span className='block text-3xl font-bold text-yellow-500 mb-1'>
-							2022
+							{project.completionYear}
 						</span>
 						<span className='text-sm text-gray-400 uppercase tracking-wider'>
 							Completion Year
@@ -40,18 +56,18 @@ const DeliveredProjectDetails = () => {
 					</div>
 					<div>
 						<span className='block text-3xl font-bold text-yellow-500 mb-1'>
-							140
+							{project.units}
 						</span>
 						<span className='text-sm text-gray-400 uppercase tracking-wider'>
-							Units Delivered
+							Units
 						</span>
 					</div>
 					<div>
-						<span className='block text-3xl font-bold text-yellow-500 mb-1'>
-							2.5L
+						<span className='block text-3xl font-bold text-yellow-500 mb-1 uppercase'>
+							{project.area.split(' ')[0]}
 						</span>
 						<span className='text-sm text-gray-400 uppercase tracking-wider'>
-							Sqft Built-up Area
+							{project.area.split(' ').slice(1).join(' ')}
 						</span>
 					</div>
 					<div>
@@ -150,9 +166,7 @@ const DeliveredProjectDetails = () => {
 					/>
 					<div className='relative z-10 text-center max-w-3xl mx-auto'>
 						<p className='text-2xl italic text-gray-300 mb-8'>
-							"The quality of construction and meaningful
-							amenities provided by SVNR is truly world-class.
-							Handover happened exactly on the promised date."
+							"{project.testimonial}"
 						</p>
 						<div className='flex items-center justify-center gap-4'>
 							<div className='bg-yellow-500 w-12 h-12 rounded-full flex items-center justify-center font-bold text-black text-xl'>

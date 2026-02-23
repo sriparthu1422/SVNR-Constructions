@@ -3,26 +3,72 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Calendar, CheckCircle } from 'lucide-react';
+import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.png';
+import vinayakHomes from '../../assets/images/AboutSectionImages/Vinayak Homes.jpg';
+import saiDattaResidency from '../../assets/images/AboutSectionImages/SaiDatta Residency.jpg';
+import greenspace from '../../assets/images/AboutSectionImages/Greenspace.png';
+import theLotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.png';
+import theBreeze from '../../assets/images/AboutSectionImages/The Breeze.png';
 
-const deliveredProjects = [
+export const deliveredProjects = [
 	{
 		id: 1,
-		name: 'Skyline Luxury Apartments',
-		location: 'Gachibowli, Hyderabad',
+		name: 'Manasa Sarovar',
+		location: 'Miryalaguda, Telangana',
 		completionYear: '2022',
-		units: 140,
-		area: '2.5 Lakh Sqft',
-		image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop',
+		units: 40,
+		area: '1850 Sq.Yards',
+		image: manasaSarovar,
 		testimonial: 'Exceeded all expectations in quality and timeline.',
 	},
 	{
 		id: 2,
-		name: 'Urban Heights',
-		location: 'Kondapur, Hyderabad',
+		name: 'Vinayak Homes',
+		location: 'Miryalaguda, Telangana',
 		completionYear: '2020',
-		units: 85,
-		area: '1.2 Lakh Sqft',
-		image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
+		units: 15,
+		area: '732 SQ.Yards',
+		image: vinayakHomes,
+		testimonial: 'Truly premium living experience.',
+	},
+	{
+		id: 3,
+		name: 'Sai Datta Residency',
+		location: 'Miryalaguda, Telangana',
+		completionYear: '2020',
+		units: 25,
+		area: '1212 SQ.Yards',
+		image: saiDattaResidency,
+		testimonial: 'Truly premium living experience.',
+	},
+	{
+		id: 4,
+		name: 'Greenspace',
+		location: 'Miryalaguda, Telangana',
+		completionYear: '2020',
+		units: 25,
+		area: '1200 SQ.Yards',
+		image: greenspace,
+		testimonial: 'Truly premium living experience.',
+	},
+	{
+		id: 5,
+		name: 'The Lotus Residency',
+		location: 'Miryalaguda, Telangana',
+		completionYear: '2020',
+		units: 10,
+		area: '678 SQ.Yards',
+		image: theLotusResidency,
+		testimonial: 'Truly premium living experience.',
+	},
+	{
+		id: 6,
+		name: 'The Breeze',
+		location: 'Narsingi (Manchirevula)',
+		completionYear: '2020',
+		units: 70,
+		area: '3756 SQ.Yards',
+		image: theBreeze,
 		testimonial: 'Truly premium living experience.',
 	},
 ];

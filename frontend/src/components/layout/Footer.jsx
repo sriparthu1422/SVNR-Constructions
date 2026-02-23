@@ -15,9 +15,9 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
 	return (
 		<footer className='bg-neutral-950 text-white border-t border-white/10'>
-			<div className='max-w-7xl mx-auto px-4 py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12'>
+			<div className='max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12'>
 				{/* Brand Info */}
-				<div>
+				<div className='lg:col-span-4 pr-0 lg:pr-8'>
 					<h2 className='text-2xl font-bold tracking-wider mb-6'>
 						SVNR Constructions<span className='text-yellow-500'>.</span>
 					</h2>
@@ -47,7 +47,7 @@ const Footer = () => {
 				</div>
 
 				{/* Quick Links */}
-				<div>
+				<div className='lg:col-span-2'>
 					<h3 className='text-lg font-semibold mb-6'>Quick Links</h3>
 					<ul className='space-y-3 text-sm text-gray-400'>
 						<li>
@@ -78,11 +78,18 @@ const Footer = () => {
 								Contact Us
 							</Link>
 						</li>
+						<li>
+							<Link
+								to='/explore-vr'
+								className='hover:text-yellow-500 transition-colors'>
+								Explore VR
+							</Link>
+						</li>
 					</ul>
 				</div>
 
 				{/* Projects */}
-				<div>
+				<div className='lg:col-span-3'>
 					<h3 className='text-lg font-semibold mb-6'>
 						Latest Projects
 					</h3>
@@ -119,7 +126,7 @@ const Footer = () => {
 				</div>
 
 				{/* Contact */}
-				<div>
+				<div className='lg:col-span-3 pb-8 lg:pb-0'>
 					<h3 className='text-lg font-semibold mb-6'>Contact Us</h3>
 					<div className='space-y-4 text-sm text-gray-400'>
 						<div className='flex items-start gap-3'>
@@ -127,9 +134,8 @@ const Footer = () => {
 								size={18}
 								className='mt-1 text-yellow-500 flex-shrink-0'
 							/>
-							<span>
-								123, Luxury Lane, Financial District, Hyderabad,
-								500032
+							<span className='leading-relaxed'>
+								ORR Exit - 5, Saragudem ( V ), <span className="whitespace-nowrap">Gandi Maisamma</span>, Medchal Malkajgiri ( D ), Hyderabad - 500043, Telangana.
 							</span>
 						</div>
 						<div className='flex items-center gap-3'>
@@ -137,31 +143,43 @@ const Footer = () => {
 								size={18}
 								className='text-yellow-500 flex-shrink-0'
 							/>
-							<span>+91 98765 43210</span>
+							<span>7842080707, 7842090707</span>
 						</div>
 						<div className='flex items-center gap-3'>
 							<Mail
 								size={18}
 								className='text-yellow-500 flex-shrink-0'
 							/>
-							<span>info@svnrconstructions.com</span>
+							<span className='break-all'>svnrconstruction@gmail.com</span>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div className='border-t border-white/10 bg-black py-6'>
-				<div className='max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500'>
-					<p>&copy; 2024 SVNR Constructions. All rights reserved.</p>
-					<div className='flex space-x-6 mt-4 md:mt-0'>
+			<div className='border-t border-white/10 bg-black py-6 pb-40 lg:pb-6'>
+				<div className='max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4 md:gap-0'>
+					<p className='text-center md:text-left leading-relaxed'>
+						&copy; 2021, SVNR Constructions Pvt. Ltd. All Rights Reserved.
+						<span className='block sm:inline sm:ml-1 mt-1 sm:mt-0'>
+							Designed by{' '}
+							<a
+								href='https://sriparthu1422.github.io/NSP-portfolio/'
+								target='_blank'
+								rel='noopener noreferrer'
+								className='text-yellow-500 hover:text-white transition-colors font-medium tracking-wider'>
+								NSP
+							</a>
+						</span>
+					</p>
+					<div className='flex space-x-6'>
 						<a
 							href='#'
-							className='hover:text-white'>
+							className='hover:text-white transition-colors tracking-wide'>
 							Privacy Policy
 						</a>
 						<a
 							href='#'
-							className='hover:text-white'>
+							className='hover:text-white transition-colors tracking-wide'>
 							Terms of Service
 						</a>
 					</div>

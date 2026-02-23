@@ -87,7 +87,7 @@ const AboutSection = () => {
 				<div className='flex flex-col items-center justify-center text-center py-8 lg:py-0 h-full order-2 lg:col-span-2 px-2'>
 					<div className='relative'>
 						<span className="text-[120px] md:text-[160px] font-bold leading-none text-transparent bg-clip-text bg-gradient-to-b from-yellow-400 to-yellow-700 opacity-90 font-['Outfit']">
-							10
+							8
 						</span>
 						<span className='absolute top-4 right-0 text-xl font-bold text-white'>
 							+

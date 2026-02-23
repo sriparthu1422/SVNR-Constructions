@@ -3,42 +3,47 @@
 import React from 'react';
 import { MapPin, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.png';
+import vinayakHomes from '../../assets/images/AboutSectionImages/Vinayak Homes.jpg';
+import saiDattaResidency from '../../assets/images/AboutSectionImages/SaiDatta Residency.jpg';
+import greenspace from '../../assets/images/AboutSectionImages/Greenspace.png';
+import theLotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.png';
 
 const projects = [
 	{
 		id: 1,
-		name: 'The Ayati',
-		location: 'Financial District',
-		status: 'Ongoing',
-		image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop',
+		name: 'MANASA SAROVAR',
+		location: 'Miryalaguda, Telangana',
+		status: 'Completed',
+		image: manasaSarovar,
 	},
 	{
 		id: 2,
-		name: 'SVNR Heights',
-		location: 'Jubilee Hills',
-		status: 'Ongoing',
-		image: 'https://images.unsplash.com/photo-1600596542815-e36cb0654136?q=80&w=2070&auto=format&fit=crop',
+		name: 'Vinayak Homes',
+		location: 'Miryalaguda, Telangana',
+		status: 'Completed',
+		image: vinayakHomes,
 	},
 	{
 		id: 3,
-		name: 'Green Valley',
-		location: 'Gachibowli',
-		status: 'Ongoing',
-		image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop',
+		name: 'Sai Datta Residency',
+		location: 'Miryalaguda, Telangana',
+		status: 'Completed',
+		image: saiDattaResidency,
 	},
 	{
 		id: 4,
-		name: 'Urban Towers',
-		location: 'Hitech City',
-		status: 'Upcoming',
-		image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop',
+		name: 'Greenspace',
+		location: 'Miryalaguda, Telangana',
+		status: 'Completed',
+		image: greenspace,
 	},
 	{
 		id: 5,
-		name: 'Skyline Residency',
-		location: 'Kondapur',
-		status: 'Ongoing',
-		image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop',
+		name: 'The Lotus Residency',
+		location: 'Miryalaguda, Telangana',
+		status: 'Completed',
+		image: theLotusResidency,
 	},
 ];
 
@@ -46,7 +51,7 @@ const ProjectCard = ({ project }) => {
 	const linkTo =
 		project.status === 'Upcoming'
 			? '/upcoming-projects'
-			: `/live-projects/${project.id}`;
+			: `/delivered-projects/${project.id}`;
 
 	return (
 		<Link to={linkTo}>
@@ -108,7 +113,7 @@ const ProjectSlider = () => {
 			{/* Section Header */}
 			<div className='text-center mb-16 px-4'>
 				<h2 className='text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight'>
-					Completed Projects
+					Delivered Projects
 				</h2>
 				<h3 className='text-gray-400 text-2xl font-light tracking-wide'>
 					Crafted with Passion,{' '}
@@ -141,7 +146,7 @@ const ProjectSlider = () => {
 						to={
 							project.status === 'Upcoming'
 								? '/upcoming-projects'
-								: `/live-projects/${project.id}`
+								: `/delivered-projects/${project.id}`
 						}
 						key={project.id}>
 						<div className='relative h-64 w-full overflow-hidden rounded-md border border-white/10 shadow-lg'>

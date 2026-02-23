@@ -100,29 +100,6 @@ const Navbar = ({ onBookVisit }) => {
 													? 'opacity-100 scale-100 visible'
 													: 'opacity-0 scale-95 invisible'
 													}`}>
-												{/* Live Projects */}
-												<Link
-													to='/live-projects'
-													className='group/card block'>
-													<div className='h-40 bg-stone-900 rounded-lg overflow-hidden mb-3 relative'>
-														<img
-															src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
-															alt='Live'
-															className='w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-500'
-														/>
-														<div className='absolute top-2 right-2 bg-yellow-500 text-black text-[10px] font-bold px-2 py-0.5 rounded uppercase'>
-															Ongoing
-														</div>
-													</div>
-													<div className='text-white font-bold text-lg group-hover/card:text-yellow-500 transition-colors'>
-														Live Projects
-													</div>
-													<p className='text-gray-400 text-xs mt-1'>
-														Track real-time
-														construction progress
-													</p>
-												</Link>
-
 												{/* Delivered Projects */}
 												<Link
 													to='/delivered-projects'
@@ -143,6 +120,29 @@ const Navbar = ({ onBookVisit }) => {
 													<p className='text-gray-400 text-xs mt-1'>
 														Explore our completed
 														landmarks
+													</p>
+												</Link>
+
+												{/* Live Projects */}
+												<Link
+													to='/live-projects'
+													className='group/card block'>
+													<div className='h-40 bg-stone-900 rounded-lg overflow-hidden mb-3 relative'>
+														<img
+															src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
+															alt='Live'
+															className='w-full h-full object-cover group-hover/card:scale-110 transition-transform duration-500'
+														/>
+														<div className='absolute top-2 right-2 bg-yellow-500 text-black text-[10px] font-bold px-2 py-0.5 rounded uppercase'>
+															Ongoing
+														</div>
+													</div>
+													<div className='text-white font-bold text-lg group-hover/card:text-yellow-500 transition-colors'>
+														Live Projects
+													</div>
+													<p className='text-gray-400 text-xs mt-1'>
+														Track real-time
+														construction progress
 													</p>
 												</Link>
 
@@ -243,16 +243,6 @@ const Navbar = ({ onBookVisit }) => {
 										{isMobileProjectsOpen && (
 											<div className='pl-6 space-y-2 mt-1'>
 												<Link
-													to='/live-projects'
-													className='block text-gray-400 hover:text-yellow-500 py-1 text-sm'
-													onClick={() =>
-														setIsMobileMenuOpen(
-															false,
-														)
-													}>
-													Live Projects
-												</Link>
-												<Link
 													to='/delivered-projects'
 													className='block text-gray-400 hover:text-yellow-500 py-1 text-sm'
 													onClick={() =>
@@ -261,6 +251,16 @@ const Navbar = ({ onBookVisit }) => {
 														)
 													}>
 													Delivered Projects
+												</Link>
+												<Link
+													to='/live-projects'
+													className='block text-gray-400 hover:text-yellow-500 py-1 text-sm'
+													onClick={() =>
+														setIsMobileMenuOpen(
+															false,
+														)
+													}>
+													Live Projects
 												</Link>
 												<Link
 													to='/upcoming-projects'
