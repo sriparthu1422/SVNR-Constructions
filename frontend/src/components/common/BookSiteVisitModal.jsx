@@ -35,7 +35,7 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 	};
 
 	const inputClasses =
-		'w-full p-3 border border-gray-300 rounded-md text-gray-700 text-sm focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all placeholder-gray-400';
+		'w-full p-2.5 border border-gray-300 rounded-md text-gray-700 text-sm focus:outline-none focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 transition-all placeholder-gray-400';
 
 	return (
 		<AnimatePresence>
@@ -56,9 +56,9 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 							initial={{ scale: 0.95, opacity: 0 }}
 							animate={{ scale: 1, opacity: 1 }}
 							exit={{ scale: 0.95, opacity: 0 }}
-							className='bg-white w-full max-w-lg shadow-2xl pointer-events-auto relative flex flex-col max-h-[90vh]'>
+							className='bg-white w-full max-w-lg shadow-2xl pointer-events-auto relative flex flex-col max-h-[96vh] rounded-xl overflow-hidden'>
 							{/* Scrollable Content Area */}
-							<div className='overflow-y-auto custom-scrollbar p-6 md:p-8'>
+							<div className='overflow-y-auto custom-scrollbar p-5 md:p-6'>
 								{/* Close Button */}
 								<button
 									onClick={onClose}
@@ -67,8 +67,8 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 								</button>
 
 								{/* Header */}
-								<div className='text-center mb-8 mt-2'>
-									<h2 className='text-2xl font-bold text-gray-900 mb-1'>
+								<div className='text-center mb-5 mt-2'>
+									<h2 className='text-xl md:text-2xl font-bold text-gray-900 mb-1'>
 										Talk to our Sales Representative
 									</h2>
 								</div>
@@ -76,7 +76,7 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 								{/* Form */}
 								<form
 									onSubmit={handleSubmit}
-									className='space-y-4'>
+									className='space-y-3'>
 									{/* Name */}
 									<div>
 										<input
@@ -175,7 +175,7 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 									<div>
 										<textarea
 											name='message'
-											rows='4'
+											rows='3'
 											value={formData.message}
 											onChange={handleChange}
 											placeholder='Your Message'
@@ -209,7 +209,7 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 									{/* Submit Button */}
 									<button
 										type='submit'
-										className='w-full py-3 bg-yellow-500 text-white font-bold rounded-md hover:bg-yellow-600 transition-colors shadow-md mt-2'>
+										className='w-full py-2.5 bg-yellow-500 text-white font-bold rounded-md hover:bg-yellow-600 transition-colors shadow-md mt-2'>
 										Submit
 									</button>
 								</form>
