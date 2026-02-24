@@ -1,6 +1,7 @@
 /** @format */
 
 import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import {
 	Camera,
 	Calendar,
@@ -10,10 +11,26 @@ import {
 	CheckCircle,
 	MapPin,
 	Phone,
+	ArrowLeft,
 } from 'lucide-react';
+import { liveProjects } from './LiveProjects';
 
 const LiveProjectDetails = () => {
+	const { id } = useParams();
 	const [viewMode, setViewMode] = useState('render'); // 'render' or 'site'
+
+	const project = liveProjects.find(p => p.id === parseInt(id));
+
+	if (!project) {
+		return (
+			<div className='min-h-screen bg-black text-white flex flex-col items-center justify-center'>
+				<h1 className='text-4xl font-bold mb-4'>Project Not Found</h1>
+				<Link to='/live-projects' className='text-yellow-500 hover:text-yellow-400 flex items-center gap-2'>
+					<ArrowLeft size={20} /> Back to Live Projects
+				</Link>
+			</div>
+		);
+	}
 
 	return (
 		<div className='bg-black text-white min-h-screen pt-20 pb-20'>
@@ -22,7 +39,7 @@ const LiveProjectDetails = () => {
 				<img
 					src={
 						viewMode === 'render'
-							? 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'
+							? project.image
 							: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
 					}
 					alt='Project Hero'
@@ -31,13 +48,13 @@ const LiveProjectDetails = () => {
 				<div className='absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/50 to-transparent p-8 md:p-16'>
 					<div className='max-w-7xl mx-auto'>
 						<span className='bg-yellow-500 text-black px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full mb-4 inline-block'>
-							Finishing Stage
+							{project.stage}
 						</span>
 						<h1 className='text-4xl md:text-6xl font-bold mb-2'>
-							The Ayati
+							{project.name}
 						</h1>
 						<p className='text-xl text-gray-300 flex items-center gap-2'>
-							<MapPin size={20} /> Financial District, Hyderabad
+							<MapPin size={20} /> {project.location}
 						</p>
 
 						<div className='flex gap-4 mt-6'>

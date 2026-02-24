@@ -1,138 +1,173 @@
-/** @format */
-
-import React from 'react';
-import { MapPin, Phone, Mail, Building, ArrowRight } from 'lucide-react';
-
-const projects = [
-	{
-		id: 1,
-		name: 'The Ayati',
-		address:
-			'Plot No. 24, Financial District, Gachibowli, Hyderabad, Telangana 500032',
-		phone: '+91 99887 76655',
-		email: 'sales@theayati.com',
-	},
-	{
-		id: 2,
-		name: 'SVNR Heights',
-		address:
-			'Road No. 45, Jubilee Hills, Near Checkpost, Hyderabad, Telangana 500033',
-		phone: '+91 98765 43210',
-		email: 'info@svnrheights.com',
-	},
-	{
-		id: 3,
-		name: 'Green Valley Villas',
-		address: 'Green Hills Road, Manikonda, Hyderabad, Telangana 500089',
-		phone: '+91 91234 56789',
-		email: 'enquiry@greenvalley.com',
-	},
-	{
-		id: 4,
-		name: 'Skyline Towers',
-		address: 'Hitech City Main Road, Madhapur, Hyderabad, Telangana 500081',
-		phone: '+91 88990 07766',
-		email: 'sales@skylinetowers.com',
-	},
-	{
-		id: 5,
-		name: 'Urban Enclave',
-		address: 'Kondapur, Near Botanical Garden, Hyderabad, Telangana 500084',
-		phone: '+91 77665 54433',
-		email: 'contact@urbanenclave.com',
-	},
-	{
-		id: 6,
-		name: 'Lakeview Residency',
-		address: 'Kukatpally, Near Forum Mall, Hyderabad, Telangana 500072',
-		phone: '+91 66554 43322',
-		email: 'sales@lakeview.com',
-	},
-];
-
-const ProjectLocationCard = ({ project }) => (
-	<div className='bg-stone-900 border border-white/10 rounded-lg p-6 hover:border-yellow-500/30 transition-all duration-300 group flex flex-col h-full'>
-		<h3 className='text-xl font-bold text-white mb-4 group-hover:text-yellow-500 transition-colors'>
-			{project.name}
-		</h3>
-		<div className='w-full h-px bg-white/10 mb-6 group-hover:bg-yellow-500/50 transition-colors'></div>
-
-		<div className='space-y-4 flex-grow'>
-			<div className='flex items-start gap-3 text-gray-400'>
-				<MapPin
-					size={20}
-					className='text-yellow-500 mt-1 flex-shrink-0'
-				/>
-				<p className='text-sm leading-relaxed'>{project.address}</p>
-			</div>
-
-			<div className='flex items-center gap-3 text-gray-400'>
-				<Phone
-					size={20}
-					className='text-yellow-500 flex-shrink-0'
-				/>
-				<p className='text-sm'>{project.phone}</p>
-			</div>
-		</div>
-
-		<div className='mt-8 grid grid-cols-3 gap-3 pt-6 border-t border-white/5'>
-			<button className='px-2 py-2 text-xs font-medium text-white border border-white/20 rounded hover:bg-white hover:text-black hover:border-white transition-all text-center'>
-				Site Visit
-			</button>
-			<button className='px-2 py-2 text-xs font-medium text-white border border-white/20 rounded hover:bg-yellow-500 hover:text-black hover:border-yellow-500 transition-all text-center'>
-				Location
-			</button>
-			<a
-				href={`mailto:${project.email}`}
-				className='px-2 py-2 text-xs font-medium text-white border border-white/20 rounded hover:bg-stone-700 transition-all text-center flex items-center justify-center'>
-				Email
-			</a>
-		</div>
-	</div>
-);
+import React, { useState } from 'react';
+import { MapPin, Phone, Mail, CheckCircle } from 'lucide-react';
 
 const Contact = () => {
+	const [isSubmitted, setIsSubmitted] = useState(false);
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		setIsSubmitting(true);
+
+		// Simulate API call for premium interaction feel
+		setTimeout(() => {
+			setIsSubmitting(false);
+			setIsSubmitted(true);
+			setTimeout(() => setIsSubmitted(false), 4000);
+			e.target.reset();
+		}, 1500);
+	};
+
 	return (
-		<div className='min-h-screen bg-black text-white pt-24'>
-			{/* Section 1: Contact Banner */}
-			<section className='px-4 md:px-8 mb-20'>
-				<div className='w-full h-[300px] md:h-[400px] relative rounded-3xl overflow-hidden'>
-					<img
-						src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop'
-						alt='Contact Banner'
-						className='w-full h-full object-cover'
-					/>
-					<div className='absolute inset-0 bg-black/50 flex items-center justify-center'>
-						<h1 className='text-4xl md:text-6xl font-bold text-white tracking-wider uppercase'>
-							Contact Us
-						</h1>
+		<div className='min-h-screen bg-black text-white font-sans flex flex-col'>
+			<div className='flex-grow w-full flex items-center justify-center pt-24 pb-12 px-4 md:px-8'>
+				{/* Main Container - 1200px Max Width */}
+				<div className='max-w-[1200px] w-full mx-auto bg-white rounded-[20px] shadow-2xl flex flex-col md:flex-row overflow-hidden relative'>
+
+					{/* LEFT PANEL – Contact Information Card */}
+					<div className='w-full md:w-1/2 bg-gradient-to-br from-[#1a1c20] via-[#2a2d34] to-[#121316] text-white p-10 md:py-[60px] md:px-12 relative flex flex-col justify-center min-h-[500px]'>
+
+						{/* Decorative abstract shape */}
+						<div className='absolute -bottom-20 -right-20 w-72 h-72 bg-yellow-500/20 rounded-full blur-[60px] pointer-events-none'></div>
+						<div className='absolute top-0 right-0 w-32 h-32 bg-yellow-500/10 rounded-full blur-[40px] pointer-events-none'></div>
+
+						<div className='relative z-10'>
+							<h1 className='text-4xl md:text-5xl font-bold mb-4 tracking-tight leading-tight'>
+								Contact Information
+							</h1>
+							<p className='text-gray-400 text-sm md:text-base leading-relaxed mb-12 max-w-[85%]'>
+								Let’s help you find your perfect home. Reach out to our property experts.
+							</p>
+
+							{/* Contact details list */}
+							<div className='space-y-6'>
+								<div className='flex items-center gap-5 group'>
+									<div className='w-12 h-12 flex items-center justify-center rounded-full border border-white/20 bg-white/5 group-hover:border-yellow-500/50 group-hover:bg-yellow-500/10 transition-all duration-300'>
+										<Phone className='text-yellow-500' size={20} strokeWidth={1.5} />
+									</div>
+									<div>
+										<p className='text-[10px] text-gray-500 uppercase tracking-widest font-semibold mb-1'>Phone</p>
+										<p className='text-lg font-medium'>+91 99887 76655</p>
+									</div>
+								</div>
+
+								<div className='flex items-center gap-5 group'>
+									<div className='w-12 h-12 flex items-center justify-center rounded-full border border-white/20 bg-white/5 group-hover:border-yellow-500/50 group-hover:bg-yellow-500/10 transition-all duration-300'>
+										<Phone className='text-yellow-500' size={20} strokeWidth={1.5} />
+									</div>
+									<div>
+										<p className='text-[10px] text-gray-500 uppercase tracking-widest font-semibold mb-1'>Alternate Phone</p>
+										<p className='text-lg font-medium'>+91 98765 43210</p>
+									</div>
+								</div>
+
+								<div className='flex items-center gap-5 group'>
+									<div className='w-12 h-12 flex items-center justify-center rounded-full border border-white/20 bg-white/5 group-hover:border-yellow-500/50 group-hover:bg-yellow-500/10 transition-all duration-300'>
+										<Mail className='text-yellow-500' size={20} strokeWidth={1.5} />
+									</div>
+									<div>
+										<p className='text-[10px] text-gray-500 uppercase tracking-widest font-semibold mb-1'>Email</p>
+										<p className='text-lg font-medium'>sales@svnrconstructions.com</p>
+									</div>
+								</div>
+
+								<div className='flex items-center gap-5 group'>
+									<div className='w-12 h-12 flex items-center justify-center rounded-full border border-white/20 bg-white/5 group-hover:border-yellow-500/50 group-hover:bg-yellow-500/10 transition-all duration-300 hover:rotate-3'>
+										<MapPin className='text-yellow-500' size={20} strokeWidth={1.5} />
+									</div>
+									<div>
+										<p className='text-[10px] text-gray-500 uppercase tracking-widest font-semibold mb-1'>Location</p>
+										<p className='text-lg font-medium'>Financial District, Hyderabad, India</p>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-			</section>
 
-			{/* Section 2: Locations of the Projects */}
-			<section className='px-4 md:px-8 max-w-7xl mx-auto mb-24 cursor-default'>
-				<div className='mb-12 border-l-4 border-yellow-500 pl-4'>
-					<h2 className='text-3xl md:text-4xl font-bold text-white'>
-						Locations of the projects
-					</h2>
-					<p className='text-gray-400 mt-2'>
-						Find our premium developments across the city
-					</p>
-				</div>
+					{/* RIGHT PANEL – Contact Form */}
+					<div className='w-full md:w-1/2 bg-white text-black p-10 md:py-[60px] md:px-12 flex flex-col justify-center'>
+						<form onSubmit={handleSubmit} className='space-y-[30px] w-full max-w-lg mx-auto md:mx-0'>
 
-				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-					{projects.map((project) => (
-						<ProjectLocationCard
-							key={project.id}
-							project={project}
-						/>
-					))}
-				</div>
-			</section>
+							{/* Row 1: Your Name & Your Email */}
+							<div className='grid grid-cols-1 sm:grid-cols-2 gap-[30px]'>
+								<div className='flex flex-col'>
+									<label htmlFor='name' className='text-xs font-bold text-gray-500 uppercase tracking-widest mb-2'>
+										Your Name
+									</label>
+									<input
+										type='text'
+										id='name'
+										required
+										className='w-full bg-transparent border-b-2 border-gray-200 py-2 text-lg text-black focus:outline-none focus:border-stone-900 transition-colors duration-300'
+									/>
+								</div>
+								<div className='flex flex-col'>
+									<label htmlFor='email' className='text-xs font-bold text-gray-500 uppercase tracking-widest mb-2'>
+										Your Email
+									</label>
+									<input
+										type='email'
+										id='email'
+										required
+										className='w-full bg-transparent border-b-2 border-gray-200 py-2 text-lg text-black focus:outline-none focus:border-stone-900 transition-colors duration-300'
+									/>
+								</div>
+							</div>
 
-			{/* Section 3: Map Section */}
-			<section className='w-full h-[500px] bg-stone-900 relative'>
+							{/* Row 2: Subject */}
+							<div className='flex flex-col'>
+								<label htmlFor='subject' className='text-xs font-bold text-gray-500 uppercase tracking-widest mb-2'>
+									Subject
+								</label>
+								<input
+									type='text'
+									id='subject'
+									required
+									className='w-full bg-transparent border-b-2 border-gray-200 py-2 text-lg text-black focus:outline-none focus:border-stone-900 transition-colors duration-300'
+								/>
+							</div>
+
+							{/* Row 3: Message */}
+							<div className='flex flex-col'>
+								<label htmlFor='message' className='text-xs font-bold text-gray-500 uppercase tracking-widest mb-2'>
+									Message
+								</label>
+								<textarea
+									id='message'
+									required
+									className='w-full h-[120px] bg-transparent border-b-2 border-gray-200 py-2 text-lg text-black focus:outline-none focus:border-stone-900 transition-colors duration-300 resize-none'
+								></textarea>
+							</div>
+
+							{/* CTA & Success Message */}
+							<div className='pt-6 relative min-h-[60px] flex justify-center items-center'>
+								{isSubmitted ? (
+									<div className='flex items-center justify-center gap-2 text-green-600 font-bold px-8 py-3 animate-[pulse_1s_ease-in-out_1]'>
+										<CheckCircle size={24} className='text-green-500' />
+										<span>Message sent successfully!</span>
+									</div>
+								) : (
+									<button
+										type='submit'
+										disabled={isSubmitting}
+										className='w-full sm:w-auto px-12 py-4 bg-stone-900 text-white font-bold rounded-full hover:bg-stone-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 disabled:opacity-75 disabled:hover:translate-y-0 disabled:cursor-not-allowed flex items-center justify-center'
+									>
+										{isSubmitting ? (
+											<div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+										) : (
+											'Send Inquiry'
+										)}
+									</button>
+								)}
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+
+			{/* Section: Map Section */}
+			<section className='w-full h-[500px] bg-stone-900 relative mt-auto'>
 				<iframe
 					title='SVNR Projects Map'
 					src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.463321948719!2d78.3845!3d17.4425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI2JzMzLjAiTiA3OMKwMjMnMDQuMiJF!5e0!3m2!1sen!2sin!4v1631234567890!5m2!1sen!2sin'
@@ -146,7 +181,7 @@ const Contact = () => {
 					loading='lazy'
 					className='opacity-80 hover:opacity-100 transition-opacity duration-500'
 				/>
-				<div className='absolute bottom-8 right-8 bg-black/80 backdrop-blur-md p-4 rounded-lg border border-white/10 hidden md:block'>
+				<div className='absolute bottom-2 left-20 bg-black/80 backdrop-blur-md p-4 rounded-lg border border-white/10 hidden md:block'>
 					<p className='text-xs text-yellow-500 font-bold uppercase tracking-wider mb-1'>
 						Headquarters
 					</p>

@@ -8,21 +8,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 const upcomingProjects = [
 	{
 		id: 1,
-		name: 'SVNR Signature',
-		location: 'Kokapet, Hyderabad',
-		size: '3000 - 4500 sft',
-		launch: 'Q3 2025',
+		name: 'SVNR Builders',
+		location: 'Hyderabad',
+		size: 'Plot Sizes: Coming soon',
+		launch: 'Coming soon',
 		image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop',
-		concept: 'Super Luxury Sky Villas',
+		concept: 'Coming soon',
 	},
 	{
 		id: 2,
-		name: 'The Lakefront',
-		location: 'Osman Sagar, Hyderabad',
-		size: 'Plot Sizes: 400 - 1000 Sq yds',
-		launch: 'Q4 2025',
+		name: 'SVNR Builders',
+		location: 'Coming soon',
+		size: 'Plot Sizes: Coming soon',
+		launch: 'Coming soon',
 		image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop',
-		concept: 'Premium Villa Plots',
+		concept: 'Coming soon',
 	},
 ];
 

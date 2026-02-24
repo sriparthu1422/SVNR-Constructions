@@ -14,27 +14,27 @@ import vinayakHomes from '../../assets/images/AboutSectionImages/Vinayak Homes.j
 const carouselImages = [
 	{
 		src: greenspace,
-		text: 'Greenspace'
+		text: ''
 	},
 	{
 		src: lotusResidency,
-		text: 'Lotus Residency'
+		text: ''
 	},
 	{
 		src: manasaSarovar,
-		text: 'Manasa Sarovar'
+		text: ''
 	},
 	{
 		src: saiDatta,
-		text: 'SaiDatta Residency'
+		text: ''
 	},
 	{
 		src: twinDiamonds,
-		text: 'Twin Diamonds'
+		text: ''
 	},
 	{
 		src: vinayakHomes,
-		text: 'Vinayak Homes'
+		text: ''
 	}
 ];
 

@@ -9,34 +9,26 @@ import {
 	Calendar,
 	BarChart2,
 } from 'lucide-react';
+import ankuraFarms from '../../assets/images/AboutSectionImages/AnkuraFarms.png';
 
-const projects = [
+export const liveProjects = [
 	{
 		id: 1,
-		name: 'The Ayati',
-		location: 'Financial District, Hyderabad',
+		name: 'Ankura Farms',
+		location: 'Thimajipet, Jadcherla',
 		stage: 'Finishing',
-		progress: 85,
+		progress: 90,
 		completion: 'Dec 2024',
-		image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop',
+		image: ankuraFarms,
 	},
 	{
 		id: 2,
-		name: 'SVNR Heights',
+		name: 'The Ayati',
 		location: 'Jubilee Hills, Hyderabad',
 		stage: 'Structure',
 		progress: 60,
 		completion: 'June 2025',
 		image: 'https://images.unsplash.com/photo-1590247813693-5541d1c609fd?q=80&w=2009&auto=format&fit=crop',
-	},
-	{
-		id: 3,
-		name: 'Green Valley',
-		location: 'Manikonda, Hyderabad',
-		stage: 'Foundation',
-		progress: 25,
-		completion: 'Mar 2026',
-		image: 'https://images.unsplash.com/photo-1629016943333-7e16315d18d8?q=80&w=2070&auto=format&fit=crop',
 	},
 ];
 
@@ -55,7 +47,7 @@ const LiveProjects = () => {
 				</div>
 
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-					{projects.map((project) => (
+					{liveProjects.map((project) => (
 						<div
 							key={project.id}
 							className='bg-stone-900 border border-white/10 rounded-lg overflow-hidden group hover:border-yellow-500/50 transition-all duration-300'>
