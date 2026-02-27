@@ -62,7 +62,7 @@ const Navbar = ({ onBookVisit }) => {
 				<div className='flex items-center justify-between h-20'>
 					{/* Logo */}
 					<div className='flex-shrink-0 cursor-pointer'>
-						<Link to='/'>
+						<Link to='/' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
 							<img
 								src={logo}
 								alt='SVNR Constructions'

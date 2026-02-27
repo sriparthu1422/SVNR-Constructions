@@ -33,7 +33,17 @@ if (GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
 const ScrollToTop = () => {
 	const { pathname, search } = useLocation();
 	useEffect(() => {
+		// Temporarily set scroll behavior to auto to force an instant jump
+		document.documentElement.style.scrollBehavior = 'auto';
 		window.scrollTo(0, 0);
+		try {
+			window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+		} catch (error) { }
+
+		setTimeout(() => {
+			document.documentElement.style.scrollBehavior = '';
+		}, 10);
+
 		if (GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
 			ReactGA.send({ hitType: 'pageview', page: pathname + search });
 		}

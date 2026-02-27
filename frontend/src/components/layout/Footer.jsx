@@ -32,7 +32,9 @@ const Footer = () => {
 				{/* Brand Info */}
 				<div className='lg:col-span-4 pr-0 lg:pr-8'>
 					<h2 className='text-2xl font-bold tracking-wider mb-6'>
-						SVNR Constructions<span className='text-yellow-500'>.</span>
+						<Link to='/' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className='hover:text-yellow-500 transition-colors'>
+							SVNR Constructions<span className='text-yellow-500'>.</span>
+						</Link>
 					</h2>
 					<p className='text-gray-400 text-sm leading-relaxed mb-6'>
 						Building dreams with concrete precision. Trusted by
