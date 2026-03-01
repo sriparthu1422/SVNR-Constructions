@@ -36,7 +36,7 @@ const UpcomingProjects = () => {
 	};
 
 	return (
-		<div className='min-h-screen bg-black text-white pt-24 px-4 md:px-8 pb-12'>
+		<div className='min-h-screen bg-black text-white pt-24 px-4 md:px-8 pb-24 md:pb-12'>
 			<div className='max-w-7xl mx-auto'>
 				<div className='mb-12 border-l-4 border-yellow-500 pl-6'>
 					<h1 className='text-4xl md:text-5xl font-bold mb-2'>

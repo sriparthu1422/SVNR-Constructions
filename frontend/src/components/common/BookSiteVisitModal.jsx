@@ -58,7 +58,7 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 							exit={{ scale: 0.95, opacity: 0 }}
 							className='bg-white w-full max-w-lg shadow-2xl pointer-events-auto relative flex flex-col max-h-[96vh] rounded-xl overflow-hidden'>
 							{/* Scrollable Content Area */}
-							<div className='overflow-y-auto custom-scrollbar p-5 md:p-6'>
+							<div className='overflow-y-auto custom-scrollbar p-5 pb-20 md:p-6'>
 								{/* Close Button */}
 								<button
 									onClick={onClose}
@@ -190,12 +190,12 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 											id='agreement'
 											checked={formData.agreement}
 											onChange={handleChange}
-											className='mt-1 w-4 h-4 text-yellow-500 border-gray-300 rounded focus:ring-yellow-500 cursor-pointer'
+											className='mt-1 w-4 h-4 text-yellow-500 border-gray-300 rounded focus:ring-yellow-500 cursor-pointer flex-shrink-0'
 											required
 										/>
 										<label
 											htmlFor='agreement'
-											className='text-xs text-gray-500 cursor-pointer selection:bg-yellow-100'>
+											className='text-xs text-gray-500 cursor-pointer selection:bg-yellow-100 flex-1 leading-snug'>
 											I agree to receive newsletters, or
 											relevant marketing content and{' '}
 											<a

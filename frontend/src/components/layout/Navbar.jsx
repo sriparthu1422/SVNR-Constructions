@@ -86,7 +86,9 @@ const Navbar = ({ onBookVisit }) => {
 											onMouseLeave={() =>
 												setIsProjectsHovered(false)
 											}>
-											<button className='text-gray-300 hover:text-yellow-500 hover:scale-105 transition-all text-lg font-medium tracking-wide flex items-center gap-1 py-6 focus:outline-none'>
+											<button
+												onClick={() => setIsProjectsHovered(!isProjectsHovered)}
+												className='text-gray-300 hover:text-yellow-500 hover:scale-105 transition-all text-lg font-medium tracking-wide flex items-center gap-1 py-6 focus:outline-none'>
 												{link.name}
 												<ChevronDown
 													size={14}

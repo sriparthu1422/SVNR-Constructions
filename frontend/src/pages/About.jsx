@@ -22,7 +22,7 @@ const About = () => {
 						<span className='text-stone-400'>Construction</span>
 					</h1>
 
-					<div className='max-w-4xl mx-auto space-y-6 text-lg md:text-xl text-stone-300 font-light leading-relaxed'>
+					<div className='max-w-4xl mx-auto space-y-6 text-base md:text-xl text-stone-300 font-light leading-relaxed px-2 md:px-0'>
 						<p>
 							SVNR Construction is one of the emerging real estate property developers in Hyderabad and nearby town areas such as Miryalaguda, Jadcharla, and Khammam. At SVNR Construction, we believe in building a strong emotional connection with our customers by valuing the investments and trust they place in us to fulfil their most awaited dream of owning a perfect home. Our primary focus is on creating meticulously planned and thoughtfully designed living spaces that feature modern architecture, luxurious fittings, ample open space, and best-in-class amenities all crafted to bring comfort, happiness, and long-lasting value to every family.
 						</p>

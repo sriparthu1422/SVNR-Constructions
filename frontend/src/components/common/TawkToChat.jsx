@@ -26,6 +26,13 @@ const TawkToChat = ({ propertyId, widgetId }) => {
 
     // Tawk.to Script
     window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_API.customStyle = {
+      visibility: {
+        mobile: {
+          yOffset: '80px' // Push up on mobile to avoid overlap
+        }
+      }
+    };
     window.Tawk_LoadStart = new Date();
     (function () {
       var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];

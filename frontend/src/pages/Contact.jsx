@@ -20,7 +20,7 @@ const Contact = () => {
 
 	return (
 		<div className='min-h-screen bg-black text-white font-sans flex flex-col'>
-			<div className='flex-grow w-full flex items-center justify-center pt-24 pb-12 px-4 md:px-8'>
+			<div className='flex-grow w-full flex items-center justify-center pt-24 pb-24 md:pb-12 px-4 md:px-8'>
 				{/* Main Container - 1200px Max Width */}
 				<div className='max-w-[1200px] w-full mx-auto bg-white rounded-[20px] shadow-2xl flex flex-col md:flex-row overflow-hidden relative'>
 
@@ -128,7 +128,7 @@ const Contact = () => {
 							</div>
 
 							{/* Row 3: Message */}
-							<div className='flex flex-col'>
+							<div className='flex flex-col mb-4'>
 								<label htmlFor='message' className='text-xs font-bold text-gray-500 uppercase tracking-widest mb-2'>
 									Message
 								</label>

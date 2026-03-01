@@ -78,7 +78,7 @@ const TestimonialsSlider = () => {
 				</div>
 			</div>
 
-			<style jsx>{`
+			<style>{`
 				/* Reuse existing animate-scroll from index.css or define here if needed */
 				/* Assuming animate-scroll is available globally */
 			`}</style>

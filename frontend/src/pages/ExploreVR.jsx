@@ -38,13 +38,13 @@ const ExploreVR = () => {
 
       {/* Popup Card Container */}
       <div
-        className='relative z-10 w-[94%] max-w-4xl bg-[#121316] border border-white/10 shadow-2xl rounded-2xl p-6 md:p-10 text-center flex flex-col items-center overflow-y-auto max-h-[96vh] text-white'
+        className='relative z-10 w-[94%] max-w-4xl bg-[#121316] border border-white/10 shadow-2xl rounded-2xl p-6 md:p-10 pb-24 md:pb-10 text-center flex flex-col items-center overflow-y-auto max-h-[96vh] text-white'
         style={{ animation: 'zoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards' }}
       >
 
         {/* Close Button linking back / closing popup (simulated) */}
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/')}
           className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>

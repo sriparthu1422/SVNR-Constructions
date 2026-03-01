@@ -33,7 +33,7 @@ const LiveProjectDetails = () => {
 	}
 
 	return (
-		<div className='bg-black text-white min-h-screen pt-20 pb-20'>
+		<div className='bg-black text-white min-h-screen pt-20 pb-32 md:pb-20'>
 			{/* 1. Hero / Header */}
 			<div className='relative h-[60vh] md:h-[80vh] w-full overflow-hidden'>
 				<img

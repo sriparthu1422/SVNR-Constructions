@@ -23,7 +23,7 @@ const DeliveredProjectDetails = () => {
 	}
 
 	return (
-		<div className='bg-black text-white min-h-screen pt-20 pb-20'>
+		<div className='bg-black text-white min-h-screen pt-20 pb-32 md:pb-20'>
 			{/* HERRO */}
 			<div className='relative h-[60vh] w-full overflow-hidden'>
 				<img
@@ -37,7 +37,7 @@ const DeliveredProjectDetails = () => {
 							{project.name}
 						</h1>
 						<p className='text-xl text-gray-300 flex items-center gap-2'>
-							<MapPin size={20} /> {project.location}, Telangana
+							<MapPin size={20} /> {project.location}
 						</p>
 					</div>
 				</div>

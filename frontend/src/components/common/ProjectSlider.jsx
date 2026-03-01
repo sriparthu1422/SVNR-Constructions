@@ -175,7 +175,7 @@ const ProjectSlider = () => {
 				))}
 			</div>
 
-			<style jsx>{`
+			<style>{`
 				@media (max-width: 768px) {
 					.animate-scroll {
 						display: none;
