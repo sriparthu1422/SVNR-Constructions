@@ -85,15 +85,15 @@ const AboutSection = () => {
 
 				{/* 2. Stats (Desktop: Col 2, Mobile: Order 2) */}
 				<div className='flex flex-col items-center justify-center text-center py-8 lg:py-0 h-full order-2 lg:col-span-2 px-2'>
-					<div className='relative'>
+					<div className='flex items-start justify-center text-center'>
 						<span className="text-[120px] md:text-[160px] font-bold leading-none text-transparent bg-clip-text bg-gradient-to-b from-yellow-400 to-yellow-700 opacity-90 font-['Outfit']">
 							8
 						</span>
-						<span className='absolute top-4 right-0 text-xl font-bold text-white'>
+						<span className='text-4xl md:text-6xl font-bold text-white mt-4 md:mt-6 -ml-2 md:-ml-4'>
 							+
 						</span>
 					</div>
-					<div className='text-2xl font-light tracking-widest uppercase mb-8 ml-2'>
+					<div className='text-2xl font-light tracking-widest uppercase mb-8 ml-2 text-center'>
 						Years Experience
 					</div>
 
