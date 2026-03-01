@@ -4,9 +4,30 @@ import { MapPin, Phone, Mail, CheckCircle } from 'lucide-react';
 const Contact = () => {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		subject: '',
+		message: '',
+	});
+
+	const isFormValid =
+		formData.name.trim() !== '' &&
+		formData.email.trim() !== '' &&
+		formData.subject.trim() !== '' &&
+		formData.message.trim() !== '';
+
+	const handleChange = (e) => {
+		const { id, value } = e.target;
+		setFormData((prev) => ({
+			...prev,
+			[id]: value,
+		}));
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		if (!isFormValid) return;
 		setIsSubmitting(true);
 
 		// Simulate API call for premium interaction feel
@@ -14,6 +35,7 @@ const Contact = () => {
 			setIsSubmitting(false);
 			setIsSubmitted(true);
 			setTimeout(() => setIsSubmitted(false), 4000);
+			setFormData({ name: '', email: '', subject: '', message: '' });
 			e.target.reset();
 		}, 1500);
 	};
@@ -97,7 +119,11 @@ const Contact = () => {
 									<input
 										type='text'
 										id='name'
+										value={formData.name}
+										onChange={handleChange}
 										required
+										onInvalid={(e) => e.target.setCustomValidity('Please enter your Name')}
+										onInput={(e) => e.target.setCustomValidity('')}
 										className='w-full bg-transparent border-b-2 border-gray-200 py-2 text-lg text-black focus:outline-none focus:border-stone-900 transition-colors duration-300'
 									/>
 								</div>
@@ -108,7 +134,11 @@ const Contact = () => {
 									<input
 										type='email'
 										id='email'
+										value={formData.email}
+										onChange={handleChange}
 										required
+										onInvalid={(e) => e.target.setCustomValidity('Please enter your Email')}
+										onInput={(e) => e.target.setCustomValidity('')}
 										className='w-full bg-transparent border-b-2 border-gray-200 py-2 text-lg text-black focus:outline-none focus:border-stone-900 transition-colors duration-300'
 									/>
 								</div>
@@ -122,7 +152,11 @@ const Contact = () => {
 								<input
 									type='text'
 									id='subject'
+									value={formData.subject}
+									onChange={handleChange}
 									required
+									onInvalid={(e) => e.target.setCustomValidity('Please enter a Subject')}
+									onInput={(e) => e.target.setCustomValidity('')}
 									className='w-full bg-transparent border-b-2 border-gray-200 py-2 text-lg text-black focus:outline-none focus:border-stone-900 transition-colors duration-300'
 								/>
 							</div>
@@ -134,7 +168,11 @@ const Contact = () => {
 								</label>
 								<textarea
 									id='message'
+									value={formData.message}
+									onChange={handleChange}
 									required
+									onInvalid={(e) => e.target.setCustomValidity('Please enter your Message')}
+									onInput={(e) => e.target.setCustomValidity('')}
 									className='w-full h-[120px] bg-transparent border-b-2 border-gray-200 py-2 text-lg text-black focus:outline-none focus:border-stone-900 transition-colors duration-300 resize-none'
 								></textarea>
 							</div>
@@ -149,8 +187,11 @@ const Contact = () => {
 								) : (
 									<button
 										type='submit'
-										disabled={isSubmitting}
-										className='w-full sm:w-auto px-12 py-4 bg-stone-900 text-white font-bold rounded-full hover:bg-stone-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 disabled:opacity-75 disabled:hover:translate-y-0 disabled:cursor-not-allowed flex items-center justify-center'
+										disabled={isSubmitting || !isFormValid}
+										className={`w-full sm:w-auto px-12 py-4 font-bold rounded-full transition-all duration-300 flex items-center justify-center ${isFormValid
+											? 'bg-stone-900 text-white hover:bg-stone-800 hover:shadow-lg hover:-translate-y-1'
+											: 'bg-gray-300 text-gray-500 cursor-not-allowed shadow-none'
+											}`}
 									>
 										{isSubmitting ? (
 											<div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>

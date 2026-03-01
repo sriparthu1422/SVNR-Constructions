@@ -1,11 +1,26 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, ChevronDown } from 'lucide-react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 
 const BookSiteVisitModal = ({ isOpen, onClose }) => {
+	const getTodayDate = () => {
+		const today = new Date();
+		const yyyy = today.getFullYear();
+		const mm = String(today.getMonth() + 1).padStart(2, '0');
+		const dd = String(today.getDate()).padStart(2, '0');
+		return `${yyyy}-${mm}-${dd}`;
+	};
+
+	const formatDateToDDMMYYYY = (dateString) => {
+		if (!dateString) return '';
+		const [yyyy, mm, dd] = dateString.split('-');
+		if (!yyyy || !mm || !dd) return dateString;
+		return `${dd}/${mm}/${yyyy}`;
+	};
+
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -15,6 +30,40 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 		message: '',
 		agreement: false,
 	});
+
+	const [dateInputType, setDateInputType] = useState('text');
+	const [isSubmitted, setIsSubmitted] = useState(false);
+
+	const resetForm = () => {
+		setFormData({
+			name: '',
+			email: '',
+			phone: '',
+			date: '',
+			project: '',
+			message: '',
+			agreement: false,
+		});
+		setDateInputType('text');
+		setIsSubmitted(false);
+	};
+
+	useEffect(() => {
+		if (isOpen) {
+			resetForm();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isOpen]);
+
+	// Check if all fields are properly filled
+	const isFormValid =
+		formData.name.trim() !== '' &&
+		formData.email.trim() !== '' &&
+		formData.phone.trim() !== '' &&
+		formData.date.trim() !== '' &&
+		formData.project.trim() !== '' &&
+		formData.message.trim() !== '' &&
+		formData.agreement === true;
 
 	const handleChange = (e) => {
 		const { name, value, type, checked } = e.target;
@@ -26,12 +75,17 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		if (!isFormValid) return;
+
 		// Handle submission logic here
 		console.log(formData);
+		setIsSubmitted(true);
+
 		setTimeout(() => {
+			setIsSubmitted(false);
 			onClose();
-			alert('Request Submitted Successfully!');
-		}, 1000);
+			resetForm();
+		}, 3000); // Wait 3 seconds to show the message before closing
 	};
 
 	const inputClasses =
@@ -87,6 +141,8 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 											placeholder='Your Name'
 											className={inputClasses}
 											required
+											onInvalid={(e) => e.target.setCustomValidity('Please Enter your name')}
+											onInput={(e) => e.target.setCustomValidity('')}
 										/>
 									</div>
 
@@ -100,13 +156,21 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 											placeholder='Your Email Address'
 											className={inputClasses}
 											required
+											onInvalid={(e) => e.target.setCustomValidity('Please Enter your email')}
+											onInput={(e) => e.target.setCustomValidity('')}
 										/>
 									</div>
 
 									{/* Phone Number */}
 									<div className='relative flex items-center'>
 										<div className='absolute left-3 flex items-center space-x-1 border-r border-gray-300 pr-2'>
-											<span className='text-lg'>🇮🇳</span>
+											<img
+												src='https://flagcdn.com/w20/in.png'
+												srcSet='https://flagcdn.com/w40/in.png 2x'
+												width='20'
+												alt='India'
+												className='rounded-sm shrink-0'
+											/>
 											<span className='text-gray-500 text-sm font-medium'>
 												+91
 											</span>
@@ -116,25 +180,24 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 											name='phone'
 											value={formData.phone}
 											onChange={handleChange}
-											placeholder='Your Phone Number*'
+											placeholder='Your Mobile Number*'
 											className={`${inputClasses} pl-20`}
 											required
+											onInvalid={(e) => e.target.setCustomValidity('Please Enter your mobile number')}
+											onInput={(e) => e.target.setCustomValidity('')}
 										/>
 									</div>
 
 									{/* Preferred Date */}
 									<div>
 										<input
-											type='text'
-											onFocus={(e) =>
-												(e.target.type = 'date')
-											}
-											onBlur={(e) =>
-												(e.target.type = 'text')
-											}
+											type={dateInputType}
+											onFocus={() => setDateInputType('date')}
+											onBlur={() => setDateInputType('text')}
 											name='date'
-											value={formData.date}
+											value={dateInputType === 'date' ? formData.date : formatDateToDDMMYYYY(formData.date)}
 											onChange={handleChange}
+											min={getTodayDate()}
 											placeholder='Preferred Visit Date'
 											className={`${inputClasses} cursor-pointer`}
 										/>
@@ -179,7 +242,10 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 											value={formData.message}
 											onChange={handleChange}
 											placeholder='Your Message'
-											className={`${inputClasses} resize-none`}></textarea>
+											className={`${inputClasses} resize-none`}
+											required
+											onInvalid={(e) => e.target.setCustomValidity('Please Enter your message')}
+											onInput={(e) => e.target.setCustomValidity('')}></textarea>
 									</div>
 
 									{/* Checkbox */}
@@ -209,9 +275,26 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 									{/* Submit Button */}
 									<button
 										type='submit'
-										className='w-full py-2.5 bg-yellow-500 text-white font-bold rounded-md hover:bg-yellow-600 transition-colors shadow-md mt-2'>
+										disabled={!isFormValid}
+										className={`w-full py-2.5 font-bold rounded-md transition-all duration-300 mt-2 ${isFormValid
+											? 'bg-yellow-500 text-white hover:bg-yellow-600'
+											: 'bg-gray-300 text-gray-500 cursor-not-allowed shadow-none'
+											}`}>
 										Submit
 									</button>
+
+									{/* Success Message */}
+									<AnimatePresence>
+										{isSubmitted && (
+											<motion.div
+												initial={{ opacity: 0, y: -10 }}
+												animate={{ opacity: 1, y: 0 }}
+												exit={{ opacity: 0, y: -10 }}
+												className='text-center text-green-600 font-medium text-sm mt-3'>
+												Message Sent Successfully!
+											</motion.div>
+										)}
+									</AnimatePresence>
 								</form>
 							</div>
 						</motion.div>
