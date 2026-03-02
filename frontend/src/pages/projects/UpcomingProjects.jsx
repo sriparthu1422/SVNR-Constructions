@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ArrowRight, Lock, MapPin, Calendar, Layout } from 'lucide-react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
+import ScrollReveal from '../../components/ui/ScrollReveal';
 
 const upcomingProjects = [
 	{
@@ -38,78 +39,81 @@ const UpcomingProjects = () => {
 	return (
 		<div className='min-h-screen bg-black text-white pt-24 px-4 md:px-8 pb-24 md:pb-12'>
 			<div className='max-w-7xl mx-auto'>
-				<div className='mb-12 border-l-4 border-yellow-500 pl-6'>
-					<h1 className='text-4xl md:text-5xl font-bold mb-2'>
-						Upcoming Projects
-					</h1>
-					<p className='text-gray-400'>
-						Be the first to know about our future landmarks.
-					</p>
-				</div>
+				<ScrollReveal animation="fadeUp">
+					<div className='mb-12 border-l-4 border-yellow-500 pl-6'>
+						<h1 className='text-4xl md:text-5xl font-bold mb-2'>
+							Upcoming Projects
+						</h1>
+						<p className='text-gray-400'>
+							Be the first to know about our future landmarks.
+						</p>
+					</div>
+				</ScrollReveal>
 
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-					{upcomingProjects.map((project) => (
-						<div
-							key={project.id}
-							className='bg-stone-900 border border-white/10 rounded-lg overflow-hidden group hover:border-yellow-500/50 transition-all duration-300 relative'>
-							{/* Blur Overlay for "Teaser" Effect */}
-							<div className='relative h-80 overflow-hidden'>
-								<img
-									src={project.image}
-									alt={project.name}
-									className='w-full h-full object-cover filter blur-[2px] group-hover:blur-0 transition-all duration-700'
-								/>
-								<div className='absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-6 text-center'>
-									<Lock
-										size={32}
-										className='text-yellow-500 mb-4 animate-pulse'
+					{upcomingProjects.map((project, index) => (
+						<ScrollReveal animation="fadeUp" delay={index * 0.1} key={project.id}>
+							<div
+								className='bg-stone-900 border border-white/10 rounded-lg overflow-hidden group hover:border-yellow-500/50 transition-all duration-300 relative h-full flex flex-col'>
+								{/* Blur Overlay for "Teaser" Effect */}
+								<div className='relative h-80 overflow-hidden shrink-0'>
+									<img
+										src={project.image}
+										alt={project.name}
+										className='w-full h-full object-cover filter blur-[2px] group-hover:blur-0 transition-all duration-700'
 									/>
-									<h3 className='text-2xl font-bold text-white mb-2 uppercase tracking-widest'>
-										{project.concept}
-									</h3>
-									<p className='text-sm text-gray-400'>
-										Coming Soon to {project.location}
-									</p>
-								</div>
-							</div>
-
-							<div className='p-6 space-y-4 bg-stone-950'>
-								<div className='flex justify-between items-start'>
-									<div>
-										<h3 className='text-xl font-bold text-white mb-1'>
-											{project.name}
+									<div className='absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-6 text-center'>
+										<Lock
+											size={32}
+											className='text-yellow-500 mb-4 animate-pulse'
+										/>
+										<h3 className='text-2xl font-bold text-white mb-2 uppercase tracking-widest'>
+											{project.concept}
 										</h3>
-										<div className='flex items-center gap-2 text-gray-500 text-sm'>
-											<MapPin size={14} />
-											{project.location}
+										<p className='text-sm text-gray-400'>
+											Coming Soon to {project.location}
+										</p>
+									</div>
+								</div>
+
+								<div className='p-6 space-y-4 bg-stone-950 flex flex-col flex-grow'>
+									<div className='flex justify-between items-start flex-grow'>
+										<div>
+											<h3 className='text-xl font-bold text-white mb-1'>
+												{project.name}
+											</h3>
+											<div className='flex items-center gap-2 text-gray-500 text-sm'>
+												<MapPin size={14} />
+												{project.location}
+											</div>
 										</div>
 									</div>
-								</div>
 
-								<div className='grid grid-cols-2 gap-4 pt-4 border-t border-white/10'>
-									<div className='flex items-center gap-2 text-sm text-gray-400'>
-										<Layout
-											size={16}
-											className='text-yellow-500'
-										/>
-										{project.size}
+									<div className='grid grid-cols-2 gap-4 pt-4 border-t border-white/10 mt-auto'>
+										<div className='flex items-center gap-2 text-sm text-gray-400'>
+											<Layout
+												size={16}
+												className='text-yellow-500'
+											/>
+											{project.size}
+										</div>
+										<div className='flex items-center gap-2 text-sm text-gray-400'>
+											<Calendar
+												size={16}
+												className='text-yellow-500'
+											/>
+											Launch: {project.launch}
+										</div>
 									</div>
-									<div className='flex items-center gap-2 text-sm text-gray-400'>
-										<Calendar
-											size={16}
-											className='text-yellow-500'
-										/>
-										Launch: {project.launch}
-									</div>
-								</div>
 
-								<button
-									onClick={() => handleEarlyAccess(project)}
-									className='w-full mt-4 py-3 bg-yellow-500 text-black font-bold uppercase tracking-wider hover:bg-white transition-colors rounded shadow-lg shadow-yellow-500/20'>
-									Get Early Access
-								</button>
+									<button
+										onClick={() => handleEarlyAccess(project)}
+										className='w-full mt-4 py-3 bg-yellow-500 text-black font-bold uppercase tracking-wider hover:bg-white transition-colors rounded shadow-lg shadow-yellow-500/20'>
+										Get Early Access
+									</button>
+								</div>
 							</div>
-						</div>
+						</ScrollReveal>
 					))}
 				</div>
 

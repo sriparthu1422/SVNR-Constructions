@@ -7,6 +7,7 @@ import { ShieldCheck, Clock, Lightbulb, Users } from 'lucide-react';
 import FoundersSection from '../components/sections/FoundersSection';
 import TestimonialsSlider from '../components/common/TestimonialsSlider';
 import StatsSection from '../components/sections/StatsSection';
+import ScrollReveal from '../components/ui/ScrollReveal';
 
 const About = () => {
 	return (
@@ -86,13 +87,19 @@ const About = () => {
 			</section>
 
 			{/* Section 3: Founders / Promoters */}
-			<FoundersSection />
+			<ScrollReveal animation="fadeUp">
+				<FoundersSection />
+			</ScrollReveal>
 
 			{/* Section 4: Testimonials */}
-			<TestimonialsSlider />
+			<ScrollReveal animation="fadeIn">
+				<TestimonialsSlider />
+			</ScrollReveal>
 
 			{/* Section 5: Stats / Numbers Achieved */}
-			<StatsSection />
+			<ScrollReveal animation="fadeUp">
+				<StatsSection />
+			</ScrollReveal>
 		</div>
 	);
 };

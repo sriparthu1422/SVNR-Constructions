@@ -29,10 +29,16 @@ if (GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
 	ReactGA.initialize(GA_MEASUREMENT_ID);
 }
 
-// ScrollToTop component to reset scroll on route change
+// ScrollToTop component to reset scroll on route change and page load
 const ScrollToTop = () => {
 	const { pathname, search } = useLocation();
+
 	useEffect(() => {
+		// Browser history scroll restoration handling
+		if ('scrollRestoration' in window.history) {
+			window.history.scrollRestoration = 'manual';
+		}
+
 		// Temporarily set scroll behavior to auto to force an instant jump
 		document.documentElement.style.scrollBehavior = 'auto';
 		window.scrollTo(0, 0);
@@ -47,7 +53,14 @@ const ScrollToTop = () => {
 		if (GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
 			ReactGA.send({ hitType: 'pageview', page: pathname + search });
 		}
+
+		return () => {
+			if ('scrollRestoration' in window.history) {
+				window.history.scrollRestoration = 'auto';
+			}
+		};
 	}, [pathname, search]);
+
 	return null;
 };
 

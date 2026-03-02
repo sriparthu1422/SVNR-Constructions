@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, CheckCircle } from 'lucide-react';
+import ScrollReveal from '../components/ui/ScrollReveal';
 
 const Contact = () => {
 	const [isSubmitted, setIsSubmitted] = useState(false);
@@ -44,7 +45,7 @@ const Contact = () => {
 		<div className='min-h-screen bg-black text-white font-sans flex flex-col'>
 			<div className='flex-grow w-full flex items-center justify-center pt-24 pb-24 md:pb-12 px-4 md:px-8'>
 				{/* Main Container - 1200px Max Width */}
-				<div className='max-w-[1200px] w-full mx-auto bg-white rounded-[20px] shadow-2xl flex flex-col md:flex-row overflow-hidden relative'>
+				<ScrollReveal animation="fadeUp" className='max-w-[1200px] w-full mx-auto bg-white rounded-[20px] shadow-2xl flex flex-col md:flex-row overflow-hidden relative'>
 
 					{/* LEFT PANEL – Contact Information Card */}
 					<div className='w-full md:w-1/2 bg-gradient-to-br from-[#1a1c20] via-[#2a2d34] to-[#121316] text-white p-10 md:py-[60px] md:px-12 relative flex flex-col justify-center min-h-[500px]'>
@@ -204,33 +205,35 @@ const Contact = () => {
 						</form>
 					</div>
 
-				</div>
+				</ScrollReveal>
 			</div>
 
 			{/* Section: Map Section */}
-			<section className='w-full h-[500px] bg-stone-900 relative mt-auto'>
-				<iframe
-					title='SVNR Projects Map'
-					src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.463321948719!2d78.3845!3d17.4425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI2JzMzLjAiTiA3OMKwMjMnMDQuMiJF!5e0!3m2!1sen!2sin!4v1631234567890!5m2!1sen!2sin'
-					width='100%'
-					height='100%'
-					style={{
-						border: 0,
-						filter: 'grayscale(100%) invert(92%) contrast(83%)',
-					}}
-					allowFullScreen=''
-					loading='lazy'
-					className='opacity-80 hover:opacity-100 transition-opacity duration-500'
-				/>
-				<div className='absolute bottom-2 left-20 bg-black/80 backdrop-blur-md p-4 rounded-lg border border-white/10 hidden md:block'>
-					<p className='text-xs text-yellow-500 font-bold uppercase tracking-wider mb-1'>
-						Headquarters
-					</p>
-					<p className='text-white font-medium'>
-						Financial District, Hyderabad
-					</p>
-				</div>
-			</section>
+			<ScrollReveal animation="fadeIn">
+				<section className='w-full h-[500px] bg-stone-900 relative mt-auto'>
+					<iframe
+						title='SVNR Projects Map'
+						src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.463321948719!2d78.3845!3d17.4425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI2JzMzLjAiTiA3OMKwMjMnMDQuMiJF!5e0!3m2!1sen!2sin!4v1631234567890!5m2!1sen!2sin'
+						width='100%'
+						height='100%'
+						style={{
+							border: 0,
+							filter: 'grayscale(100%) invert(92%) contrast(83%)',
+						}}
+						allowFullScreen=''
+						loading='lazy'
+						className='opacity-80 hover:opacity-100 transition-opacity duration-500'
+					/>
+					<div className='absolute bottom-2 left-20 bg-black/80 backdrop-blur-md p-4 rounded-lg border border-white/10 hidden md:block'>
+						<p className='text-xs text-yellow-500 font-bold uppercase tracking-wider mb-1'>
+							Headquarters
+						</p>
+						<p className='text-white font-medium'>
+							Financial District, Hyderabad
+						</p>
+					</div>
+				</section>
+			</ScrollReveal>
 		</div>
 	);
 };
