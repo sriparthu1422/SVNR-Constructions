@@ -32,7 +32,8 @@ const Contact = () => {
 		setIsSubmitting(true);
 
 		try {
-			const res = await fetch('http://localhost:5000/api/inquiries', {
+			const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+			const res = await fetch(`${API_URL}/inquiries`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(formData),

@@ -31,7 +31,8 @@ const TestimonialsSlider = () => {
 	const [testimonials, setTestimonials] = useState(fallbackTestimonials);
 
 	useEffect(() => {
-		fetch('http://localhost:5000/api/testimonials')
+		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+		fetch(`${API_URL}/testimonials`)
 			.then(r => r.json())
 			.then(data => { if (Array.isArray(data) && data.length > 0) setTestimonials(data); })
 			.catch(() => {});

@@ -63,7 +63,8 @@ const StatsSection = () => {
 	const [stats, setStats] = useState(fallbackStats);
 
 	useEffect(() => {
-		fetch('http://localhost:5000/api/stats')
+		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+		fetch(`${API_URL}/stats`)
 			.then(r => r.json())
 			.then(data => { if (Array.isArray(data) && data.length > 0) setStats(data); })
 			.catch(() => {});
