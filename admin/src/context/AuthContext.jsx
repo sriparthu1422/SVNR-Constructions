@@ -2,7 +2,10 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext(null);
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+let API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+if (API_BASE.endsWith('/')) API_BASE = API_BASE.slice(0, -1);
+if (!API_BASE.endsWith('/api')) API_BASE += '/api';
+const API_URL = API_BASE;
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('svnr_admin_token'));
