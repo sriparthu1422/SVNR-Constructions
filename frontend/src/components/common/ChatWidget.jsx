@@ -394,6 +394,18 @@ const ChatWidget = () => {
 					gap: 8px;
 				}
 
+				.svnr-msg-content-wrapper {
+					max-width: 75%;
+					display: flex;
+					flex-direction: column;
+				}
+				.svnr-msg-row.visitor .svnr-msg-content-wrapper {
+					align-items: flex-end;
+				}
+				.svnr-msg-row.admin .svnr-msg-content-wrapper {
+					align-items: flex-start;
+				}
+
 				.svnr-admin-avatar {
 					width: 28px;
 					height: 28px;
@@ -408,7 +420,6 @@ const ChatWidget = () => {
 				}
 
 				.svnr-bubble {
-					max-width: 75%;
 					padding: 12px 16px;
 					border-radius: 8px;
 					font-size: 13px;
@@ -611,7 +622,7 @@ const ChatWidget = () => {
 												<User size={16} />
 											</div>
 										)}
-										<div>
+										<div className="svnr-msg-content-wrapper">
 											<div className="svnr-bubble">{msg.text}</div>
 											<div className="svnr-msg-time">{formatTime(msg.timestamp)}</div>
 										</div>

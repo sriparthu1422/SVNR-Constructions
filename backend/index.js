@@ -82,10 +82,16 @@ io.on('connection', (socket) => {
       let session = await ChatSession.findOne({ sessionId });
 
       if (!session) {
+        const welcomeMsg = {
+          sender: 'admin',
+          text: `Welcome ${visitorName || 'Visitor'}. Our team will connect with you quickly, please wait for a moment.`,
+          timestamp: new Date()
+        };
         session = new ChatSession({
           sessionId,
           visitorName: visitorName || 'Visitor',
-          messages: [],
+          messages: [welcomeMsg],
+          status: 'active'
         });
         await session.save();
       }
