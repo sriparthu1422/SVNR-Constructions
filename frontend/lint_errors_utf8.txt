@@ -1,0 +1,55 @@
+﻿
+> svnr-constructions@0.0.0 lint
+> eslint .
+
+
+D:\Github Clone\SVNR-Constructions\frontend\src\components\common\BookSiteVisitModal.jsx
+   5:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                no-unused-vars
+  10:34  error  React Hook "useState" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+
+D:\Github Clone\SVNR-Constructions\frontend\src\components\layout\Navbar.jsx
+  22:4  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  20 |
+  21 | 		if (location.pathname !== '/') {
+> 22 | 			setIsVisible(true);
+     | 			^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  23 | 			return;
+  24 | 		}
+  25 |  react-hooks/set-state-in-effect
+
+D:\Github Clone\SVNR-Constructions\frontend\src\components\sections\FoundersSection.jsx
+  4:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\Github Clone\SVNR-Constructions\frontend\src\components\sections\HeroSection.jsx
+  4:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\Github Clone\SVNR-Constructions\frontend\src\components\sections\StatsSection.jsx
+  14:2  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\Github Clone\SVNR-Constructions\frontend\src\pages\About.jsx
+  4:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\Github Clone\SVNR-Constructions\frontend\src\pages\Home.jsx
+   4:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                    no-unused-vars
+  72:8   error  'ongoingProjects' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\Github Clone\SVNR-Constructions\frontend\src\pages\projects\DeliveredProjectDetails.jsx
+  8:10  error  'id' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\Github Clone\SVNR-Constructions\frontend\src\pages\projects\LiveProjectDetails.jsx
+  17:10  error  'id' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u            no-unused-vars
+  19:9   error  'activeTab' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u     no-unused-vars
+  19:20  error  'setActiveTab' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\Github Clone\SVNR-Constructions\frontend\src\pages\projects\UpcomingProjects.jsx
+  5:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+Γ£û 14 problems (14 errors, 0 warnings)
+
