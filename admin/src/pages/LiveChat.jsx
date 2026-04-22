@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import { useAuth } from '../context/AuthContext';
 import { MessageCircle, Send, User, X as XIcon, Trash2 } from 'lucide-react';
 
-const SOCKET_URL = 'http://localhost:5000';
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
 
 const LiveChat = () => {
   const { token, API_URL } = useAuth();
