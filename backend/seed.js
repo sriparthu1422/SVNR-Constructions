@@ -219,7 +219,9 @@ const seedData = async () => {
     console.log('✅ Stats seeded.');
 
     // ── DEFAULT ADMIN ────────────────────────────────────
-    const existingAdmin = await Admin.findOne({ email: 'admin@svnr.com' });
+    const existingAdmin = await Admin.findOne({
+      $or: [{ email: 'admin@svnr.com' }, { username: 'admin' }]
+    });
     if (!existingAdmin) {
       const admin = new Admin({
         username: 'admin',
