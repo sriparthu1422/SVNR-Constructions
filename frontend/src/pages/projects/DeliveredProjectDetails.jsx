@@ -28,6 +28,7 @@ import greenspace6 from '../../assets/images/DeliveredProjectImages/greenspace6.
 import theLotus1 from '../../assets/images/DeliveredProjectImages/TheLotus1.png';
 import theLotus2 from '../../assets/images/DeliveredProjectImages/TheLouts2.png';
 import theLotus3 from '../../assets/images/DeliveredProjectImages/Thelouts3.png';
+import theBreeze1 from '../../assets/images/DeliveredProjectImages/TheBreeze1.png';
 
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
@@ -118,6 +119,7 @@ const DeliveredProjectDetails = () => {
 								project?.id === 3 ? saiDatta1_1 : 
 								project?.id === 4 ? greenspace1_1 : 
 								project?.id === 5 ? theLotus1 : 
+								project?.id === 6 ? theBreeze1 : 
 								'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'
 							}
 							className='absolute inset-0 w-full h-full object-cover'
