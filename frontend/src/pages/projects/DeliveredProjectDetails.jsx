@@ -14,6 +14,10 @@ import manasa2 from '../../assets/images/DeliveredProjectImages/manasa2.png';
 import manasa3 from '../../assets/images/DeliveredProjectImages/manasa3.png';
 import manasa4 from '../../assets/images/DeliveredProjectImages/manasa4.png';
 import saiDatta1_1 from '../../assets/images/DeliveredProjectImages/saiDatta1.1.png';
+import saiDatta1 from '../../assets/images/DeliveredProjectImages/saiDatta1.png';
+import saiDatta2 from '../../assets/images/DeliveredProjectImages/saiDatta2.png';
+import saiDatta3 from '../../assets/images/DeliveredProjectImages/saiDatta3.png';
+import saiDatta4 from '../../assets/images/DeliveredProjectImages/saiDatta4.png';
 
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
@@ -167,6 +171,8 @@ const DeliveredProjectDetails = () => {
 							? [vinayaka1, vinayaka2, vinayaka3, vinayaka4, vinayaka5] 
 							: project?.id === 2
 							? [manasa1, manasa2, manasa3, manasa4]
+							: project?.id === 3
+							? [saiDatta1, saiDatta2, saiDatta3, saiDatta4]
 							: [1, 2, 3, 4]
 						).map((img, i) => (
 							<img
