@@ -13,6 +13,7 @@ import manasa1 from '../../assets/images/DeliveredProjectImages/manasa1.png';
 import manasa2 from '../../assets/images/DeliveredProjectImages/manasa2.png';
 import manasa3 from '../../assets/images/DeliveredProjectImages/manasa3.png';
 import manasa4 from '../../assets/images/DeliveredProjectImages/manasa4.png';
+import saiDatta1_1 from '../../assets/images/DeliveredProjectImages/saiDatta1.1.png';
 
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
@@ -97,7 +98,12 @@ const DeliveredProjectDetails = () => {
 					<div className='relative w-full h-[50vh] overflow-hidden rounded-xl border border-white/20 select-none cursor-ew-resize group'>
 						{/* After Image (Background) */}
 						<img
-							src={project?.id === 1 ? vinayaka1 : project?.id === 2 ? manasa1 : 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'}
+							src={
+								project?.id === 1 ? vinayaka1 : 
+								project?.id === 2 ? manasa1 : 
+								project?.id === 3 ? saiDatta1_1 : 
+								'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'
+							}
 							className='absolute inset-0 w-full h-full object-cover'
 							alt='After'
 						/>
