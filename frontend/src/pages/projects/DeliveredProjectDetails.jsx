@@ -10,6 +10,9 @@ import vinayaka3 from '../../assets/images/DeliveredProjectImages/vinayaka3.png'
 import vinayaka4 from '../../assets/images/DeliveredProjectImages/vinayaka4.png';
 import vinayaka5 from '../../assets/images/DeliveredProjectImages/vinayaka5.png';
 import manasa1 from '../../assets/images/DeliveredProjectImages/manasa1.png';
+import manasa2 from '../../assets/images/DeliveredProjectImages/manasa2.png';
+import manasa3 from '../../assets/images/DeliveredProjectImages/manasa3.png';
+import manasa4 from '../../assets/images/DeliveredProjectImages/manasa4.png';
 
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
@@ -156,11 +159,13 @@ const DeliveredProjectDetails = () => {
 					<div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
 						{(project?.id === 1 
 							? [vinayaka1, vinayaka2, vinayaka3, vinayaka4, vinayaka5] 
+							: project?.id === 2
+							? [manasa1, manasa2, manasa3, manasa4]
 							: [1, 2, 3, 4]
 						).map((img, i) => (
 							<img
 								key={i}
-								src={project?.id === 1 ? img : `https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop`}
+								src={typeof img === 'string' ? img : `https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop`}
 								className='w-full h-64 object-cover rounded-lg hover:opacity-80 transition-opacity cursor-pointer'
 							/>
 						))}
