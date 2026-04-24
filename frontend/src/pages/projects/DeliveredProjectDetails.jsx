@@ -4,6 +4,11 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Download, MapPin, Quote, ArrowLeft } from 'lucide-react';
 import { deliveredProjects } from './DeliveredProjects';
+import vinayaka1 from '../../assets/images/DeliveredProjectImages/vinayaka1.png';
+import vinayaka2 from '../../assets/images/DeliveredProjectImages/vinayaka2.png';
+import vinayaka3 from '../../assets/images/DeliveredProjectImages/vinayaka3.png';
+import vinayaka4 from '../../assets/images/DeliveredProjectImages/vinayaka4.png';
+import vinayaka5 from '../../assets/images/DeliveredProjectImages/vinayaka5.png';
 
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
@@ -88,7 +93,7 @@ const DeliveredProjectDetails = () => {
 					<div className='relative w-full h-[50vh] overflow-hidden rounded-xl border border-white/20 select-none cursor-ew-resize group'>
 						{/* After Image (Background) */}
 						<img
-							src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'
+							src={project?.id === 1 ? vinayaka1 : 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'}
 							className='absolute inset-0 w-full h-full object-cover'
 							alt='After'
 						/>
@@ -148,10 +153,13 @@ const DeliveredProjectDetails = () => {
 						Gallery
 					</h2>
 					<div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
-						{[1, 2, 3, 4].map((i) => (
+						{(project?.id === 1 
+							? [vinayaka1, vinayaka2, vinayaka3, vinayaka4, vinayaka5] 
+							: [1, 2, 3, 4]
+						).map((img, i) => (
 							<img
 								key={i}
-								src={`https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop`}
+								src={project?.id === 1 ? img : `https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop`}
 								className='w-full h-64 object-cover rounded-lg hover:opacity-80 transition-opacity cursor-pointer'
 							/>
 						))}
