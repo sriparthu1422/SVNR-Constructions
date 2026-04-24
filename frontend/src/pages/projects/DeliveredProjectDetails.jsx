@@ -9,6 +9,7 @@ import vinayaka2 from '../../assets/images/DeliveredProjectImages/vinayaka2.png'
 import vinayaka3 from '../../assets/images/DeliveredProjectImages/vinayaka3.png';
 import vinayaka4 from '../../assets/images/DeliveredProjectImages/vinayaka4.png';
 import vinayaka5 from '../../assets/images/DeliveredProjectImages/vinayaka5.png';
+import manasa1 from '../../assets/images/DeliveredProjectImages/manasa1.png';
 
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
@@ -93,7 +94,7 @@ const DeliveredProjectDetails = () => {
 					<div className='relative w-full h-[50vh] overflow-hidden rounded-xl border border-white/20 select-none cursor-ew-resize group'>
 						{/* After Image (Background) */}
 						<img
-							src={project?.id === 1 ? vinayaka1 : 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'}
+							src={project?.id === 1 ? vinayaka1 : project?.id === 2 ? manasa1 : 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'}
 							className='absolute inset-0 w-full h-full object-cover'
 							alt='After'
 						/>
