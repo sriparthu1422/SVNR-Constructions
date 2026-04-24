@@ -51,11 +51,8 @@ const Contact = () => {
 			}
 		} catch (error) {
 			console.error('Network error:', error);
-			// Fallback for offline/demo mode
 			setIsSubmitting(false);
-			setIsSubmitted(true);
-			setTimeout(() => setIsSubmitted(false), 4000);
-			setFormData({ name: '', email: '', subject: '', message: '' });
+			alert('Failed to submit. Please check your connection and try again.');
 		}
 	};
 

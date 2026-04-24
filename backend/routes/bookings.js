@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
 
     const booking = new Booking({ name, email, phone, date, project, message });
     await booking.save();
+    console.log('✅ Booking saved:', booking._id, '–', name, email);
 
     res.status(201).json({ message: 'Booking submitted successfully!', booking });
   } catch (error) {

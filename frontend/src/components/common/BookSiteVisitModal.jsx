@@ -105,13 +105,7 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 			}
 		} catch (error) {
 			console.error('Network error:', error);
-			// Fallback: still show success for offline/demo mode
-			setIsSubmitted(true);
-			setTimeout(() => {
-				setIsSubmitted(false);
-				onClose();
-				resetForm();
-			}, 3000);
+			alert('Failed to submit. Please check your connection and try again.');
 		}
 	};
 

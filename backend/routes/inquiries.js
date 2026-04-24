@@ -15,6 +15,7 @@ router.post('/', async (req, res) => {
 
     const inquiry = new Inquiry({ name, email, subject, message });
     await inquiry.save();
+    console.log('✅ Inquiry saved:', inquiry._id, '–', name, email);
 
     res.status(201).json({ message: 'Inquiry submitted successfully!', inquiry });
   } catch (error) {

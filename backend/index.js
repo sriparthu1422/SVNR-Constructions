@@ -46,9 +46,12 @@ const io = new Server(httpServer, {
 // Connect to MongoDB
 connectDB();
 
-// Middleware
+// Middleware — CORS must run BEFORE helmet so preflight OPTIONS requests
+// get Access-Control-Allow-Origin headers before helmet blocks them.
+const corsConfig = { origin: corsOrigins, credentials: true };
+app.options('*', cors(corsConfig));          // explicit preflight handler
+app.use(cors(corsConfig));
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
-app.use(cors({ origin: corsOrigins, credentials: true }));
 app.use(morgan('dev'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
