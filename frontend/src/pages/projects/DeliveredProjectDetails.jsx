@@ -20,6 +20,11 @@ import saiDatta3 from '../../assets/images/DeliveredProjectImages/saiDatta3.png'
 import saiDatta4 from '../../assets/images/DeliveredProjectImages/saiDatta4.png';
 import greenspace1_1 from '../../assets/images/DeliveredProjectImages/greenspace1.1.png';
 import greenspace1_2 from '../../assets/images/DeliveredProjectImages/greenspace1.2.png';
+import greenspace1 from '../../assets/images/DeliveredProjectImages/greenspace1.png';
+import greenspace2 from '../../assets/images/DeliveredProjectImages/greenspace2.png';
+import greenspace3 from '../../assets/images/DeliveredProjectImages/greenspace3.png';
+import greenspace4 from '../../assets/images/DeliveredProjectImages/greenspace4.png';
+import greenspace6 from '../../assets/images/DeliveredProjectImages/greenspace6.png';
 
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
@@ -176,6 +181,8 @@ const DeliveredProjectDetails = () => {
 							? [manasa1, manasa2, manasa3, manasa4]
 							: project?.id === 3
 							? [saiDatta1, saiDatta2, saiDatta3, saiDatta4]
+							: project?.id === 4
+							? [greenspace1, greenspace2, greenspace1_2, greenspace3, greenspace4, greenspace6]
 							: [1, 2, 3, 4]
 						).map((img, i) => (
 							<img
