@@ -58,7 +58,6 @@ connectDB();
 // Middleware — CORS must run BEFORE helmet so preflight OPTIONS requests
 // get Access-Control-Allow-Origin headers before helmet blocks them.
 const corsConfig = { origin: corsOrigins, credentials: true };
-app.options('*', cors(corsConfig));          // explicit preflight handler
 app.use(cors(corsConfig));
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 app.use(morgan('dev'));
