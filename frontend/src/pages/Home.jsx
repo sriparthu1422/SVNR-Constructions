@@ -14,6 +14,10 @@ import AboutSection from '../components/sections/AboutSection';
 import ProjectSlider from '../components/common/ProjectSlider';
 import { Link } from 'react-router-dom';
 import SvnrConstruction from '../assets/images/HomeImage/svnrconstruction.png';
+import TheAyati0 from '../assets/images/HomeImage/TheAyati0.jpeg';
+import TheAyati1 from '../assets/images/HomeImage/TheAyati1.jpeg';
+import TheAyati2 from '../assets/images/HomeImage/TheAyati2.jpeg';
+import TheAyati3 from '../assets/images/HomeImage/TheAyati3.jpeg';
 import ScrollReveal from '../components/ui/ScrollReveal';
 const ProjectCard = ({ title, status, location, img }) => (
 	<div className='group relative overflow-hidden rounded-lg bg-stone-900 border border-white/10'>
@@ -103,44 +107,44 @@ const Home = ({ openBookVisit }) => {
 						<div className='grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px]'>
 							<div className='col-span-2 row-span-2 relative group overflow-hidden rounded-md'>
 								<img
-									src='https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop'
+									src={TheAyati0}
 									alt='Project'
 									className='w-full h-full object-cover transition-all duration-700'
 								/>
-								<div className='absolute inset-0 group-hover:bg-transparent transition-all duration-500 flex items-end p-8'>
+								{/* <div className='absolute inset-0 group-hover:bg-transparent transition-all duration-500 flex items-end p-8'>
 									<div className='text-white'>
 										<h3 className='text-2xl font-bold'>
-											Skyline Towers
+											The Ayati
 										</h3>
 										<p className='opacity-0 group-hover:opacity-100 transition-opacity delay-100 text-sm mt-2'>
-											Residential • 2021
+											Plots • Ongoing
 										</p>
 									</div>
-								</div>
+								</div> */}
 							</div>
 							<div className='col-span-1 row-span-1 relative group overflow-hidden rounded-md'>
 								<img
-									src='https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop'
+									src={TheAyati1}
 									alt='Project'
 									className='w-full h-full object-cover transition-all duration-700'
 								/>
-								<div className='absolute inset-0 group-hover:bg-transparent transition-all p-4 flex items-end'>
-									<h3 className='font-bold'>Urban Villas</h3>
-								</div>
+								{/* <div className='absolute inset-0 group-hover:bg-transparent transition-all p-4 flex items-end'>
+									<h3 className='font-bold'></h3>
+								</div> */}
 							</div>
 							<div className='col-span-1 row-span-1 relative group overflow-hidden rounded-md'>
 								<img
-									src='https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop'
+									src={TheAyati2}
 									alt='Project'
 									className='w-full h-full object-cover transition-all duration-700'
 								/>
-								<div className='absolute inset-0 group-hover:bg-transparent transition-all p-4 flex items-end'>
+								{/* <div className='absolute inset-0 group-hover:bg-transparent transition-all p-4 flex items-end'>
 									<h3 className='font-bold'>The Grand</h3>
-								</div>
+								</div> */}
 							</div>
 							<div className='col-span-2 row-span-1 relative group overflow-hidden rounded-md'>
 								<img
-									src='https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=2070&auto=format&fit=crop'
+									src={TheAyati3}
 									alt='Project'
 									className='w-full h-full object-cover transition-all duration-700'
 								/>
