@@ -27,6 +27,7 @@ import greenspace4 from '../../assets/images/DeliveredProjectImages/greenspace4.
 import greenspace6 from '../../assets/images/DeliveredProjectImages/greenspace6.png';
 import theLotus1 from '../../assets/images/DeliveredProjectImages/TheLotus1.png';
 import theLotus2 from '../../assets/images/DeliveredProjectImages/TheLouts2.png';
+import theLotus3 from '../../assets/images/DeliveredProjectImages/Thelouts3.png';
 
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
@@ -190,6 +191,8 @@ const DeliveredProjectDetails = () => {
 							? [saiDatta1, saiDatta2, saiDatta3, saiDatta4]
 							: project?.id === 4
 							? [greenspace1, greenspace2, greenspace1_2, greenspace3, greenspace4, greenspace6]
+							: project?.id === 5
+							? [theLotus2, theLotus3, theLotus1]
 							: [1, 2, 3, 4]
 						).map((img, i) => (
 							<img
