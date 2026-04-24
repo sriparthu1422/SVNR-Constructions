@@ -18,6 +18,8 @@ import saiDatta1 from '../../assets/images/DeliveredProjectImages/saiDatta1.png'
 import saiDatta2 from '../../assets/images/DeliveredProjectImages/saiDatta2.png';
 import saiDatta3 from '../../assets/images/DeliveredProjectImages/saiDatta3.png';
 import saiDatta4 from '../../assets/images/DeliveredProjectImages/saiDatta4.png';
+import greenspace1_1 from '../../assets/images/DeliveredProjectImages/greenspace1.1.png';
+import greenspace1_2 from '../../assets/images/DeliveredProjectImages/greenspace1.2.png';
 
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
@@ -106,6 +108,7 @@ const DeliveredProjectDetails = () => {
 								project?.id === 1 ? vinayaka1 : 
 								project?.id === 2 ? manasa1 : 
 								project?.id === 3 ? saiDatta1_1 : 
+								project?.id === 4 ? greenspace1_1 : 
 								'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'
 							}
 							className='absolute inset-0 w-full h-full object-cover'
@@ -117,7 +120,7 @@ const DeliveredProjectDetails = () => {
 							className='absolute inset-0 w-full h-full overflow-hidden'
 							style={{ width: `${sliderValue}%` }}>
 							<img
-								src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
+								src={project?.id === 4 ? greenspace1_2 : 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'}
 								className='absolute inset-0 w-full h-full object-cover grayscale'
 								alt='Before'
 							/>
