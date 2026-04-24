@@ -148,9 +148,9 @@ const Home = ({ openBookVisit }) => {
 									alt='Project'
 									className='w-full h-full object-cover transition-all duration-700'
 								/>
-								<div className='absolute inset-0 group-hover:bg-transparent transition-all p-4 flex items-end'>
+								{/* <div className='absolute inset-0 group-hover:bg-transparent transition-all p-4 flex items-end'>
 									<h3 className='font-bold'>Emerald Gardens</h3>
-								</div>
+								</div> */}
 							</div>
 						</div>
 					</div>
