@@ -25,6 +25,8 @@ import greenspace2 from '../../assets/images/DeliveredProjectImages/greenspace2.
 import greenspace3 from '../../assets/images/DeliveredProjectImages/greenspace3.png';
 import greenspace4 from '../../assets/images/DeliveredProjectImages/greenspace4.png';
 import greenspace6 from '../../assets/images/DeliveredProjectImages/greenspace6.png';
+import theLotus1 from '../../assets/images/DeliveredProjectImages/TheLotus1.png';
+import theLotus2 from '../../assets/images/DeliveredProjectImages/TheLouts2.png';
 
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
@@ -114,6 +116,7 @@ const DeliveredProjectDetails = () => {
 								project?.id === 2 ? manasa1 : 
 								project?.id === 3 ? saiDatta1_1 : 
 								project?.id === 4 ? greenspace1_1 : 
+								project?.id === 5 ? theLotus1 : 
 								'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'
 							}
 							className='absolute inset-0 w-full h-full object-cover'
@@ -125,7 +128,11 @@ const DeliveredProjectDetails = () => {
 							className='absolute inset-0 w-full h-full overflow-hidden'
 							style={{ width: `${sliderValue}%` }}>
 							<img
-								src={project?.id === 4 ? greenspace1_2 : 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'}
+								src={
+									project?.id === 4 ? greenspace1_2 : 
+									project?.id === 5 ? theLotus2 : 
+									'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
+								}
 								className='absolute inset-0 w-full h-full object-cover grayscale'
 								alt='Before'
 							/>
