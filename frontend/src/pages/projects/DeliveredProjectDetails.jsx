@@ -29,6 +29,13 @@ import theLotus1 from '../../assets/images/DeliveredProjectImages/TheLotus1.png'
 import theLotus2 from '../../assets/images/DeliveredProjectImages/TheLouts2.png';
 import theLotus3 from '../../assets/images/DeliveredProjectImages/Thelouts3.png';
 import theBreeze1 from '../../assets/images/DeliveredProjectImages/TheBreeze1.png';
+import theBreeze2 from '../../assets/images/DeliveredProjectImages/TheBreeze2.png';
+import theBreeze3 from '../../assets/images/DeliveredProjectImages/TheBreeze3.png';
+import theBreeze4 from '../../assets/images/DeliveredProjectImages/TheBreeze4.png';
+import theBreeze5 from '../../assets/images/DeliveredProjectImages/TheBreeze5.png';
+import theBreeze6 from '../../assets/images/DeliveredProjectImages/TheBreeze6.png';
+import theBreeze7 from '../../assets/images/DeliveredProjectImages/TheBreeze7.png';
+import theBreeze8 from '../../assets/images/DeliveredProjectImages/TheBreeze8.png';
 
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
@@ -195,6 +202,8 @@ const DeliveredProjectDetails = () => {
 							? [greenspace1, greenspace2, greenspace1_2, greenspace3, greenspace4, greenspace6]
 							: project?.id === 5
 							? [theLotus2, theLotus3, theLotus1]
+							: project?.id === 6
+							? [theBreeze1, theBreeze2, theBreeze3, theBreeze4, theBreeze5, theBreeze6, theBreeze7, theBreeze8]
 							: [1, 2, 3, 4]
 						).map((img, i) => (
 							<img
