@@ -195,6 +195,7 @@ const Navbar = ({ onBookVisit }) => {
 							Book Site Visit
 						</button>
 						<button
+							onClick={() => window.open('https://maps.google.com/?q=SVNR+Constructions+Hyderabad', '_blank')}
 							className='p-2.5 text-white border border-white/100 hover:border-black hover:bg-yellow-500
 							hover:text-black transition-all rounded-none flex items-center justify-center'>
 							<MapPin size={20} />
@@ -298,7 +299,7 @@ const Navbar = ({ onBookVisit }) => {
 								className='w-full px-6 py-3 bg-white text-black font-semibold text-sm hover:bg-gray-200 transition-colors border border-white block text-center'>
 								Book Site Visit
 							</button>
-							<button className='w-full flex items-center justify-center space-x-2 px-6 py-3 text-white border border-white/30 hover:border-white hover:bg-white/10 transition-all'>
+							<button onClick={() => window.open('https://maps.google.com/?q=SVNR+Constructions+Hyderabad', '_blank')} className='w-full flex items-center justify-center space-x-2 px-6 py-3 text-white border border-white/30 hover:border-white hover:bg-white/10 transition-all'>
 								<MapPin size={20} />
 								<span>Locate Us</span>
 							</button>

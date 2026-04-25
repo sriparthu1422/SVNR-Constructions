@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import getProjectImage from '../../utils/projectImages';
 
 // Fallback data in case the API is unreachable
 import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.png';
@@ -60,7 +61,7 @@ const ProjectCard = ({ project }) => {
 			<div className='relative h-[300px] w-[500px] flex-shrink-0 group overflow-hidden border border-white/10 rounded-sm cursor-pointer shadow-lg outline outline-1 outline-white/5 hover:outline-pink-500/30 transition-all'>
 				{/* Full Background Image */}
 				<img
-					src={project.image}
+					src={getProjectImage(project)}
 					alt={project.name}
 					className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110'
 				/>
@@ -165,7 +166,7 @@ const ProjectSlider = () => {
 						key={project._id}>
 						<div className='relative h-64 w-full overflow-hidden rounded-md border border-white/10 shadow-lg'>
 							<img
-								src={project.image}
+								src={getProjectImage(project)}
 								alt={project.name}
 								className='w-full h-full object-cover'
 							/>

@@ -10,6 +10,7 @@ import {
 	Calendar,
 } from 'lucide-react';
 import ScrollReveal from '../../components/ui/ScrollReveal';
+import getProjectImage from '../../utils/projectImages';
 
 // Fallback data
 import ankuraFarms from '../../assets/images/AboutSectionImages/AnkuraFarms.png';
@@ -72,7 +73,7 @@ const LiveProjects = () => {
 								{/* Hero Image */}
 								<div className='relative h-64 overflow-hidden shrink-0'>
 									<img
-										src={project.image}
+										src={getProjectImage(project)}
 										alt={project.name}
 										className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110'
 									/>

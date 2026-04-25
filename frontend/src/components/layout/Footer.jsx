@@ -125,30 +125,30 @@ const Footer = () => {
 					<ul className='space-y-3 text-sm text-gray-400'>
 						<li>
 							<Link
-								to='/live-projects/1'
+								to='/live-projects'
 								className='hover:text-yellow-500 transition-colors'>
 								The Ayati
 							</Link>
 						</li>
 						<li>
 							<Link
-								to='/live-projects/2'
+								to='/live-projects'
 								className='hover:text-yellow-500 transition-colors'>
-								SVNR Heights
+								Ankura Farms
 							</Link>
 						</li>
 						<li>
 							<Link
-								to='/live-projects/3'
+								to='/delivered-projects'
 								className='hover:text-yellow-500 transition-colors'>
-								Green Valley
+								The Breeze
 							</Link>
 						</li>
 						<li>
 							<Link
 								to='/upcoming-projects'
 								className='hover:text-yellow-500 transition-colors'>
-								Urban Towers
+								Upcoming Projects
 							</Link>
 						</li>
 					</ul>

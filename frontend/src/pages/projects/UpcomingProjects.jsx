@@ -5,6 +5,7 @@ import { MapPin, Calendar, Layout, Lock } from 'lucide-react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../../components/ui/ScrollReveal';
+import getProjectImage from '../../utils/projectImages';
 
 const fallbackProjects = [
 	{
@@ -31,6 +32,8 @@ const UpcomingProjects = () => {
 	const [projects, setProjects] = useState(fallbackProjects);
 	const [showForm, setShowForm] = useState(false);
 	const [selectedProject, setSelectedProject] = useState(null);
+	const [earlyAccess, setEarlyAccess] = useState({ name: '', phone: '', email: '' });
+	const [earlyAccessSubmitted, setEarlyAccessSubmitted] = useState(false);
 
 	useEffect(() => {
 		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -44,7 +47,37 @@ const UpcomingProjects = () => {
 
 	const handleEarlyAccess = (project) => {
 		setSelectedProject(project);
+		setEarlyAccessSubmitted(false);
+		setEarlyAccess({ name: '', phone: '', email: '' });
 		setShowForm(true);
+	};
+
+	const handleEarlyAccessSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+			const res = await fetch(`${API_URL}/inquiries`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					name: earlyAccess.name,
+					email: earlyAccess.email,
+					subject: `Early Access Request - ${selectedProject?.name || 'Upcoming Project'}`,
+					message: `Phone: ${earlyAccess.phone}\nInterested in: ${selectedProject?.name || 'Upcoming Project'}`,
+				}),
+			});
+			if (res.ok) {
+				setEarlyAccessSubmitted(true);
+				setEarlyAccess({ name: '', phone: '', email: '' });
+				setTimeout(() => {
+					setShowForm(false);
+					setEarlyAccessSubmitted(false);
+				}, 3000);
+			}
+		} catch (error) {
+			console.error('Early access error:', error);
+			alert('Failed to submit. Please try again.');
+		}
 	};
 
 	return (
@@ -69,7 +102,7 @@ const UpcomingProjects = () => {
 								{/* Blur Overlay for "Teaser" Effect */}
 								<div className='relative h-80 overflow-hidden shrink-0'>
 									<img
-										src={project.image}
+										src={getProjectImage(project)}
 										alt={project.name}
 										className='w-full h-full object-cover filter blur-[2px] group-hover:blur-0 transition-all duration-700'
 									/>
@@ -162,26 +195,43 @@ const UpcomingProjects = () => {
 									get exclusive pre-launch offers.
 								</p>
 
-								<form className='space-y-4'>
+								{earlyAccessSubmitted ? (
+									<div className='text-center py-6'>
+										<div className='text-green-400 text-4xl mb-3'>?</div>
+										<p className='text-white font-bold text-lg'>Thank you!</p>
+										<p className='text-gray-400 text-sm mt-1'>We will contact you with early access details.</p>
+									</div>
+								) : (
+								<form className='space-y-4' onSubmit={handleEarlyAccessSubmit}>
 									<input
 										type='text'
 										placeholder='Full Name'
+										value={earlyAccess.name}
+										onChange={(e) => setEarlyAccess(prev => ({ ...prev, name: e.target.value }))}
+										required
 										className='w-full bg-black/50 border border-white/20 rounded p-3 text-white focus:border-yellow-500 outline-none'
 									/>
 									<input
-										type='text'
+										type='tel'
 										placeholder='Phone Number'
+										value={earlyAccess.phone}
+										onChange={(e) => setEarlyAccess(prev => ({ ...prev, phone: e.target.value }))}
+										required
 										className='w-full bg-black/50 border border-white/20 rounded p-3 text-white focus:border-yellow-500 outline-none'
 									/>
 									<input
 										type='email'
 										placeholder='Email Address'
+										value={earlyAccess.email}
+										onChange={(e) => setEarlyAccess(prev => ({ ...prev, email: e.target.value }))}
+										required
 										className='w-full bg-black/50 border border-white/20 rounded p-3 text-white focus:border-yellow-500 outline-none'
 									/>
-									<button className='w-full bg-yellow-500 text-black font-bold py-3 rounded hover:bg-white transition-colors'>
+									<button type='submit' className='w-full bg-yellow-500 text-black font-bold py-3 rounded hover:bg-white transition-colors'>
 										Request Types & Pricing
 									</button>
 								</form>
+								)}
 							</motion.div>
 						</div>
 					)}

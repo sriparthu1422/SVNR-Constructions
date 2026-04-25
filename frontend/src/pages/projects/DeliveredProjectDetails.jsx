@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Download, MapPin, Quote, ArrowLeft } from 'lucide-react';
+import getProjectImage from '../../utils/projectImages';
 import vinayaka1 from '../../assets/images/DeliveredProjectImages/vinayaka1.png';
 import vinayaka2 from '../../assets/images/DeliveredProjectImages/vinayaka2.png';
 import vinayaka3 from '../../assets/images/DeliveredProjectImages/vinayaka3.png';
@@ -91,7 +92,7 @@ const DeliveredProjectDetails = () => {
 			{/* HERRO */}
 			<div className='relative h-[60vh] w-full overflow-hidden'>
 				<img
-					src={project.image}
+					src={getProjectImage(project)}
 					className='w-full h-full object-cover'
 					alt='Hero'
 				/>
@@ -128,10 +129,10 @@ const DeliveredProjectDetails = () => {
 					</div>
 					<div>
 						<span className='block text-3xl font-bold text-yellow-500 mb-1 uppercase'>
-							{project.area.split(' ')[0]}
+							{(project.area || '').split(' ')[0]}
 						</span>
 						<span className='text-sm text-gray-400 uppercase tracking-wider'>
-							{project.area.split(' ').slice(1).join(' ')}
+							{(project.area || '').split(' ').slice(1).join(' ')}
 						</span>
 					</div>
 					<div>
@@ -221,6 +222,7 @@ const DeliveredProjectDetails = () => {
 							<img
 								key={i}
 								src={typeof img === 'string' ? img : `https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop`}
+								alt={`${project.name} gallery ${i + 1}`}
 								className='w-full h-64 object-cover rounded-lg hover:opacity-80 transition-opacity cursor-pointer'
 							/>
 						))}

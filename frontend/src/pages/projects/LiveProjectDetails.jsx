@@ -3,16 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
-	Camera,
 	Calendar,
-	FileText,
 	Download,
-	Play,
 	CheckCircle,
 	MapPin,
-	Phone,
 	ArrowLeft,
 } from 'lucide-react';
+import getProjectImage from '../../utils/projectImages';
 import ankura1 from '../../assets/images/DeliveredProjectImages/ankura1.png';
 import ankura2 from '../../assets/images/DeliveredProjectImages/ankura2.png';
 import ankura3 from '../../assets/images/DeliveredProjectImages/ankura3.png';
@@ -34,6 +31,33 @@ const LiveProjectDetails = () => {
 	const [viewMode, setViewMode] = useState('render');
 	const [project, setProject] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [enquiry, setEnquiry] = useState({ name: '', phone: '', email: '', message: '' });
+	const [enquirySubmitted, setEnquirySubmitted] = useState(false);
+
+	const handleEnquirySubmit = async (e) => {
+		e.preventDefault();
+		try {
+			const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+			const res = await fetch(`${API_URL}/inquiries`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					name: enquiry.name,
+					email: enquiry.email,
+					subject: `Enquiry for ${project?.name || 'Project'}`,
+					message: `Phone: ${enquiry.phone}\n${enquiry.message}`,
+				}),
+			});
+			if (res.ok) {
+				setEnquirySubmitted(true);
+				setEnquiry({ name: '', phone: '', email: '', message: '' });
+				setTimeout(() => setEnquirySubmitted(false), 4000);
+			}
+		} catch (error) {
+			console.error('Enquiry error:', error);
+			alert('Failed to submit. Please try again.');
+		}
+	};
 
 	useEffect(() => {
 		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -80,12 +104,8 @@ const LiveProjectDetails = () => {
 			{/* 1. Hero / Header */}
 			<div className='relative h-[60vh] md:h-[80vh] w-full overflow-hidden'>
 				<img
-					src={
-						viewMode === 'render'
-						? galleryData.hero || project.image
-						: project?.id === 1 ? ankura1 : project?.id === 2 ? theAyati0 : (galleryData.hero || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop')
-					}
-					alt='Project Hero'
+					src={galleryData.hero || getProjectImage(project)}
+					alt={project.name}
 					className='w-full h-full object-cover'
 				/>
 				<div className='absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/50 to-transparent p-8 md:p-16'>
@@ -293,30 +313,50 @@ const LiveProjectDetails = () => {
 								Request a call back or book a site visit.
 							</p>
 
-							<form className='space-y-4'>
+							{enquirySubmitted ? (
+								<div className='text-center py-8'>
+									<CheckCircle size={48} className='text-green-500 mx-auto mb-4' />
+									<p className='text-lg font-bold text-gray-800'>Thank you!</p>
+									<p className='text-sm text-gray-500 mt-1'>We will get back to you soon.</p>
+								</div>
+							) : (
+							<form className='space-y-4' onSubmit={handleEnquirySubmit}>
 								<input
 									type='text'
 									placeholder='Name'
+									value={enquiry.name}
+									onChange={(e) => setEnquiry(prev => ({ ...prev, name: e.target.value }))}
+									required
 									className='w-full bg-gray-100 p-3 rounded border border-gray-300 focus:border-black outline-none transition-colors'
 								/>
 								<input
-									type='text'
+									type='tel'
 									placeholder='Phone +91'
+									value={enquiry.phone}
+									onChange={(e) => setEnquiry(prev => ({ ...prev, phone: e.target.value }))}
+									required
 									className='w-full bg-gray-100 p-3 rounded border border-gray-300 focus:border-black outline-none transition-colors'
 								/>
 								<input
 									type='email'
 									placeholder='Email'
+									value={enquiry.email}
+									onChange={(e) => setEnquiry(prev => ({ ...prev, email: e.target.value }))}
+									required
 									className='w-full bg-gray-100 p-3 rounded border border-gray-300 focus:border-black outline-none transition-colors'
 								/>
 								<textarea
 									rows='3'
 									placeholder='Message'
+									value={enquiry.message}
+									onChange={(e) => setEnquiry(prev => ({ ...prev, message: e.target.value }))}
+									required
 									className='w-full bg-gray-100 p-3 rounded border border-gray-300 focus:border-black outline-none transition-colors resize-none'></textarea>
-								<button className='w-full bg-black text-white font-bold py-4 rounded hover:bg-stone-800 transition-colors uppercase tracking-wider'>
+								<button type='submit' className='w-full bg-black text-white font-bold py-4 rounded hover:bg-stone-800 transition-colors uppercase tracking-wider'>
 									Submit Enquiry
 								</button>
 							</form>
+							)}
 						</div>
 					</div>
 				</div>

@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, CheckCircle } from 'lucide-react';
 import ScrollReveal from '../../components/ui/ScrollReveal';
+import getProjectImage from '../../utils/projectImages';
 
 // Fallback data
 import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.png';
@@ -111,7 +112,7 @@ const DeliveredProjects = () => {
 								className='bg-stone-900 border border-white/10 rounded-lg overflow-hidden group hover:border-yellow-500/50 transition-all duration-300 shadow-lg h-full flex flex-col'>
 								<div className='relative h-72 overflow-hidden shrink-0'>
 									<img
-										src={project.image}
+										src={getProjectImage(project)}
 										alt={project.name}
 										className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-105'
 									/>

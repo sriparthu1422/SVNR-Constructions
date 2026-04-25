@@ -56,7 +56,7 @@ const TestimonialsSlider = () => {
 				<div className='flex w-max animate-scroll hover:[animation-play-state:paused]'>
 					{duplicatedTestimonials.map((item, index) => (
 						<TestimonialCard
-							key={`${item.id}-${index}`}
+							key={`${item._id}-${index}`}
 							data={item}
 						/>
 					))}

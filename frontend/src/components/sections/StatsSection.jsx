@@ -1,6 +1,12 @@
 /** @format */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+	useMotionValue,
+	useTransform,
+	animate,
+	useInView,
+} from 'framer-motion';
 
 const fallbackStats = [
 	{ label: 'Happy Families', value: '1500+' },
@@ -9,16 +15,6 @@ const fallbackStats = [
 	{ label: 'Sq. Ft. Delivered', value: '2M+' },
 	{ label: 'Ongoing Projects', value: '5' },
 ];
-
-import {
-	// eslint-disable-next-line no-unused-vars
-	motion,
-	useMotionValue,
-	useTransform,
-	animate,
-	useInView,
-} from 'framer-motion';
-import { useRef } from 'react';
 
 const AnimatedCounter = ({ value }) => {
 	// Parse numeric part and suffix
@@ -29,6 +25,12 @@ const AnimatedCounter = ({ value }) => {
 	const isInView = useInView(ref, { once: true, margin: '-50px' });
 	const count = useMotionValue(0);
 	const rounded = useTransform(count, Math.round);
+	const [displayValue, setDisplayValue] = useState(0);
+
+	useEffect(() => {
+		const unsubscribe = rounded.on('change', (v) => setDisplayValue(v));
+		return unsubscribe;
+	}, [rounded]);
 
 	useEffect(() => {
 		if (isInView) {
@@ -44,7 +46,7 @@ const AnimatedCounter = ({ value }) => {
 		<span
 			ref={ref}
 			className='text-4xl md:text-5xl font-bold text-white mb-2 group-hover:text-yellow-500 transition-colors flex items-center justify-center'>
-			<motion.span>{rounded}</motion.span>
+			<span>{displayValue}</span>
 			<span>{suffix}</span>
 		</span>
 	);
