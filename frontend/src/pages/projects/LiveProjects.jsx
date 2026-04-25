@@ -11,6 +11,7 @@ import {
 	BarChart2,
 } from 'lucide-react';
 import ankuraFarms from '../../assets/images/AboutSectionImages/AnkuraFarms.png';
+import TheAyati from '../../assets/images/HomeImage/TheAyati2.jpeg';
 import ScrollReveal from '../../components/ui/ScrollReveal';
 
 export const liveProjects = [
@@ -30,7 +31,7 @@ export const liveProjects = [
 		stage: 'Structure',
 		progress: 60,
 		completion: 'June 2025',
-		image: 'https://images.unsplash.com/photo-1590247813693-5541d1c609fd?q=80&w=2009&auto=format&fit=crop',
+		image: TheAyati,
 	},
 ];
 
