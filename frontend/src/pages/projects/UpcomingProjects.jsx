@@ -1,14 +1,14 @@
 /** @format */
 
-import React, { useState } from 'react';
-import { ArrowRight, Lock, MapPin, Calendar, Layout } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { MapPin, Calendar, Layout, Lock } from 'lucide-react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../../components/ui/ScrollReveal';
 
-const upcomingProjects = [
+const fallbackProjects = [
 	{
-		id: 1,
+		_id: 'fallback-upcoming-1',
 		name: 'SVNR Builders',
 		location: 'Hyderabad',
 		size: 'Plot Sizes: Coming soon',
@@ -17,7 +17,7 @@ const upcomingProjects = [
 		concept: 'Coming soon',
 	},
 	{
-		id: 2,
+		_id: 'fallback-upcoming-2',
 		name: 'SVNR Builders',
 		location: 'Coming soon',
 		size: 'Plot Sizes: Coming soon',
@@ -28,8 +28,19 @@ const upcomingProjects = [
 ];
 
 const UpcomingProjects = () => {
+	const [projects, setProjects] = useState(fallbackProjects);
 	const [showForm, setShowForm] = useState(false);
 	const [selectedProject, setSelectedProject] = useState(null);
+
+	useEffect(() => {
+		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+		fetch(`${API_URL}/projects?type=upcoming`)
+			.then(r => r.json())
+			.then(data => {
+				if (Array.isArray(data) && data.length > 0) setProjects(data);
+			})
+			.catch(() => {});
+	}, []);
 
 	const handleEarlyAccess = (project) => {
 		setSelectedProject(project);
@@ -51,8 +62,8 @@ const UpcomingProjects = () => {
 				</ScrollReveal>
 
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-					{upcomingProjects.map((project, index) => (
-						<ScrollReveal animation="fadeUp" delay={index * 0.1} key={project.id}>
+					{projects.map((project, index) => (
+						<ScrollReveal animation="fadeUp" delay={index * 0.1} key={project._id}>
 							<div
 								className='bg-stone-900 border border-white/10 rounded-lg overflow-hidden group hover:border-yellow-500/50 transition-all duration-300 relative h-full flex flex-col'>
 								{/* Blur Overlay for "Teaser" Effect */}
@@ -68,7 +79,7 @@ const UpcomingProjects = () => {
 											className='text-yellow-500 mb-4 animate-pulse'
 										/>
 										<h3 className='text-2xl font-bold text-white mb-2 uppercase tracking-widest'>
-											{project.concept}
+											{project.concept || 'Coming Soon'}
 										</h3>
 										<p className='text-sm text-gray-400'>
 											Coming Soon to {project.location}
@@ -95,14 +106,14 @@ const UpcomingProjects = () => {
 												size={16}
 												className='text-yellow-500'
 											/>
-											{project.size}
+											{project.size || 'Coming soon'}
 										</div>
 										<div className='flex items-center gap-2 text-sm text-gray-400'>
 											<Calendar
 												size={16}
 												className='text-yellow-500'
 											/>
-											Launch: {project.launch}
+											Launch: {project.launch || 'Coming soon'}
 										</div>
 									</div>
 

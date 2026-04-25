@@ -1,9 +1,8 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Download, MapPin, Quote, ArrowLeft } from 'lucide-react';
-import { deliveredProjects } from './DeliveredProjects';
 import vinayaka1 from '../../assets/images/DeliveredProjectImages/vinayaka1.png';
 import vinayaka2 from '../../assets/images/DeliveredProjectImages/vinayaka2.png';
 import vinayaka3 from '../../assets/images/DeliveredProjectImages/vinayaka3.png';
@@ -37,11 +36,40 @@ import theBreeze6 from '../../assets/images/DeliveredProjectImages/TheBreeze6.pn
 import theBreeze7 from '../../assets/images/DeliveredProjectImages/TheBreeze7.png';
 import theBreeze8 from '../../assets/images/DeliveredProjectImages/TheBreeze8.png';
 
+// Gallery images mapped by project name (case-insensitive match)
+const galleryMap = {
+	'vinayak homes': { after: vinayaka1, before: null, gallery: [vinayaka1, vinayaka2, vinayaka3, vinayaka4, vinayaka5] },
+	'manasa sarovar': { after: manasa1, before: null, gallery: [manasa1, manasa2, manasa3, manasa4] },
+	'sai datta residency': { after: saiDatta1_1, before: null, gallery: [saiDatta1, saiDatta2, saiDatta3, saiDatta4] },
+	'greenspace': { after: greenspace1_1, before: greenspace1_2, gallery: [greenspace1, greenspace2, greenspace1_2, greenspace3, greenspace4, greenspace6] },
+	'the lotus residency': { after: theLotus1, before: theLotus2, gallery: [theLotus2, theLotus3, theLotus1] },
+	'the breeze': { after: theBreeze1, before: null, gallery: [theBreeze1, theBreeze2, theBreeze3, theBreeze4, theBreeze5, theBreeze6, theBreeze7, theBreeze8] },
+};
+
 const DeliveredProjectDetails = () => {
 	const { id } = useParams();
-	const [sliderValue, setSliderValue] = useState(50); // For before/after swipe
+	const [sliderValue, setSliderValue] = useState(50);
+	const [project, setProject] = useState(null);
+	const [loading, setLoading] = useState(true);
 
-	const project = deliveredProjects.find(p => p.id === parseInt(id));
+	useEffect(() => {
+		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+		fetch(`${API_URL}/projects/${id}`)
+			.then(r => r.json())
+			.then(data => {
+				if (data && data._id) setProject(data);
+			})
+			.catch(() => {})
+			.finally(() => setLoading(false));
+	}, [id]);
+
+	if (loading) {
+		return (
+			<div className='min-h-screen bg-black text-white flex items-center justify-center'>
+				<div className='animate-pulse text-xl text-gray-400'>Loading project...</div>
+			</div>
+		);
+	}
 
 	if (!project) {
 		return (
@@ -53,6 +81,10 @@ const DeliveredProjectDetails = () => {
 			</div>
 		);
 	}
+
+	// Look up gallery images by project name
+	const projectNameLower = project.name.toLowerCase();
+	const gallery = galleryMap[projectNameLower] || { after: null, before: null, gallery: [] };
 
 	return (
 		<div className='bg-black text-white min-h-screen pt-20 pb-32 md:pb-20'>
@@ -88,7 +120,7 @@ const DeliveredProjectDetails = () => {
 					</div>
 					<div>
 						<span className='block text-3xl font-bold text-yellow-500 mb-1'>
-							{project.units}
+							{project.totalUnits || project.units}
 						</span>
 						<span className='text-sm text-gray-400 uppercase tracking-wider'>
 							Units
@@ -121,13 +153,7 @@ const DeliveredProjectDetails = () => {
 						{/* After Image (Background) */}
 						<img
 							src={
-								project?.id === 1 ? vinayaka1 : 
-								project?.id === 2 ? manasa1 : 
-								project?.id === 3 ? saiDatta1_1 : 
-								project?.id === 4 ? greenspace1_1 : 
-								project?.id === 5 ? theLotus1 : 
-								project?.id === 6 ? theBreeze1 : 
-								'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'
+								gallery.after || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'
 							}
 							className='absolute inset-0 w-full h-full object-cover'
 							alt='After'
@@ -139,9 +165,7 @@ const DeliveredProjectDetails = () => {
 							style={{ width: `${sliderValue}%` }}>
 							<img
 								src={
-									project?.id === 4 ? greenspace1_2 : 
-									project?.id === 5 ? theLotus2 : 
-									'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
+									gallery.before || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
 								}
 								className='absolute inset-0 w-full h-full object-cover grayscale'
 								alt='Before'
@@ -192,19 +216,7 @@ const DeliveredProjectDetails = () => {
 						Gallery
 					</h2>
 					<div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
-						{(project?.id === 1 
-							? [vinayaka1, vinayaka2, vinayaka3, vinayaka4, vinayaka5] 
-							: project?.id === 2
-							? [manasa1, manasa2, manasa3, manasa4]
-							: project?.id === 3
-							? [saiDatta1, saiDatta2, saiDatta3, saiDatta4]
-							: project?.id === 4
-							? [greenspace1, greenspace2, greenspace1_2, greenspace3, greenspace4, greenspace6]
-							: project?.id === 5
-							? [theLotus2, theLotus3, theLotus1]
-							: project?.id === 6
-							? [theBreeze1, theBreeze2, theBreeze3, theBreeze4, theBreeze5, theBreeze6, theBreeze7, theBreeze8]
-							: [1, 2, 3, 4]
+						{(gallery.gallery.length > 0 ? gallery.gallery : [1, 2, 3, 4]
 						).map((img, i) => (
 							<img
 								key={i}

@@ -1,57 +1,59 @@
 /** @format */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapPin, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+// Fallback data in case the API is unreachable
 import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.png';
 import vinayakHomes from '../../assets/images/AboutSectionImages/Vinayak Homes.jpg';
 import saiDattaResidency from '../../assets/images/AboutSectionImages/SaiDatta Residency.jpg';
 import greenspace from '../../assets/images/AboutSectionImages/Greenspace.png';
 import theLotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.png';
 
-const projects = [
+const fallbackProjects = [
 	{
-		id: 1,
+		_id: 'fallback-1',
 		name: 'MANASA SAROVAR',
 		location: 'Miryalaguda, Telangana',
-		status: 'Completed',
+		projectType: 'delivered',
 		image: manasaSarovar,
 	},
 	{
-		id: 2,
+		_id: 'fallback-2',
 		name: 'Vinayak Homes',
 		location: 'Miryalaguda, Telangana',
-		status: 'Completed',
+		projectType: 'delivered',
 		image: vinayakHomes,
 	},
 	{
-		id: 3,
+		_id: 'fallback-3',
 		name: 'Sai Datta Residency',
 		location: 'Miryalaguda, Telangana',
-		status: 'Completed',
+		projectType: 'delivered',
 		image: saiDattaResidency,
 	},
 	{
-		id: 4,
+		_id: 'fallback-4',
 		name: 'Greenspace',
 		location: 'Miryalaguda, Telangana',
-		status: 'Completed',
+		projectType: 'delivered',
 		image: greenspace,
 	},
 	{
-		id: 5,
+		_id: 'fallback-5',
 		name: 'The Lotus Residency',
 		location: 'Miryalaguda, Telangana',
-		status: 'Completed',
+		projectType: 'delivered',
 		image: theLotusResidency,
 	},
 ];
 
 const ProjectCard = ({ project }) => {
 	const linkTo =
-		project.status === 'Upcoming'
+		project.projectType === 'upcoming'
 			? '/upcoming-projects'
-			: `/delivered-projects/${project.id}`;
+			: `/delivered-projects/${project._id}`;
 
 	return (
 		<Link to={linkTo}>
@@ -69,7 +71,7 @@ const ProjectCard = ({ project }) => {
 						<div className='flex justify-between items-start'>
 							<div>
 								<span className='text-yellow-500 text-xs font-bold uppercase tracking-[0.2em] mb-2 block'>
-									{project.status}
+									{project.projectType === 'delivered' ? 'Completed' : project.projectType}
 								</span>
 								<h3 className='text-2xl font-bold text-white mb-2'>
 									{project.name}
@@ -105,6 +107,18 @@ const ProjectCard = ({ project }) => {
 };
 
 const ProjectSlider = () => {
+	const [projects, setProjects] = useState(fallbackProjects);
+
+	useEffect(() => {
+		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+		fetch(`${API_URL}/projects?type=delivered`)
+			.then(r => r.json())
+			.then(data => {
+				if (Array.isArray(data) && data.length > 0) setProjects(data);
+			})
+			.catch(() => {});
+	}, []);
+
 	// Duplicate projects for seamless looping
 	const duplicatedProjects = [...projects, ...projects, ...projects];
 
@@ -128,7 +142,7 @@ const ProjectSlider = () => {
 				<div className='flex space-x-8 w-max animate-scroll hover:[animation-play-state:paused] px-4'>
 					{duplicatedProjects.map((project, index) => (
 						<ProjectCard
-							key={`${project.id}-${index}`}
+							key={`${project._id}-${index}`}
 							project={project}
 						/>
 					))}
@@ -144,11 +158,11 @@ const ProjectSlider = () => {
 				{projects.map((project) => (
 					<Link
 						to={
-							project.status === 'Upcoming'
+							project.projectType === 'upcoming'
 								? '/upcoming-projects'
-								: `/delivered-projects/${project.id}`
+								: `/delivered-projects/${project._id}`
 						}
-						key={project.id}>
+						key={project._id}>
 						<div className='relative h-64 w-full overflow-hidden rounded-md border border-white/10 shadow-lg'>
 							<img
 								src={project.image}
@@ -157,7 +171,7 @@ const ProjectSlider = () => {
 							/>
 							<div className='absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-6 flex flex-col justify-end'>
 								<span className='text-yellow-500 text-xs font-bold uppercase tracking-widest'>
-									{project.status}
+									{project.projectType === 'delivered' ? 'Completed' : project.projectType}
 								</span>
 								<h3 className='text-2xl font-bold text-white my-1'>
 									{project.name}

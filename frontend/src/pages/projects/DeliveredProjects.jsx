@@ -1,74 +1,76 @@
 /** @format */
 /* eslint-disable react-refresh/only-export-components */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Calendar, CheckCircle } from 'lucide-react';
+import { MapPin, CheckCircle } from 'lucide-react';
+import ScrollReveal from '../../components/ui/ScrollReveal';
+
+// Fallback data
 import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.png';
 import vinayakHomes from '../../assets/images/AboutSectionImages/Vinayak Homes.jpg';
 import saiDattaResidency from '../../assets/images/AboutSectionImages/SaiDatta Residency.jpg';
 import greenspace from '../../assets/images/AboutSectionImages/Greenspace.png';
 import theLotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.png';
 import theBreeze from '../../assets/images/AboutSectionImages/The Breeze.png';
-import ScrollReveal from '../../components/ui/ScrollReveal';
 
-export const deliveredProjects = [
+const fallbackProjects = [
 	{
-		id: 1,
+		_id: 'fallback-1',
 		name: 'Vinayak Homes',
 		location: 'Miryalaguda, Telangana',
 		completionYear: '2020',
-		units: 15,
+		totalUnits: 15,
 		area: '732 SQ.Yards',
 		image: vinayakHomes,
 		testimonial: 'Truly premium living experience.',
 	},
 	{
-		id: 2,
+		_id: 'fallback-2',
 		name: 'Manasa Sarovar',
 		location: 'Miryalaguda, Telangana',
 		completionYear: '2021',
-		units: 40,
+		totalUnits: 40,
 		area: '1850 Sq.Yards',
 		image: manasaSarovar,
 		testimonial: 'Exceeded all expectations in quality and timeline.',
 	},
 	{
-		id: 3,
+		_id: 'fallback-3',
 		name: 'Sai Datta Residency',
 		location: 'Miryalaguda, Telangana',
 		completionYear: '2021',
-		units: 25,
+		totalUnits: 25,
 		area: '1212 SQ.Yards',
 		image: saiDattaResidency,
 		testimonial: 'Truly premium living experience.',
 	},
 	{
-		id: 4,
+		_id: 'fallback-4',
 		name: 'Greenspace',
 		location: 'Miryalaguda, Telangana',
 		completionYear: '2023',
-		units: 25,
+		totalUnits: 25,
 		area: '1200 SQ.Yards',
 		image: greenspace,
 		testimonial: 'Truly premium living experience.',
 	},
 	{
-		id: 5,
+		_id: 'fallback-5',
 		name: 'The Lotus Residency',
 		location: 'Miryalaguda, Telangana',
 		completionYear: '2023',
-		units: 10,
+		totalUnits: 10,
 		area: '678 SQ.Yards',
 		image: theLotusResidency,
 		testimonial: 'Truly premium living experience.',
 	},
 	{
-		id: 6,
+		_id: 'fallback-6',
 		name: 'The Breeze',
 		location: 'Narsingi (Manchirevula)',
 		completionYear: '2025',
-		units: 70,
+		totalUnits: 70,
 		area: '3756 SQ.Yards',
 		image: theBreeze,
 		testimonial: 'Truly premium living experience.',
@@ -76,6 +78,18 @@ export const deliveredProjects = [
 ];
 
 const DeliveredProjects = () => {
+	const [projects, setProjects] = useState(fallbackProjects);
+
+	useEffect(() => {
+		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+		fetch(`${API_URL}/projects?type=delivered`)
+			.then(r => r.json())
+			.then(data => {
+				if (Array.isArray(data) && data.length > 0) setProjects(data);
+			})
+			.catch(() => {});
+	}, []);
+
 	return (
 		<div className='min-h-screen bg-black text-white pt-24 px-4 md:px-8 pb-24 md:pb-12'>
 			<div className='max-w-7xl mx-auto'>
@@ -91,8 +105,8 @@ const DeliveredProjects = () => {
 				</ScrollReveal>
 
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-					{deliveredProjects.map((project, index) => (
-						<ScrollReveal animation="fadeUp" delay={index * 0.1} key={project.id}>
+					{projects.map((project, index) => (
+						<ScrollReveal animation="fadeUp" delay={index * 0.1} key={project._id}>
 							<div
 								className='bg-stone-900 border border-white/10 rounded-lg overflow-hidden group hover:border-yellow-500/50 transition-all duration-300 shadow-lg h-full flex flex-col'>
 								<div className='relative h-72 overflow-hidden shrink-0'>
@@ -132,7 +146,7 @@ const DeliveredProjects = () => {
 												Units Delivered
 											</span>
 											<span className='text-xl font-bold text-white'>
-												{project.units}
+												{project.totalUnits || project.units}
 											</span>
 										</div>
 										<div>
@@ -145,7 +159,7 @@ const DeliveredProjects = () => {
 										</div>
 									</div>
 
-									<Link to={`/delivered-projects/${project.id}`}>
+									<Link to={`/delivered-projects/${project._id}`}>
 										<button className='w-full mt-4 py-3 bg-transparent border border-white/30 hover:bg-white hover:text-black hover:border-white text-white font-medium transition-all rounded text-sm uppercase tracking-wide'>
 											View Project Gallery
 										</button>

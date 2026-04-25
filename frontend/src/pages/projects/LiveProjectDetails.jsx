@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
 	Camera,
@@ -13,7 +13,6 @@ import {
 	Phone,
 	ArrowLeft,
 } from 'lucide-react';
-import { liveProjects } from './LiveProjects';
 import ankura1 from '../../assets/images/DeliveredProjectImages/ankura1.png';
 import ankura2 from '../../assets/images/DeliveredProjectImages/ankura2.png';
 import ankura3 from '../../assets/images/DeliveredProjectImages/ankura3.png';
@@ -32,9 +31,36 @@ import theAyati5 from '../../assets/images/HomeImage/TheAyati5.jpeg';
 
 const LiveProjectDetails = () => {
 	const { id } = useParams();
-	const [viewMode, setViewMode] = useState('render'); // 'render' or 'site'
+	const [viewMode, setViewMode] = useState('render');
+	const [project, setProject] = useState(null);
+	const [loading, setLoading] = useState(true);
 
-	const project = liveProjects.find(p => p.id === parseInt(id));
+	useEffect(() => {
+		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+		fetch(`${API_URL}/projects/${id}`)
+			.then(r => r.json())
+			.then(data => {
+				if (data && data._id) setProject(data);
+			})
+			.catch(() => {})
+			.finally(() => setLoading(false));
+	}, [id]);
+
+	// Gallery images mapped by project name
+	const getGalleryImages = (name) => {
+		const n = (name || '').toLowerCase();
+		if (n.includes('ankura')) return { hero: ankura1, gallery: [ankura1, ankura2, ankura3, ankura4, ankura5, ankura6, ankura7, ankura8, ankura9] };
+		if (n.includes('ayati')) return { hero: theAyati0, gallery: [theAyati0, theAyati7, theAyati2, theAyati3, theAyati4, theAyati5] };
+		return { hero: null, gallery: [1, 2, 3, 4, 5, 6] };
+	};
+
+	if (loading) {
+		return (
+			<div className='min-h-screen bg-black text-white flex items-center justify-center'>
+				<div className='animate-pulse text-xl text-gray-400'>Loading project...</div>
+			</div>
+		);
+	}
 
 	if (!project) {
 		return (
@@ -47,6 +73,8 @@ const LiveProjectDetails = () => {
 		);
 	}
 
+	const galleryData = getGalleryImages(project.name);
+
 	return (
 		<div className='bg-black text-white min-h-screen pt-20 pb-32 md:pb-20'>
 			{/* 1. Hero / Header */}
@@ -54,8 +82,8 @@ const LiveProjectDetails = () => {
 				<img
 					src={
 						viewMode === 'render'
-							? project.image
-							: project?.id === 1 ? ankura1 : project?.id === 2 ? theAyati0 : 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
+						? galleryData.hero || project.image
+						: project?.id === 1 ? ankura1 : project?.id === 2 ? theAyati0 : (galleryData.hero || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop')
 					}
 					alt='Project Hero'
 					className='w-full h-full object-cover'
@@ -147,12 +175,7 @@ const LiveProjectDetails = () => {
 							Construction Progress Gallery
 						</h2>
 						<div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
-							{(project?.id === 1 
-								? [ankura1, ankura2, ankura3, ankura4, ankura5, ankura6, ankura7, ankura8, ankura9]
-								: project?.id === 2
-								? [theAyati0, theAyati7, theAyati2, theAyati3, theAyati4, theAyati5]
-								: [1, 2, 3, 4, 5, 6]
-							).map((img, index) => (
+							{galleryData.gallery.map((img, index) => (
 								<div
 									key={index}
 									className='aspect-square bg-stone-900 rounded-lg overflow-hidden relative group'>
@@ -162,7 +185,7 @@ const LiveProjectDetails = () => {
 										alt='site'
 									/>
 									<div className='absolute bottom-0 left-0 w-full p-2 bg-black/60 text-xs text-white'>
-										{project?.id === 1 || project?.id === 2 ? `Progress Shot ${index + 1}` : 'March 2024'}
+										{`Progress Shot ${index + 1}`}
 									</div>
 								</div>
 							))}
