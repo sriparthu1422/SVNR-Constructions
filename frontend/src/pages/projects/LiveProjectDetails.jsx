@@ -14,6 +14,15 @@ import {
 	ArrowLeft,
 } from 'lucide-react';
 import { liveProjects } from './LiveProjects';
+import ankura1 from '../../assets/images/DeliveredProjectImages/ankura1.png';
+import ankura2 from '../../assets/images/DeliveredProjectImages/ankura2.png';
+import ankura3 from '../../assets/images/DeliveredProjectImages/ankura3.png';
+import ankura4 from '../../assets/images/DeliveredProjectImages/ankura4.png';
+import ankura5 from '../../assets/images/DeliveredProjectImages/ankura5.png';
+import ankura6 from '../../assets/images/DeliveredProjectImages/ankura6.png';
+import ankura7 from '../../assets/images/DeliveredProjectImages/ankura7.png';
+import ankura8 from '../../assets/images/DeliveredProjectImages/ankura8.png';
+import ankura9 from '../../assets/images/DeliveredProjectImages/ankura9.png';
 
 const LiveProjectDetails = () => {
 	const { id } = useParams();
@@ -40,7 +49,7 @@ const LiveProjectDetails = () => {
 					src={
 						viewMode === 'render'
 							? project.image
-							: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
+							: project?.id === 1 ? ankura1 : 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
 					}
 					alt='Project Hero'
 					className='w-full h-full object-cover'
@@ -132,17 +141,20 @@ const LiveProjectDetails = () => {
 							Construction Progress Gallery
 						</h2>
 						<div className='grid grid-cols-2 md:grid-cols-3 gap-4'>
-							{[1, 2, 3, 4, 5, 6].map((item) => (
+							{(project?.id === 1 
+								? [ankura1, ankura2, ankura3, ankura4, ankura5, ankura6, ankura7, ankura8, ankura9]
+								: [1, 2, 3, 4, 5, 6]
+							).map((img, index) => (
 								<div
-									key={item}
+									key={index}
 									className='aspect-square bg-stone-900 rounded-lg overflow-hidden relative group'>
 									<img
-										src={`https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop`}
+										src={typeof img === 'string' ? img : `https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop`}
 										className='w-full h-full object-cover group-hover:scale-110 transition-transform'
 										alt='site'
 									/>
 									<div className='absolute bottom-0 left-0 w-full p-2 bg-black/60 text-xs text-white'>
-										March 2024
+										{project?.id === 1 ? `Progress Shot ${index + 1}` : 'March 2024'}
 									</div>
 								</div>
 							))}

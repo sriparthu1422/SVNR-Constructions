@@ -87,9 +87,9 @@ const About = () => {
 			</section>
 
 			{/* Section 3: Founders / Promoters */}
-			<ScrollReveal animation="fadeUp">
+			{/* <ScrollReveal animation="fadeUp">
 				<FoundersSection />
-			</ScrollReveal>
+			</ScrollReveal> */}
 
 			{/* Section 4: Testimonials */}
 			<ScrollReveal animation="fadeIn">
