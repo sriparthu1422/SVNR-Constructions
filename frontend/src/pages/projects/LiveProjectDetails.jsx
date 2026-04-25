@@ -23,11 +23,12 @@ import ankura6 from '../../assets/images/DeliveredProjectImages/ankura6.png';
 import ankura7 from '../../assets/images/DeliveredProjectImages/ankura7.png';
 import ankura8 from '../../assets/images/DeliveredProjectImages/ankura8.png';
 import ankura9 from '../../assets/images/DeliveredProjectImages/ankura9.png';
-import TheAyati0 from '../../assets/images/HomeImage/TheAyati0.jpeg';
-import TheAyati1 from '../../assets/images/HomeImage/TheAyati1.jpeg';
-import TheAyati2 from '../../assets/images/HomeImage/TheAyati2.jpeg';
-import TheAyati3 from '../../assets/images/HomeImage/TheAyati3.jpeg';
-import TheAyati4 from '../../assets/images/HomeImage/TheAyati4.jpeg';
+import theAyati0 from '../../assets/images/HomeImage/TheAyati0.jpeg';
+import theAyati7 from '../../assets/images/HomeImage/TheAyati7.jpeg';
+import theAyati2 from '../../assets/images/HomeImage/TheAyati2.jpeg';
+import theAyati3 from '../../assets/images/HomeImage/TheAyati3.jpeg';
+import theAyati4 from '../../assets/images/HomeImage/TheAyati4.jpeg';
+import theAyati5 from '../../assets/images/HomeImage/TheAyati5.jpeg';
 
 const LiveProjectDetails = () => {
 	const { id } = useParams();
@@ -54,11 +55,7 @@ const LiveProjectDetails = () => {
 					src={
 						viewMode === 'render'
 							? project.image
-							: project?.id === 1 
-							? ankura1 
-							: project?.id === 2 
-							? TheAyati0 
-							: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
+							: project?.id === 1 ? ankura1 : project?.id === 2 ? theAyati0 : 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
 					}
 					alt='Project Hero'
 					className='w-full h-full object-cover'
@@ -153,7 +150,7 @@ const LiveProjectDetails = () => {
 							{(project?.id === 1 
 								? [ankura1, ankura2, ankura3, ankura4, ankura5, ankura6, ankura7, ankura8, ankura9]
 								: project?.id === 2
-								? [TheAyati0, TheAyati1, TheAyati2, TheAyati3, TheAyati4]
+								? [theAyati0, theAyati7, theAyati2, theAyati3, theAyati4, theAyati5]
 								: [1, 2, 3, 4, 5, 6]
 							).map((img, index) => (
 								<div
