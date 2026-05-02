@@ -19,7 +19,7 @@ import LiveProjectDetails from './pages/projects/LiveProjectDetails';
 import DeliveredProjects from './pages/projects/DeliveredProjects';
 import DeliveredProjectDetails from './pages/projects/DeliveredProjectDetails';
 import UpcomingProjects from './pages/projects/UpcomingProjects';
-
+import NotFound from './pages/NotFound';
 
 import ReactGA from 'react-ga4';
 
@@ -122,6 +122,10 @@ function AppContent() {
 						<Route
 							path='/explore-vr'
 							element={<ExploreVR />}
+						/>
+						<Route
+							path='*'
+							element={<NotFound />}
 						/>
 					</Routes>
 				</main>
