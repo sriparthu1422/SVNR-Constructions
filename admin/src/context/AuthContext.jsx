@@ -13,11 +13,38 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let timeoutId;
+
     if (token) {
       fetchAdmin();
+
+      // Automatically log out when the token expires
+      try {
+        const payloadBase64 = token.split('.')[1];
+        if (payloadBase64) {
+          const payloadJson = atob(payloadBase64.replace(/-/g, '+').replace(/_/g, '/'));
+          const payload = JSON.parse(payloadJson);
+          if (payload.exp) {
+            const timeToExpiry = payload.exp * 1000 - Date.now();
+            if (timeToExpiry > 0) {
+              timeoutId = setTimeout(() => {
+                logout();
+              }, timeToExpiry);
+            } else {
+              logout();
+            }
+          }
+        }
+      } catch (err) {
+        console.error('Failed to parse token for expiration checking', err);
+      }
     } else {
       setLoading(false);
     }
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, [token]);
 
   const fetchAdmin = async () => {

@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
     const admin = new Admin({ username, email, password });
     await admin.save();
 
-    const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
     res.status(201).json({
       message: 'Admin registered successfully.',
@@ -53,7 +53,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password.' });
     }
 
-    const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+    const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
     res.json({
       message: 'Login successful.',
