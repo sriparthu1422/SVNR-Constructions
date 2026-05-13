@@ -10,7 +10,7 @@ import ProjectsManager from './pages/ProjectsManager';
 import TestimonialsManager from './pages/TestimonialsManager';
 import FoundersManager from './pages/FoundersManager';
 import StatsManager from './pages/StatsManager';
-import LiveChat from './pages/LiveChat';
+
 
 const ProtectedRoute = ({ children }) => {
   const { token, loading } = useAuth();
@@ -41,7 +41,7 @@ const AppRoutes = () => {
       <Route path="/testimonials" element={<ProtectedRoute><AdminLayout><TestimonialsManager /></AdminLayout></ProtectedRoute>} />
       <Route path="/founders" element={<ProtectedRoute><AdminLayout><FoundersManager /></AdminLayout></ProtectedRoute>} />
       <Route path="/stats" element={<ProtectedRoute><AdminLayout><StatsManager /></AdminLayout></ProtectedRoute>} />
-      <Route path="/chat" element={<ProtectedRoute><AdminLayout><LiveChat /></AdminLayout></ProtectedRoute>} />
+
     </Routes>
   );
 };

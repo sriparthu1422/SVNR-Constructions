@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
   LayoutDashboard, CalendarCheck, MessageSquare, Building2,
-  Quote, Users, BarChart3, LogOut, MessageCircle
+  Quote, Users, BarChart3, LogOut
 } from 'lucide-react';
 
 const links = [
@@ -14,7 +14,7 @@ const links = [
   { to: '/testimonials', icon: Quote, label: 'Testimonials' },
   { to: '/founders', icon: Users, label: 'Founders' },
   { to: '/stats', icon: BarChart3, label: 'Stats' },
-  { to: '/chat', icon: MessageCircle, label: 'Live Chat' },
+
 ];
 
 const Sidebar = () => {

@@ -75,7 +75,7 @@ function AppContent() {
 	const openModal = () => setIsModalOpen(true);
 	const closeModal = () => setIsModalOpen(false);
 
-	// Hide chatbot and footer on Explore VR page
+	// Hide WhatsApp button and footer on Explore VR page
 	const isExploreVR = location.pathname === '/explore-vr';
 
 	return (
