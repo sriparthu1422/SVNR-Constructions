@@ -79,35 +79,35 @@ const Contact = () => {
 
 							{/* Contact details list */}
 							<div className='space-y-6'>
-								<div className='flex items-center gap-5 group'>
+								<a href='tel:+917842080707' className='flex items-center gap-5 group no-underline text-inherit'>
 									<div className='w-12 h-12 flex items-center justify-center rounded-full border border-white/20 bg-white/5 group-hover:border-yellow-500/50 group-hover:bg-yellow-500/10 transition-all duration-300'>
 										<Phone className='text-yellow-500' size={20} strokeWidth={1.5} />
 									</div>
 									<div>
 										<p className='text-[10px] text-gray-500 uppercase tracking-widest font-semibold mb-1'>Phone</p>
-										<p className='text-lg font-medium'>+91 99887 76655</p>
+										<p className='text-lg font-medium'>+91 7842080707</p>
 									</div>
-								</div>
+								</a>
 
-								<div className='flex items-center gap-5 group'>
+								<a href='tel:+917842090707' className='flex items-center gap-5 group no-underline text-inherit'>
 									<div className='w-12 h-12 flex items-center justify-center rounded-full border border-white/20 bg-white/5 group-hover:border-yellow-500/50 group-hover:bg-yellow-500/10 transition-all duration-300'>
 										<Phone className='text-yellow-500' size={20} strokeWidth={1.5} />
 									</div>
 									<div>
 										<p className='text-[10px] text-gray-500 uppercase tracking-widest font-semibold mb-1'>Alternate Phone</p>
-										<p className='text-lg font-medium'>+91 98765 43210</p>
+										<p className='text-lg font-medium'>+91 7842090707</p>
 									</div>
-								</div>
+								</a>
 
-								<div className='flex items-center gap-5 group'>
+								<a href='mailto:svnrconstruction@gmail.com' className='flex items-center gap-5 group no-underline text-inherit'>
 									<div className='w-12 h-12 flex items-center justify-center rounded-full border border-white/20 bg-white/5 group-hover:border-yellow-500/50 group-hover:bg-yellow-500/10 transition-all duration-300'>
 										<Mail className='text-yellow-500' size={20} strokeWidth={1.5} />
 									</div>
 									<div>
 										<p className='text-[10px] text-gray-500 uppercase tracking-widest font-semibold mb-1'>Email</p>
-										<p className='text-lg font-medium'>sales@svnrconstructions.com</p>
+										<p className='text-lg font-medium'>svnrconstruction@gmail.com</p>
 									</div>
-								</div>
+								</a>
 
 								<div className='flex items-center gap-5 group'>
 									<div className='w-12 h-12 flex items-center justify-center rounded-full border border-white/20 bg-white/5 group-hover:border-yellow-500/50 group-hover:bg-yellow-500/10 transition-all duration-300 hover:rotate-3'>
@@ -115,7 +115,7 @@ const Contact = () => {
 									</div>
 									<div>
 										<p className='text-[10px] text-gray-500 uppercase tracking-widest font-semibold mb-1'>Location</p>
-										<p className='text-lg font-medium'>Financial District, Hyderabad, India</p>
+										<p className='text-sm font-medium leading-relaxed'>ORR Exit - 5, Saragudem ( V ), Gandi Maisamma, Medchal Malkajgiri <br></br> ( D ), Hyderabad - 500043, Telangana.</p>
 									</div>
 								</div>
 							</div>
@@ -244,7 +244,7 @@ const Contact = () => {
 							Headquarters
 						</p>
 						<p className='text-white font-medium'>
-							Financial District, Hyderabad
+							ORR Exit - 5, Saragudem, Hyderabad - 500043
 						</p>
 					</div>
 				</section>
