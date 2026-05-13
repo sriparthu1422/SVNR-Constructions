@@ -9,56 +9,44 @@ import ProjectSkeleton from '../../components/ui/ProjectSkeleton';
 import getProjectImage from '../../utils/projectImages';
 
 // Fallback data
+import theBreeze from '../../assets/images/AboutSectionImages/The Breeze.png';
+import theLotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.png';
+import greenspace from '../../assets/images/AboutSectionImages/Greenspace.png';
+import saiDattaResidency from '../../assets/images/AboutSectionImages/SaiDatta Residency.jpg';
 import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.png';
 import vinayakHomes from '../../assets/images/AboutSectionImages/Vinayak Homes.jpg';
-import saiDattaResidency from '../../assets/images/AboutSectionImages/SaiDatta Residency.jpg';
-import greenspace from '../../assets/images/AboutSectionImages/Greenspace.png';
-import theLotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.png';
-import theBreeze from '../../assets/images/AboutSectionImages/The Breeze.png';
+
+// Desired display order for delivered projects
+const DELIVERED_ORDER = [
+	'the breeze',
+	'the lotus residency',
+	'greenspace',
+	'sai datta residency',
+	'manasa sarovar',
+	'vinayak homes',
+];
+
+const sortByDesiredOrder = (projects) => {
+	return [...projects].sort((a, b) => {
+		const ai = DELIVERED_ORDER.indexOf((a.name || '').toLowerCase());
+		const bi = DELIVERED_ORDER.indexOf((b.name || '').toLowerCase());
+		return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+	});
+};
 
 const fallbackProjects = [
 	{
 		_id: 'fallback-1',
-		name: 'Vinayak Homes',
-		location: 'Miryalaguda, Telangana',
-		completionYear: '2020',
-		totalUnits: 15,
-		area: '732 SQ.Yards',
-		image: vinayakHomes,
+		name: 'The Breeze',
+		location: 'Narsingi (Manchirevula)',
+		completionYear: '2025',
+		totalUnits: 70,
+		area: '3756 SQ.Yards',
+		image: theBreeze,
 		testimonial: 'Truly premium living experience.',
 	},
 	{
 		_id: 'fallback-2',
-		name: 'Manasa Sarovar',
-		location: 'Miryalaguda, Telangana',
-		completionYear: '2021',
-		totalUnits: 40,
-		area: '1850 Sq.Yards',
-		image: manasaSarovar,
-		testimonial: 'Exceeded all expectations in quality and timeline.',
-	},
-	{
-		_id: 'fallback-3',
-		name: 'Sai Datta Residency',
-		location: 'Miryalaguda, Telangana',
-		completionYear: '2021',
-		totalUnits: 25,
-		area: '1212 SQ.Yards',
-		image: saiDattaResidency,
-		testimonial: 'Truly premium living experience.',
-	},
-	{
-		_id: 'fallback-4',
-		name: 'Greenspace',
-		location: 'Miryalaguda, Telangana',
-		completionYear: '2023',
-		totalUnits: 25,
-		area: '1200 SQ.Yards',
-		image: greenspace,
-		testimonial: 'Truly premium living experience.',
-	},
-	{
-		_id: 'fallback-5',
 		name: 'The Lotus Residency',
 		location: 'Miryalaguda, Telangana',
 		completionYear: '2023',
@@ -68,13 +56,43 @@ const fallbackProjects = [
 		testimonial: 'Truly premium living experience.',
 	},
 	{
+		_id: 'fallback-3',
+		name: 'Greenspace',
+		location: 'Miryalaguda, Telangana',
+		completionYear: '2023',
+		totalUnits: 25,
+		area: '1200 SQ.Yards',
+		image: greenspace,
+		testimonial: 'Truly premium living experience.',
+	},
+	{
+		_id: 'fallback-4',
+		name: 'Sai Datta Residency',
+		location: 'Miryalaguda, Telangana',
+		completionYear: '2021',
+		totalUnits: 25,
+		area: '1212 SQ.Yards',
+		image: saiDattaResidency,
+		testimonial: 'Truly premium living experience.',
+	},
+	{
+		_id: 'fallback-5',
+		name: 'Manasa Sarovar',
+		location: 'Miryalaguda, Telangana',
+		completionYear: '2021',
+		totalUnits: 40,
+		area: '1850 Sq.Yards',
+		image: manasaSarovar,
+		testimonial: 'Exceeded all expectations in quality and timeline.',
+	},
+	{
 		_id: 'fallback-6',
-		name: 'The Breeze',
-		location: 'Narsingi (Manchirevula)',
-		completionYear: '2025',
-		totalUnits: 70,
-		area: '3756 SQ.Yards',
-		image: theBreeze,
+		name: 'Vinayak Homes',
+		location: 'Miryalaguda, Telangana',
+		completionYear: '2020',
+		totalUnits: 15,
+		area: '732 SQ.Yards',
+		image: vinayakHomes,
 		testimonial: 'Truly premium living experience.',
 	},
 ];
@@ -90,7 +108,7 @@ const DeliveredProjects = () => {
 			.then(r => r.json())
 			.then(data => {
 				if (Array.isArray(data) && data.length > 0) {
-					setProjects(data);
+					setProjects(sortByDesiredOrder(data));
 				} else {
 					setProjects(fallbackProjects);
 				}

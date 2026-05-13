@@ -6,49 +6,76 @@ import { Link } from 'react-router-dom';
 import getProjectImage from '../../utils/projectImages';
 
 // Fallback data in case the API is unreachable
+import theBreeze from '../../assets/images/AboutSectionImages/The Breeze.png';
+import theLotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.png';
+import greenspace from '../../assets/images/AboutSectionImages/Greenspace.png';
+import saiDattaResidency from '../../assets/images/AboutSectionImages/SaiDatta Residency.jpg';
 import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.png';
 import vinayakHomes from '../../assets/images/AboutSectionImages/Vinayak Homes.jpg';
-import saiDattaResidency from '../../assets/images/AboutSectionImages/SaiDatta Residency.jpg';
-import greenspace from '../../assets/images/AboutSectionImages/Greenspace.png';
-import theLotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.png';
+
+// Desired display order for delivered projects
+const DELIVERED_ORDER = [
+	'the breeze',
+	'the lotus residency',
+	'greenspace',
+	'sai datta residency',
+	'manasa sarovar',
+	'vinayak homes',
+];
+
+const sortByDesiredOrder = (projects) => {
+	return [...projects].sort((a, b) => {
+		const ai = DELIVERED_ORDER.indexOf((a.name || '').toLowerCase());
+		const bi = DELIVERED_ORDER.indexOf((b.name || '').toLowerCase());
+		return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+	});
+};
 
 const fallbackProjects = [
 	{
 		_id: 'fallback-1',
-		name: 'MANASA SAROVAR',
-		location: 'Miryalaguda, Telangana',
+		name: 'The Breeze',
+		location: 'Narsingi (Manchirevula)',
 		projectType: 'delivered',
-		image: manasaSarovar,
+		image: theBreeze,
 	},
 	{
 		_id: 'fallback-2',
-		name: 'Vinayak Homes',
+		name: 'The Lotus Residency',
 		location: 'Miryalaguda, Telangana',
 		projectType: 'delivered',
-		image: vinayakHomes,
+		image: theLotusResidency,
 	},
 	{
 		_id: 'fallback-3',
-		name: 'Sai Datta Residency',
-		location: 'Miryalaguda, Telangana',
-		projectType: 'delivered',
-		image: saiDattaResidency,
-	},
-	{
-		_id: 'fallback-4',
 		name: 'Greenspace',
 		location: 'Miryalaguda, Telangana',
 		projectType: 'delivered',
 		image: greenspace,
 	},
 	{
-		_id: 'fallback-5',
-		name: 'The Lotus Residency',
+		_id: 'fallback-4',
+		name: 'Sai Datta Residency',
 		location: 'Miryalaguda, Telangana',
 		projectType: 'delivered',
-		image: theLotusResidency,
+		image: saiDattaResidency,
+	},
+	{
+		_id: 'fallback-5',
+		name: 'Manasa Sarovar',
+		location: 'Miryalaguda, Telangana',
+		projectType: 'delivered',
+		image: manasaSarovar,
+	},
+	{
+		_id: 'fallback-6',
+		name: 'Vinayak Homes',
+		location: 'Miryalaguda, Telangana',
+		projectType: 'delivered',
+		image: vinayakHomes,
 	},
 ];
+
 
 const ProjectCard = ({ project }) => {
 	const linkTo =
@@ -115,7 +142,7 @@ const ProjectSlider = () => {
 		fetch(`${API_URL}/projects?type=delivered`)
 			.then(r => r.json())
 			.then(data => {
-				if (Array.isArray(data) && data.length > 0) setProjects(data);
+				if (Array.isArray(data) && data.length > 0) setProjects(sortByDesiredOrder(data));
 			})
 			.catch(() => {});
 	}, []);
