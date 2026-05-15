@@ -195,7 +195,7 @@ const Navbar = ({ onBookVisit }) => {
 							Book Site Visit
 						</button>
 						<button
-							onClick={() => window.open('https://maps.google.com/?q=SVNR+Constructions+Hyderabad', '_blank')}
+							onClick={() => window.open('https://www.google.com/maps/place/SVNR+-+The+Ayati/@17.5875092,78.4066605,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb8f005848ca4d:0xfa9f006a66001a98!8m2!3d17.5875041!4d78.4092354!16s%2Fg%2F11xtk6c3np?hl=en&entry=ttu', '_blank')}
 							className='p-2.5 text-white border border-white/100 hover:border-black hover:bg-yellow-500
 							hover:text-black transition-all rounded-none flex items-center justify-center'>
 							<MapPin size={20} />
@@ -299,7 +299,7 @@ const Navbar = ({ onBookVisit }) => {
 								className='w-full px-6 py-3 bg-white text-black font-semibold text-sm hover:bg-gray-200 transition-colors border border-white block text-center'>
 								Book Site Visit
 							</button>
-							<button onClick={() => window.open('https://maps.google.com/?q=SVNR+Constructions+Hyderabad', '_blank')} className='w-full flex items-center justify-center space-x-2 px-6 py-3 text-white border border-white/30 hover:border-white hover:bg-white/10 transition-all'>
+							<button onClick={() => window.open('https://www.google.com/maps/place/SVNR+-+The+Ayati/@17.5875092,78.4066605,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb8f005848ca4d:0xfa9f006a66001a98!8m2!3d17.5875041!4d78.4092354!16s%2Fg%2F11xtk6c3np?hl=en&entry=ttu', '_blank')} className='w-full flex items-center justify-center space-x-2 px-6 py-3 text-white border border-white/30 hover:border-white hover:bg-white/10 transition-all'>
 								<MapPin size={20} />
 								<span>Locate Us</span>
 							</button>

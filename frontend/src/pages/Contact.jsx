@@ -231,7 +231,7 @@ const Contact = () => {
 				<section className='w-full h-[500px] bg-stone-900 relative mt-auto'>
 					<iframe
 						title='SVNR Projects Map'
-						src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.463321948719!2d78.3845!3d17.4425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI2JzMzLjAiTiA3OMKwMjMnMDQuMiJF!5e0!3m2!1sen!2sin!4v1631234567890!5m2!1sen!2sin'
+						src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.0!2d78.4066605!3d17.5875092!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8f005848ca4d%3A0xfa9f006a66001a98!2sSVNR%20-%20The%20Ayati!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin'
 						width='100%'
 						height='100%'
 						style={{
@@ -242,13 +242,23 @@ const Contact = () => {
 						loading='lazy'
 						className='opacity-80 hover:opacity-100 transition-opacity duration-500'
 					/>
-					<div className='absolute bottom-2 left-20 bg-black/80 backdrop-blur-md p-4 rounded-lg border border-white/10 hidden md:block'>
-						<p className='text-xs text-yellow-500 font-bold uppercase tracking-wider mb-1'>
-							Headquarters
-						</p>
-						<p className='text-white font-medium'>
-							ORR Exit - 5, Saragudem, Hyderabad - 500043
-						</p>
+					<div className='absolute bottom-2 left-4 md:left-20 flex items-end gap-3'>
+						<div className='bg-black/80 backdrop-blur-md p-4 rounded-lg border border-white/10'>
+							<p className='text-xs text-yellow-500 font-bold uppercase tracking-wider mb-1'>
+								Headquarters
+							</p>
+							<p className='text-white font-medium text-sm'>
+								ORR Exit - 5, Saragudem, Hyderabad - 500043
+							</p>
+						</div>
+						<a
+							href='https://www.google.com/maps/place/SVNR+-+The+Ayati/@17.5875092,78.4066605,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb8f005848ca4d:0xfa9f006a66001a98!8m2!3d17.5875041!4d78.4092354!16s%2Fg%2F11xtk6c3np?hl=en&entry=ttu'
+							target='_blank'
+							rel='noopener noreferrer'
+							className='bg-yellow-500 hover:bg-yellow-400 text-black font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap hidden md:block'
+						>
+							Open in Maps ↗
+						</a>
 					</div>
 				</section>
 			</ScrollReveal>
