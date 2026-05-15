@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, CheckCircle } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
+import { sendInquiryWhatsApp } from '../utils/whatsappNotify';
 
 const Contact = () => {
 	const [isSubmitted, setIsSubmitted] = useState(false);
@@ -40,6 +41,8 @@ const Contact = () => {
 			});
 
 			if (res.ok) {
+				// Send WhatsApp notification with all form details
+				sendInquiryWhatsApp(formData);
 				setIsSubmitting(false);
 				setIsSubmitted(true);
 				setTimeout(() => setIsSubmitted(false), 4000);

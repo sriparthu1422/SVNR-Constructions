@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { X, ChevronDown } from 'lucide-react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
+import { sendBookingWhatsApp } from '../../utils/whatsappNotify';
 
 const BookSiteVisitModal = ({ isOpen, onClose }) => {
 	const getTodayDate = () => {
@@ -93,6 +94,8 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 			});
 
 			if (res.ok) {
+				// Send WhatsApp notification with all form details
+				sendBookingWhatsApp(formData);
 				setIsSubmitted(true);
 				setTimeout(() => {
 					setIsSubmitted(false);
@@ -236,17 +239,11 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 												disabled>
 												Interested Project
 											</option>
+											<option value='Ankura Farms'>
+												Ankura Farms
+											</option>
 											<option value='The Ayati'>
 												The Ayati
-											</option>
-											<option value='SVNR Heights'>
-												SVNR Heights
-											</option>
-											<option value='Green Valley'>
-												Green Valley
-											</option>
-											<option value='Skyline Towers'>
-												Skyline Towers
 											</option>
 										</select>
 										<ChevronDown
