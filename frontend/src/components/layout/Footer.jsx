@@ -192,7 +192,7 @@ const Footer = () => {
 						<span className='block sm:inline sm:ml-1 mt-1 sm:mt-0'>
 							Designed by{' '}
 							<a
-								href='https://sriparthu1422.github.io/NSP-portfolio/'
+								href='https://nsp-portfolio-frontend.vercel.app/'
 								target='_blank'
 								rel='noopener noreferrer'
 								className='text-yellow-500 hover:text-white transition-colors font-medium tracking-wider'>
