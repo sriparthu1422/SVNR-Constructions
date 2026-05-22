@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React from 'react';
 
 const WHATSAPP_NUMBER = '917842090707';
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
@@ -12,8 +12,6 @@ const WhatsAppIcon = () => (
 );
 
 const ChatWidget = () => {
-	const [isHovered, setIsHovered] = useState(false);
-
 	return (
 		<>
 			<style>{`
@@ -104,8 +102,6 @@ const ChatWidget = () => {
 				rel="noopener noreferrer"
 				aria-label="Chat on WhatsApp"
 				title="Chat on WhatsApp"
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
 			>
 				<span className="svnr-whatsapp-tooltip">Chat on WhatsApp</span>
 				<WhatsAppIcon />

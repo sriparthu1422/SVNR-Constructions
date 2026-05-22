@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MapPin, Phone, Mail, CheckCircle } from 'lucide-react';
 import ScrollReveal from '../components/ui/ScrollReveal';
 import { sendInquiryWhatsApp } from '../utils/whatsappNotify';
+import { API_URL } from '../config/api.js';
 
 const Contact = () => {
 	const [isSubmitted, setIsSubmitted] = useState(false);
@@ -33,7 +34,6 @@ const Contact = () => {
 		setIsSubmitting(true);
 
 		try {
-			const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 			const res = await fetch(`${API_URL}/inquiries`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -251,14 +251,6 @@ const Contact = () => {
 								ORR Exit - 5, Saragudem, Hyderabad - 500043
 							</p>
 						</div>
-						<a
-							href='https://www.google.com/maps/place/SVNR+-+The+Ayati/@17.5875092,78.4066605,17z/data=!3m1!4b1!4m6!3m5!1s0x3bcb8f005848ca4d:0xfa9f006a66001a98!8m2!3d17.5875041!4d78.4092354!16s%2Fg%2F11xtk6c3np?hl=en&entry=ttu'
-							target='_blank'
-							rel='noopener noreferrer'
-							className='bg-yellow-500 hover:bg-yellow-400 text-black font-bold text-sm px-5 py-3 rounded-lg transition-colors whitespace-nowrap hidden md:block'
-						>
-							Open in Maps ↗
-						</a>
 					</div>
 				</section>
 			</ScrollReveal>

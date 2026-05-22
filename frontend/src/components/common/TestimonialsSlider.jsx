@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Quote } from 'lucide-react';
+import { API_URL } from '../../config/api.js';
 
 const fallbackTestimonials = [
 	{ _id: '1', name: 'Rajesh Kumar', text: 'Buying a home with SVNR was the best decision we made. The quality of construction and attention to detail is unmatched in Hyderabad.', location: 'Software Engineer' },
@@ -31,7 +32,6 @@ const TestimonialsSlider = () => {
 	const [testimonials, setTestimonials] = useState(fallbackTestimonials);
 
 	useEffect(() => {
-		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 		fetch(`${API_URL}/testimonials`)
 			.then(r => r.json())
 			.then(data => { if (Array.isArray(data) && data.length > 0) setTestimonials(data); })

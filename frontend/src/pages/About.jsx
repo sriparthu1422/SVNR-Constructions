@@ -11,7 +11,12 @@ import ScrollReveal from '../components/ui/ScrollReveal';
 
 const About = () => {
 	return (
-		<div className='min-h-screen bg-black text-white pt-32 pb-0'>
+		<motion.div 
+			initial={{ opacity: 0, y: -50 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.6, ease: 'easeOut' }}
+			className='min-h-screen bg-black text-white pt-32 pb-0'
+		>
 			{/* Section 1: Hero Content */}
 			<section className='px-4 md:px-8 max-w-7xl mx-auto text-center'>
 				<motion.div
@@ -100,7 +105,7 @@ const About = () => {
 			<ScrollReveal animation="fadeUp">
 				<StatsSection />
 			</ScrollReveal>
-		</div>
+		</motion.div>
 	);
 };
 

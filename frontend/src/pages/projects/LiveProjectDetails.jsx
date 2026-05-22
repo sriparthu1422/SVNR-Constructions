@@ -10,6 +10,7 @@ import {
 	ArrowLeft,
 } from 'lucide-react';
 import getProjectImage from '../../utils/projectImages';
+import { API_URL } from '../../config/api.js';
 import ankura1 from '../../assets/images/DeliveredProjectImages/ankura1.png';
 import ankura2 from '../../assets/images/DeliveredProjectImages/ankura2.png';
 import ankura3 from '../../assets/images/DeliveredProjectImages/ankura3.png';
@@ -37,7 +38,6 @@ const LiveProjectDetails = () => {
 	const handleEnquirySubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 			const res = await fetch(`${API_URL}/inquiries`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
@@ -60,7 +60,6 @@ const LiveProjectDetails = () => {
 	};
 
 	useEffect(() => {
-		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 		fetch(`${API_URL}/projects/${id}`)
 			.then(r => r.json())
 			.then(data => {

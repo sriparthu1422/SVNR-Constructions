@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { MapPin, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import getProjectImage from '../../utils/projectImages';
+import { API_URL } from '../../config/api.js';
 
 // Fallback data in case the API is unreachable
 import theBreeze from '../../assets/images/AboutSectionImages/The Breeze.png';
@@ -138,7 +139,6 @@ const ProjectSlider = () => {
 	const [projects, setProjects] = useState(fallbackProjects);
 
 	useEffect(() => {
-		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 		fetch(`${API_URL}/projects?type=delivered`)
 			.then(r => r.json())
 			.then(data => {

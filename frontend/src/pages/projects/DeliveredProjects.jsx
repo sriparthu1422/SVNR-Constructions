@@ -1,12 +1,10 @@
-/** @format */
-/* eslint-disable react-refresh/only-export-components */
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, CheckCircle } from 'lucide-react';
 import ScrollReveal from '../../components/ui/ScrollReveal';
 import ProjectSkeleton from '../../components/ui/ProjectSkeleton';
 import getProjectImage from '../../utils/projectImages';
+import { API_URL } from '../../config/api.js';
 
 // Fallback data
 import theBreeze from '../../assets/images/AboutSectionImages/The Breeze.png';
@@ -102,8 +100,6 @@ const DeliveredProjects = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-		setIsLoading(true);
 		fetch(`${API_URL}/projects?type=delivered`)
 			.then(r => r.json())
 			.then(data => {

@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Download, MapPin, Quote, ArrowLeft, X, ChevronLeft, ChevronRight } from 'lucide-react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
+import { API_URL } from '../../config/api.js';
 import getProjectImage from '../../utils/projectImages';
 import vinayaka1 from '../../assets/images/DeliveredProjectImages/vinayaka1.png';
 import vinayaka2 from '../../assets/images/DeliveredProjectImages/vinayaka2.png';
@@ -52,7 +54,7 @@ const galleryMap = {
 const SHOW_TRANSFORMATION_JOURNEY = false;
 
 // Dynamic collage/masonry layout grid classes based on image indices
-const getCollageClasses = (index, total) => {
+const getCollageClasses = (index) => {
 	const layouts = [
 		'md:col-span-2 md:row-span-2 h-80 md:h-[500px]', // Large feature
 		'md:col-span-1 md:row-span-2 h-80 md:h-[500px]', // Tall vertical
@@ -74,7 +76,6 @@ const DeliveredProjectDetails = () => {
 	const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
 	useEffect(() => {
-		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 		fetch(`${API_URL}/projects/${id}`)
 			.then(r => r.json())
 			.then(data => {
@@ -97,13 +98,13 @@ const DeliveredProjectDetails = () => {
 		];
 
 	// Navigation triggers
-	const handleNext = () => {
+	const handleNext = React.useCallback(() => {
 		setSelectedImageIndex((prevIndex) => (prevIndex + 1) % galleryImages.length);
-	};
+	}, [galleryImages.length]);
 
-	const handlePrev = () => {
+	const handlePrev = React.useCallback(() => {
 		setSelectedImageIndex((prevIndex) => (prevIndex - 1 + galleryImages.length) % galleryImages.length);
-	};
+	}, [galleryImages.length]);
 
 	// Keyboard event listener for accessibility
 	useEffect(() => {
@@ -119,7 +120,7 @@ const DeliveredProjectDetails = () => {
 		};
 		window.addEventListener('keydown', handleKeyDown);
 		return () => window.removeEventListener('keydown', handleKeyDown);
-	}, [isLightboxOpen, selectedImageIndex, galleryImages]);
+	}, [isLightboxOpen, handleNext, handlePrev]);
 
 	// Prevent background scroll when lightbox is active
 	useEffect(() => {
@@ -282,7 +283,7 @@ const DeliveredProjectDetails = () => {
 						{galleryImages.map((img, i) => (
 							<div
 								key={i}
-								className={`relative overflow-hidden rounded-xl border border-white/10 group cursor-pointer shadow-lg hover:border-yellow-500/50 hover:shadow-yellow-500/5 transition-all duration-500 ease-out ${getCollageClasses(i, galleryImages.length)}`}
+								className={`relative overflow-hidden rounded-xl border border-white/10 group cursor-pointer shadow-lg hover:border-yellow-500/50 hover:shadow-yellow-500/5 transition-all duration-500 ease-out ${getCollageClasses(i)}`}
 								onClick={() => {
 									setSelectedImageIndex(i);
 									setIsLightboxOpen(true);

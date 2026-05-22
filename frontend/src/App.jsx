@@ -9,17 +9,29 @@ import {
 } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import ExploreVR from './pages/ExploreVR';
 import BookSiteVisitModal from './components/common/BookSiteVisitModal';
-import LiveProjects from './pages/projects/LiveProjects';
-import LiveProjectDetails from './pages/projects/LiveProjectDetails';
-import DeliveredProjects from './pages/projects/DeliveredProjects';
-import DeliveredProjectDetails from './pages/projects/DeliveredProjectDetails';
-import UpcomingProjects from './pages/projects/UpcomingProjects';
-import NotFound from './pages/NotFound';
+
+// Lazy load page components for route-level code splitting
+const Home = React.lazy(() => import('./pages/Home'));
+const About = React.lazy(() => import('./pages/About'));
+const Contact = React.lazy(() => import('./pages/Contact'));
+const ExploreVR = React.lazy(() => import('./pages/ExploreVR'));
+const LiveProjects = React.lazy(() => import('./pages/projects/LiveProjects'));
+const LiveProjectDetails = React.lazy(() => import('./pages/projects/LiveProjectDetails'));
+const DeliveredProjects = React.lazy(() => import('./pages/projects/DeliveredProjects'));
+const DeliveredProjectDetails = React.lazy(() => import('./pages/projects/DeliveredProjectDetails'));
+const UpcomingProjects = React.lazy(() => import('./pages/projects/UpcomingProjects'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
+
+// Luxury theme loading spinner
+const LoadingSpinner = () => (
+	<div className='fixed inset-0 bg-black flex flex-col items-center justify-center z-50'>
+		<div className='w-16 h-16 border-4 border-yellow-500/10 border-t-yellow-500 rounded-full animate-spin mb-4'></div>
+		<div className='text-yellow-500/80 font-light tracking-[0.3em] uppercase text-sm animate-pulse'>
+			SVNR CONSTRUCTIONS
+		</div>
+	</div>
+);
 
 import ReactGA from 'react-ga4';
 
@@ -85,49 +97,51 @@ function AppContent() {
 				{!isExploreVR && <ChatWidget />}
 				<Navbar onBookVisit={openModal} />
 				<main className='flex-grow'>
-					<Routes>
-						<Route
-							path='/'
-							element={<Home openBookVisit={openModal} />}
-						/>
-						<Route
-							path='/about-us'
-							element={<About />}
-						/>
+					<React.Suspense fallback={<LoadingSpinner />}>
+						<Routes>
+							<Route
+								path='/'
+								element={<Home openBookVisit={openModal} />}
+							/>
+							<Route
+								path='/about-us'
+								element={<About />}
+							/>
 
-						<Route
-							path='/live-projects'
-							element={<LiveProjects />}
-						/>
-						<Route
-							path='/live-projects/:id'
-							element={<LiveProjectDetails />}
-						/>
-						<Route
-							path='/delivered-projects'
-							element={<DeliveredProjects />}
-						/>
-						<Route
-							path='/delivered-projects/:id'
-							element={<DeliveredProjectDetails />}
-						/>
-						<Route
-							path='/upcoming-projects'
-							element={<UpcomingProjects />}
-						/>
-						<Route
-							path='/contact'
-							element={<Contact />}
-						/>
-						<Route
-							path='/explore-vr'
-							element={<ExploreVR />}
-						/>
-						<Route
-							path='*'
-							element={<NotFound />}
-						/>
-					</Routes>
+							<Route
+								path='/live-projects'
+								element={<LiveProjects />}
+							/>
+							<Route
+								path='/live-projects/:id'
+								element={<LiveProjectDetails />}
+							/>
+							<Route
+								path='/delivered-projects'
+								element={<DeliveredProjects />}
+							/>
+							<Route
+								path='/delivered-projects/:id'
+								element={<DeliveredProjectDetails />}
+							/>
+							<Route
+								path='/upcoming-projects'
+								element={<UpcomingProjects />}
+							/>
+							<Route
+								path='/contact'
+								element={<Contact />}
+							/>
+							<Route
+								path='/explore-vr'
+								element={<ExploreVR />}
+							/>
+							<Route
+								path='*'
+								element={<NotFound />}
+							/>
+						</Routes>
+					</React.Suspense>
 				</main>
 				{!isExploreVR && <Footer />}
 				<BookSiteVisitModal

@@ -1,12 +1,6 @@
-/** @format */
-
 import React, { useState, useEffect, useRef } from 'react';
-import {
-	useMotionValue,
-	useTransform,
-	animate,
-	useInView,
-} from 'framer-motion';
+import { useMotionValue, useTransform, animate, useInView } from 'framer-motion';
+import { API_URL } from '../../config/api.js';
 
 const fallbackStats = [
 	{ label: 'Happy Families', value: '1500+' },
@@ -65,7 +59,6 @@ const StatsSection = () => {
 	const [stats, setStats] = useState(fallbackStats);
 
 	useEffect(() => {
-		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 		fetch(`${API_URL}/stats`)
 			.then(r => r.json())
 			.then(data => { if (Array.isArray(data) && data.length > 0) setStats(data); })

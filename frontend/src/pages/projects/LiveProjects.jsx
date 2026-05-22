@@ -1,6 +1,3 @@
-/** @format */
-/* eslint-disable react-refresh/only-export-components */
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -13,7 +10,7 @@ import ScrollReveal from '../../components/ui/ScrollReveal';
 import ProjectSkeleton from '../../components/ui/ProjectSkeleton';
 import getProjectImage from '../../utils/projectImages';
 
-// Fallback data
+import { API_URL } from '../../config/api.js';
 import ankuraFarms from '../../assets/images/AboutSectionImages/AnkuraFarms.png';
 import TheAyati from '../../assets/images/HomeImage/TheAyati2.jpeg';
 
@@ -43,8 +40,6 @@ const LiveProjects = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-		setIsLoading(true);
 		fetch(`${API_URL}/projects?type=live`)
 			.then(r => r.json())
 			.then(data => {

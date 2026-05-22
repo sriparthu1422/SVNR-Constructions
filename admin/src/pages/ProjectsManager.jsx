@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Building2, Plus, Pencil, Trash2, X } from 'lucide-react';
 
@@ -17,14 +17,15 @@ const ProjectsManager = () => {
   const [form, setForm] = useState(emptyProject);
   const [toast, setToast] = useState(null);
 
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     const url = filter === 'all' ? `${API_URL}/projects` : `${API_URL}/projects?type=${filter}`;
     const res = await fetch(url);
     const data = await res.json();
     if (Array.isArray(data)) setProjects(data);
-  };
+  }, [filter, API_URL]);
 
-  useEffect(() => { fetchProjects(); }, [filter]);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { fetchProjects(); }, [fetchProjects]);
 
   const openCreate = () => { setEditing(null); setForm(emptyProject); setShowModal(true); };
   const openEdit = (p) => { setEditing(p._id); setForm({ ...emptyProject, ...p }); setShowModal(true); };

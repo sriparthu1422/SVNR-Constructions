@@ -40,15 +40,18 @@ const Dashboard = () => {
       </div>
       <div className="admin-content">
         <div className="stat-grid">
-          {stats.map(({ icon: Icon, label, value, color }) => (
-            <div className="stat-card" key={label}>
-              <div className="stat-icon" style={{ background: `${color}15`, color }}>
-                <Icon size={22} />
+          {stats.map((item) => {
+            const IconComponent = item.icon;
+            return (
+              <div className="stat-card" key={item.label}>
+                <div className="stat-icon" style={{ background: `${item.color}15`, color: item.color }}>
+                  <IconComponent size={22} />
+                </div>
+                <div className="stat-value">{item.value}</div>
+                <div className="stat-label">{item.label}</div>
               </div>
-              <div className="stat-value">{value}</div>
-              <div className="stat-label">{label}</div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="data-table-wrapper">

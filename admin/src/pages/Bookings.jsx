@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { CalendarCheck, Trash2, Search } from 'lucide-react';
 
@@ -8,15 +8,16 @@ const Bookings = () => {
   const [search, setSearch] = useState('');
   const [toast, setToast] = useState(null);
 
-  const fetchBookings = async () => {
+  const fetchBookings = useCallback(async () => {
     const res = await fetch(`${API_URL}/bookings`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
     if (Array.isArray(data)) setBookings(data);
-  };
+  }, [token, API_URL]);
 
-  useEffect(() => { fetchBookings(); }, []);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { fetchBookings(); }, [fetchBookings]);
 
   const handleDelete = async (id) => {
     if (!confirm('Delete this booking?')) return;

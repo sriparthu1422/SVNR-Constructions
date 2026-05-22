@@ -6,6 +6,7 @@ import { MapPin, Calendar, Layout, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ScrollReveal from '../../components/ui/ScrollReveal';
 import ProjectSkeleton from '../../components/ui/ProjectSkeleton';
+import { API_URL } from '../../config/api.js';
 import getProjectImage from '../../utils/projectImages';
 
 const fallbackProjects = [
@@ -38,8 +39,6 @@ const UpcomingProjects = () => {
 	const [earlyAccessSubmitted, setEarlyAccessSubmitted] = useState(false);
 
 	useEffect(() => {
-		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-		setIsLoading(true);
 		fetch(`${API_URL}/projects?type=upcoming`)
 			.then(r => r.json())
 			.then(data => {
@@ -67,7 +66,6 @@ const UpcomingProjects = () => {
 	const handleEarlyAccessSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 			const res = await fetch(`${API_URL}/inquiries`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },

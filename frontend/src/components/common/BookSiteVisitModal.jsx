@@ -5,6 +5,7 @@ import { X, ChevronDown } from 'lucide-react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { sendBookingWhatsApp } from '../../utils/whatsappNotify';
+import { API_URL } from '../../config/api.js';
 
 const BookSiteVisitModal = ({ isOpen, onClose }) => {
 	const getTodayDate = () => {
@@ -79,7 +80,6 @@ const BookSiteVisitModal = ({ isOpen, onClose }) => {
 		if (!isFormValid) return;
 
 		try {
-			const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 			const res = await fetch(`${API_URL}/bookings`, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },

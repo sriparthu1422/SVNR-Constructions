@@ -78,9 +78,7 @@ const Home = ({ openBookVisit }) => {
 	return (
 		<div className='bg-black min-h-screen text-white'>
 			{/* Section 1: Hero */}
-			<div id='home'>
-				{' '}
-				{/* Wrap existing component or ensure component has ID */}
+			<div>
 				<HeroSection />
 			</div>
 

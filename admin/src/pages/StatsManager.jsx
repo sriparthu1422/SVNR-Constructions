@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { BarChart3, Pencil, X, Save } from 'lucide-react';
 
@@ -9,12 +9,13 @@ const StatsManager = () => {
   const [editForm, setEditForm] = useState({ label: '', value: '' });
   const [toast, setToast] = useState(null);
 
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     const res = await fetch(`${API_URL}/stats`);
     const data = await res.json();
     if (Array.isArray(data)) setStats(data);
-  };
-  useEffect(() => { fetchStats(); }, []);
+  }, [API_URL]);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { fetchStats(); }, [fetchStats]);
 
   const startEdit = (stat) => {
     setEditingId(stat._id);

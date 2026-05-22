@@ -76,13 +76,40 @@ app.use((req, res) => {
 
 // Error handler
 app.use((err, req, res, next) => {
-  console.error('❌ Error:', err.message);
-  res.status(err.statusCode || err.status || 500).json({
-    message: err.message || 'Internal Server Error',
-  });
+  console.error('❌ Error details:', err);
+  
+  const statusCode = err.statusCode || err.status || 500;
+  
+  // Sanitize errors in production to avoid leaking database/internal details
+  const message = statusCode >= 500 && process.env.NODE_ENV === 'production'
+    ? 'Internal Server Error'
+    : err.message || 'Internal Server Error';
+
+  res.status(statusCode).json({ message });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`🚀 SVNR Backend running on http://localhost:${PORT}`);
   console.log('🔒 CORS origins:', corsOrigins.map(o => o instanceof RegExp ? o.toString() : o));
 });
+
+// Graceful shutdown handling
+const gracefulShutdown = (signal) => {
+  console.log(`\n⚙️ Received ${signal}. Shutting down gracefully...`);
+  server.close(async () => {
+    console.log('🛑 Express server closed.');
+    try {
+      const mongoose = (await import('mongoose')).default;
+      if (mongoose.connection && mongoose.connection.readyState !== 0) {
+        await mongoose.connection.close();
+        console.log('💾 MongoDB connection closed.');
+      }
+    } catch (dbErr) {
+      console.error('⚠️ Error closing MongoDB connection:', dbErr);
+    }
+    process.exit(0);
+  });
+};
+
+process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+process.on('SIGINT', () => gracefulShutdown('SIGINT'));

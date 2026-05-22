@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Quote, Plus, Pencil, Trash2, X } from 'lucide-react';
 
@@ -10,12 +10,13 @@ const TestimonialsManager = () => {
   const [form, setForm] = useState({ name: '', text: '', location: '', sortOrder: 0 });
   const [toast, setToast] = useState(null);
 
-  const fetchItems = async () => {
+  const fetchItems = useCallback(async () => {
     const res = await fetch(`${API_URL}/testimonials`);
     const data = await res.json();
     if (Array.isArray(data)) setItems(data);
-  };
-  useEffect(() => { fetchItems(); }, []);
+  }, [API_URL]);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { fetchItems(); }, [fetchItems]);
 
   const openCreate = () => { setEditing(null); setForm({ name: '', text: '', location: '', sortOrder: 0 }); setShowModal(true); };
   const openEdit = (item) => { setEditing(item._id); setForm({ name: item.name, text: item.text, location: item.location, sortOrder: item.sortOrder || 0 }); setShowModal(true); };

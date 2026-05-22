@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
   LayoutDashboard, CalendarCheck, MessageSquare, Building2,
@@ -27,17 +27,20 @@ const Sidebar = () => {
         <p>Content Manager</p>
       </div>
       <nav className="sidebar-nav">
-        {links.map(({ to, icon: Icon, label }) => (
-          <NavLink
-            key={to}
-            to={to}
-            end={to === '/'}
-            className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
-          >
-            <Icon size={18} />
-            {label}
-          </NavLink>
-        ))}
+        {links.map((item) => {
+          const IconComponent = item.icon;
+          return (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.to === '/'}
+              className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
+            >
+              <IconComponent size={18} />
+              {item.label}
+            </NavLink>
+          );
+        })}
       </nav>
       <div className="sidebar-footer">
         {admin && (

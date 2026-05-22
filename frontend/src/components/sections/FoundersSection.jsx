@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { Quote } from 'lucide-react';
+import { API_URL } from '../../config/api.js';
 
 const fallbackFounders = [
 	{
@@ -45,7 +46,6 @@ const FoundersSection = () => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	useEffect(() => {
-		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 		fetch(`${API_URL}/founders`)
 			.then(r => r.json())
 			.then(data => { if (Array.isArray(data) && data.length > 0) setFounders(data); })

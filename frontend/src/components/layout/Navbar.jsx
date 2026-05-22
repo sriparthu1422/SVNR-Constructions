@@ -16,29 +16,24 @@ const Navbar = ({ onBookVisit }) => {
 	useEffect(() => {
 		// Only track scroll position on the home page
 		if (location.pathname !== '/') {
-			// setIsScrolledPastHero(true); // Unnecessary because isVisible derived value handles this
 			return;
 		}
 
-		const heroElement = document.getElementById('home');
-		if (!heroElement) return;
+		const handleScroll = () => {
+			const heroHeight = window.innerHeight;
+			// Navbar is 80px high (h-20), so it should slide down when we scroll past (viewport height - 80px)
+			setIsScrolledPastHero(window.scrollY >= heroHeight - 80);
+		};
 
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				// If Hero is intersecting, we are seeing it -> Nav hidden
-				// If Hero is NOT intersecting, we scrolled past -> Nav visible
-				setIsScrolledPastHero(!entry.isIntersecting);
-			},
-			{
-				root: null,
-				threshold: 0,
-				rootMargin: '-80px 0px 0px 0px',
-			},
-		);
+		// Run check on mount or route change
+		handleScroll();
 
-		observer.observe(heroElement);
+		window.addEventListener('scroll', handleScroll, { passive: true });
+		window.addEventListener('resize', handleScroll);
+
 		return () => {
-			if (heroElement) observer.unobserve(heroElement);
+			window.removeEventListener('scroll', handleScroll);
+			window.removeEventListener('resize', handleScroll);
 		};
 	}, [location.pathname]);
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { MessageSquare, Trash2, Search } from 'lucide-react';
 
@@ -8,15 +8,16 @@ const Inquiries = () => {
   const [search, setSearch] = useState('');
   const [toast, setToast] = useState(null);
 
-  const fetchInquiries = async () => {
+  const fetchInquiries = useCallback(async () => {
     const res = await fetch(`${API_URL}/inquiries`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
     if (Array.isArray(data)) setInquiries(data);
-  };
+  }, [token, API_URL]);
 
-  useEffect(() => { fetchInquiries(); }, []);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => { fetchInquiries(); }, [fetchInquiries]);
 
   const handleDelete = async (id) => {
     if (!confirm('Delete this inquiry?')) return;
