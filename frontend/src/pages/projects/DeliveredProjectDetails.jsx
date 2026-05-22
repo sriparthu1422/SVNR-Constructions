@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Download, MapPin, Quote, ArrowLeft } from 'lucide-react';
+import { Download, MapPin, Quote, ArrowLeft, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import getProjectImage from '../../utils/projectImages';
 import vinayaka1 from '../../assets/images/DeliveredProjectImages/vinayaka1.png';
 import vinayaka2 from '../../assets/images/DeliveredProjectImages/vinayaka2.png';
@@ -35,7 +36,7 @@ import theBreeze4 from '../../assets/images/DeliveredProjectImages/TheBreeze4.pn
 import theBreeze5 from '../../assets/images/DeliveredProjectImages/TheBreeze5.png';
 import theBreeze6 from '../../assets/images/DeliveredProjectImages/TheBreeze6.png';
 import theBreeze7 from '../../assets/images/DeliveredProjectImages/TheBreeze7.png';
-import theBreeze8 from '../../assets/images/DeliveredProjectImages/TheBreeze8.png';
+import theBreeze9 from '../../assets/images/DeliveredProjectImages/TheBreeze9.png';
 
 // Gallery images mapped by project name (case-insensitive match)
 const galleryMap = {
@@ -44,7 +45,24 @@ const galleryMap = {
 	'sai datta residency': { after: saiDatta1_1, before: null, gallery: [saiDatta1, saiDatta2, saiDatta3, saiDatta4] },
 	'greenspace': { after: greenspace1_1, before: greenspace1_2, gallery: [greenspace1, greenspace2, greenspace1_2, greenspace3, greenspace4, greenspace6] },
 	'the lotus residency': { after: theLotus1, before: theLotus2, gallery: [theLotus2, theLotus3, theLotus1] },
-	'the breeze': { after: theBreeze1, before: null, gallery: [theBreeze1, theBreeze2, theBreeze3, theBreeze4, theBreeze5, theBreeze6, theBreeze7, theBreeze8] },
+	'the breeze': { after: theBreeze1, before: theBreeze9, gallery: [theBreeze1, theBreeze2, theBreeze3, theBreeze4, theBreeze5, theBreeze6, theBreeze7] },
+};
+
+// Toggle to easily show/hide the Transformation Journey section in the future
+const SHOW_TRANSFORMATION_JOURNEY = false;
+
+// Dynamic collage/masonry layout grid classes based on image indices
+const getCollageClasses = (index, total) => {
+	const layouts = [
+		'md:col-span-2 md:row-span-2 h-80 md:h-[500px]', // Large feature
+		'md:col-span-1 md:row-span-2 h-80 md:h-[500px]', // Tall vertical
+		'md:col-span-1 md:row-span-1 h-48 md:h-[240px]', // Small standard
+		'md:col-span-1 md:row-span-1 h-48 md:h-[240px]', // Small standard
+		'md:col-span-2 md:row-span-1 h-48 md:h-[240px]', // Wide horizontal
+		'md:col-span-1 md:row-span-2 h-80 md:h-[500px]', // Tall vertical
+		'md:col-span-1 md:row-span-1 h-48 md:h-[240px]', // Small standard
+	];
+	return layouts[index % layouts.length] || 'md:col-span-1 md:row-span-1 h-48 md:h-[240px]';
 };
 
 const DeliveredProjectDetails = () => {
@@ -52,6 +70,8 @@ const DeliveredProjectDetails = () => {
 	const [sliderValue, setSliderValue] = useState(50);
 	const [project, setProject] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+	const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
 	useEffect(() => {
 		const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -60,9 +80,58 @@ const DeliveredProjectDetails = () => {
 			.then(data => {
 				if (data && data._id) setProject(data);
 			})
-			.catch(() => {})
+			.catch(() => { })
 			.finally(() => setLoading(false));
 	}, [id]);
+
+	// Look up gallery images by project name
+	const projectNameLower = project ? project.name.toLowerCase() : '';
+	const gallery = galleryMap[projectNameLower] || { after: null, before: null, gallery: [] };
+	const galleryImages = gallery.gallery.length > 0
+		? gallery.gallery
+		: [
+			'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop',
+			'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop',
+			'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop',
+			'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop'
+		];
+
+	// Navigation triggers
+	const handleNext = () => {
+		setSelectedImageIndex((prevIndex) => (prevIndex + 1) % galleryImages.length);
+	};
+
+	const handlePrev = () => {
+		setSelectedImageIndex((prevIndex) => (prevIndex - 1 + galleryImages.length) % galleryImages.length);
+	};
+
+	// Keyboard event listener for accessibility
+	useEffect(() => {
+		const handleKeyDown = (e) => {
+			if (!isLightboxOpen) return;
+			if (e.key === 'Escape') {
+				setIsLightboxOpen(false);
+			} else if (e.key === 'ArrowRight') {
+				handleNext();
+			} else if (e.key === 'ArrowLeft') {
+				handlePrev();
+			}
+		};
+		window.addEventListener('keydown', handleKeyDown);
+		return () => window.removeEventListener('keydown', handleKeyDown);
+	}, [isLightboxOpen, selectedImageIndex, galleryImages]);
+
+	// Prevent background scroll when lightbox is active
+	useEffect(() => {
+		if (isLightboxOpen) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+		}
+		return () => {
+			document.body.style.overflow = '';
+		};
+	}, [isLightboxOpen]);
 
 	if (loading) {
 		return (
@@ -82,10 +151,6 @@ const DeliveredProjectDetails = () => {
 			</div>
 		);
 	}
-
-	// Look up gallery images by project name
-	const projectNameLower = project.name.toLowerCase();
-	const gallery = galleryMap[projectNameLower] || { after: null, before: null, gallery: [] };
 
 	return (
 		<div className='bg-black text-white min-h-screen pt-20 pb-32 md:pb-20'>
@@ -146,85 +211,101 @@ const DeliveredProjectDetails = () => {
 				</div>
 
 				{/* Before / After Slider */}
-				<section>
-					<h2 className='text-3xl font-bold mb-8 text-center'>
-						Transformation Journey
-					</h2>
-					<div className='relative w-full h-[50vh] overflow-hidden rounded-xl border border-white/20 select-none cursor-ew-resize group'>
-						{/* After Image (Background) */}
-						<img
-							src={
-								gallery.after || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'
-							}
-							className='absolute inset-0 w-full h-full object-cover'
-							alt='After'
-						/>
-
-						{/* Before Image (Foreground - Clipped) */}
-						<div
-							className='absolute inset-0 w-full h-full overflow-hidden'
-							style={{ width: `${sliderValue}%` }}>
+				{SHOW_TRANSFORMATION_JOURNEY && (
+					<section>
+						<h2 className='text-3xl font-bold mb-8 text-center'>
+							Transformation Journey
+						</h2>
+						<div className='relative w-full h-[50vh] overflow-hidden rounded-xl border border-white/20 select-none cursor-ew-resize group'>
+							{/* After Image (Background) */}
 							<img
 								src={
-									gallery.before || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
+									gallery.after || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop'
 								}
-								className='absolute inset-0 w-full h-full object-cover grayscale'
-								alt='Before'
+								className='absolute inset-0 w-full h-full object-cover'
+								alt='After'
 							/>
-							<div className='absolute top-4 left-4 bg-black/70 px-4 py-2 text-white font-bold rounded'>
-								BEFORE (2019)
-							</div>
-						</div>
 
-						{/* Slider Handle */}
-						<input
-							type='range'
-							min='0'
-							max='100'
-							value={sliderValue}
-							onChange={(e) => setSliderValue(e.target.value)}
-							className='absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20'
-						/>
-						<div
-							className='absolute top-0 bottom-0 w-1 bg-yellow-500 z-10 pointer-events-none'
-							style={{ left: `${sliderValue}%` }}>
-							<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center shadow-xl'>
-								<svg
-									width='24'
-									height='24'
-									viewBox='0 0 24 24'
-									fill='none'
-									stroke='currentColor'
-									strokeWidth='2'
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									className='text-black'>
-									<path d='M18 8L22 12L18 16'></path>
-									<path d='M6 8L2 12L6 16'></path>
-								</svg>
+							{/* Before Image (Foreground - Clipped) */}
+							<div
+								className='absolute inset-0 w-full h-full overflow-hidden'
+								style={{ width: `${sliderValue}%` }}>
+								<img
+									src={
+										gallery.before || 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop'
+									}
+									className='absolute inset-0 w-full h-full object-cover grayscale'
+									alt='Before'
+								/>
 							</div>
-						</div>
 
-						<div className='absolute top-4 right-4 bg-green-600 px-4 py-2 text-white font-bold rounded z-0'>
-							AFTER (2022)
+							{/* Slider Handle */}
+							<input
+								type='range'
+								min='0'
+								max='100'
+								value={sliderValue}
+								onChange={(e) => setSliderValue(e.target.value)}
+								className='absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20'
+							/>
+							<div
+								className='absolute top-0 bottom-0 w-1 bg-yellow-500 z-10 pointer-events-none'
+								style={{ left: `${sliderValue}%` }}>
+								<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center shadow-xl'>
+									<svg
+										width='24'
+										height='24'
+										viewBox='0 0 24 24'
+										fill='none'
+										stroke='currentColor'
+										strokeWidth='2'
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										className='text-black'>
+										<path d='M18 8L22 12L18 16'></path>
+										<path d='M6 8L2 12L6 16'></path>
+									</svg>
+								</div>
+							</div>
+
+
 						</div>
-					</div>
-				</section>
+					</section>
+				)}
 
 				{/* Final Photos Gallery */}
 				<section>
-					<h2 className='text-3xl font-bold mb-8 border-l-4 border-yellow-500 pl-4'>
+					<h2 className='text-3xl font-bold mb-8 border-l-4 border-yellow-500 pl-4 uppercase tracking-wider text-white'>
 						Gallery
 					</h2>
-					<div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
-						{(gallery.gallery.length > 0 ? gallery.gallery : [1, 2, 3, 4]
-						).map((img, i) => (
-							<img
+					<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 auto-rows-max'>
+						{galleryImages.map((img, i) => (
+							<div
 								key={i}
-								src={typeof img === 'string' ? img : `https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop`}
-								alt={`${project.name} gallery ${i + 1}`}
-								className='w-full h-64 object-cover rounded-lg hover:opacity-80 transition-opacity cursor-pointer'
-							/>
+								className={`relative overflow-hidden rounded-xl border border-white/10 group cursor-pointer shadow-lg hover:border-yellow-500/50 hover:shadow-yellow-500/5 transition-all duration-500 ease-out ${getCollageClasses(i, galleryImages.length)}`}
+								onClick={() => {
+									setSelectedImageIndex(i);
+									setIsLightboxOpen(true);
+								}}
+							>
+								<img
+									src={img}
+									alt={`${project.name} gallery ${i + 1}`}
+									className='w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:rotate-1'
+									loading="lazy"
+								/>
+								{/* Hover overlay */}
+								<div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6'>
+									<div className='transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out'>
+										<span className='text-xs font-bold uppercase tracking-widest text-yellow-500 mb-1 block'>
+											{project.name}
+										</span>
+										<h3 className='text-lg font-bold text-white uppercase tracking-wide'>
+											View Photo {i + 1}
+										</h3>
+									</div>
+								</div>
+							</div>
 						))}
 					</div>
 				</section>
@@ -263,6 +344,102 @@ const DeliveredProjectDetails = () => {
 					</button>
 				</div>
 			</div>
+
+			{/* Image Lightbox Modal */}
+			<AnimatePresence>
+				{isLightboxOpen && (
+					<>
+						{/* Backdrop */}
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							onClick={() => setIsLightboxOpen(false)}
+							className='fixed inset-0 bg-black/90 backdrop-blur-md z-[100]'
+						/>
+
+						{/* Lightbox Container */}
+						<div className='fixed inset-0 flex flex-col items-center justify-center p-4 md:p-8 z-[101] pointer-events-none'>
+							{/* Top Controls Bar */}
+							<div className='w-full max-w-5xl flex justify-between items-center text-white/80 mb-4 z-10 pointer-events-auto shrink-0 select-none'>
+								<span className='text-sm md:text-base font-medium tracking-wider bg-stone-900/60 px-4 py-1.5 rounded-full border border-white/5'>
+									{selectedImageIndex + 1} / {galleryImages.length}
+								</span>
+								<button
+									onClick={() => setIsLightboxOpen(false)}
+									className='bg-stone-900/60 p-2.5 rounded-full hover:bg-stone-800 border border-white/5 text-white hover:text-yellow-500 transition-all hover:scale-105 shadow-lg cursor-pointer'
+									aria-label='Close preview'
+								>
+									<X size={24} />
+								</button>
+							</div>
+
+							{/* Main Image Slider Area */}
+							<div className='relative w-full max-w-5xl flex-grow flex items-center justify-center pointer-events-auto'>
+								{/* Left Arrow */}
+								<button
+									onClick={(e) => {
+										e.stopPropagation();
+										handlePrev();
+									}}
+									className='absolute left-2 md:left-4 bg-stone-900/60 hover:bg-stone-800 p-3 md:p-4 rounded-full border border-white/5 text-white hover:text-yellow-500 transition-all hover:scale-105 shadow-2xl z-20 cursor-pointer select-none'
+									aria-label='Previous image'
+								>
+									<ChevronLeft size={28} />
+								</button>
+
+								{/* Main Preview Image */}
+								<div className='w-full h-full max-h-[70vh] flex items-center justify-center relative overflow-hidden rounded-lg'>
+									<AnimatePresence mode='wait'>
+										<motion.img
+											key={selectedImageIndex}
+											src={galleryImages[selectedImageIndex]}
+											initial={{ opacity: 0, scale: 0.95 }}
+											animate={{ opacity: 1, scale: 1 }}
+											exit={{ opacity: 0, scale: 0.95 }}
+											transition={{ duration: 0.25, ease: 'easeInOut' }}
+											className='max-w-full max-h-full object-contain shadow-2xl rounded-lg selection:bg-transparent'
+											alt={`${project.name} gallery image ${selectedImageIndex + 1}`}
+										/>
+									</AnimatePresence>
+								</div>
+
+								{/* Right Arrow */}
+								<button
+									onClick={(e) => {
+										e.stopPropagation();
+										handleNext();
+									}}
+									className='absolute right-2 md:right-4 bg-stone-900/60 hover:bg-stone-800 p-3 md:p-4 rounded-full border border-white/5 text-white hover:text-yellow-500 transition-all hover:scale-105 shadow-2xl z-20 cursor-pointer select-none'
+									aria-label='Next image'
+								>
+									<ChevronRight size={28} />
+								</button>
+							</div>
+
+							{/* Thumbnail Strip */}
+							<div className='hidden md:flex justify-center gap-2 mt-6 w-full max-w-5xl overflow-x-auto py-2 px-4 scrollbar-thin scrollbar-thumb-stone-800 select-none z-10 pointer-events-auto shrink-0'>
+								{galleryImages.map((img, idx) => (
+									<button
+										key={idx}
+										onClick={() => setSelectedImageIndex(idx)}
+										className={`w-16 h-12 rounded overflow-hidden border-2 transition-all duration-200 cursor-pointer shrink-0 ${selectedImageIndex === idx
+											? 'border-yellow-500 scale-105 shadow-md'
+											: 'border-transparent opacity-50 hover:opacity-100'
+											}`}
+									>
+										<img
+											src={img}
+											alt={`Thumbnail ${idx + 1}`}
+											className='w-full h-full object-cover'
+										/>
+									</button>
+								))}
+							</div>
+						</div>
+					</>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };
