@@ -5,6 +5,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import videoBg from '../../assets/SVNR The Ayati.mp4';
+import heroPoster from '../../assets/images/HomeImage/TheAyati2.webp';
 
 const HeroSection = () => {
 	return (
@@ -17,7 +18,8 @@ const HeroSection = () => {
 				loop
 				muted
 				playsInline
-				preload='auto'
+				preload='metadata'
+				poster={heroPoster}
 				className='absolute top-0 left-0 w-full h-full object-cover'>
 				<source
 					src={videoBg}

@@ -10,21 +10,21 @@ import {
 	ArrowLeft,
 } from 'lucide-react';
 import getProjectImage from '../../utils/projectImages';
-import ankura1 from '../../assets/images/DeliveredProjectImages/ankura1.png';
-import ankura2 from '../../assets/images/DeliveredProjectImages/ankura2.png';
-import ankura3 from '../../assets/images/DeliveredProjectImages/ankura3.png';
-import ankura4 from '../../assets/images/DeliveredProjectImages/ankura4.png';
-import ankura5 from '../../assets/images/DeliveredProjectImages/ankura5.png';
-import ankura6 from '../../assets/images/DeliveredProjectImages/ankura6.png';
-import ankura7 from '../../assets/images/DeliveredProjectImages/ankura7.png';
-import ankura8 from '../../assets/images/DeliveredProjectImages/ankura8.png';
-import ankura9 from '../../assets/images/DeliveredProjectImages/ankura9.png';
-import theAyati0 from '../../assets/images/HomeImage/TheAyati0.jpeg';
-import theAyati7 from '../../assets/images/HomeImage/TheAyati7.jpeg';
-import theAyati2 from '../../assets/images/HomeImage/TheAyati2.jpeg';
-import theAyati3 from '../../assets/images/HomeImage/TheAyati3.jpeg';
-import theAyati4 from '../../assets/images/HomeImage/TheAyati4.jpeg';
-import theAyati5 from '../../assets/images/HomeImage/TheAyati5.jpeg';
+import ankura1 from '../../assets/images/DeliveredProjectImages/ankura1.webp';
+import ankura2 from '../../assets/images/DeliveredProjectImages/ankura2.webp';
+import ankura3 from '../../assets/images/DeliveredProjectImages/ankura3.webp';
+import ankura4 from '../../assets/images/DeliveredProjectImages/ankura4.webp';
+import ankura5 from '../../assets/images/DeliveredProjectImages/ankura5.webp';
+import ankura6 from '../../assets/images/DeliveredProjectImages/ankura6.webp';
+import ankura7 from '../../assets/images/DeliveredProjectImages/ankura7.webp';
+import ankura8 from '../../assets/images/DeliveredProjectImages/ankura8.webp';
+import ankura9 from '../../assets/images/DeliveredProjectImages/ankura9.webp';
+import theAyati0 from '../../assets/images/HomeImage/TheAyati0.webp';
+import theAyati7 from '../../assets/images/HomeImage/TheAyati7.webp';
+import theAyati2 from '../../assets/images/HomeImage/TheAyati2.webp';
+import theAyati3 from '../../assets/images/HomeImage/TheAyati3.webp';
+import theAyati4 from '../../assets/images/HomeImage/TheAyati4.webp';
+import theAyati5 from '../../assets/images/HomeImage/TheAyati5.webp';
 
 const LiveProjectDetails = () => {
 	const { id } = useParams();

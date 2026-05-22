@@ -4,12 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-import greenspace from '../../assets/images/AboutSectionImages/Greenspace.png';
-import lotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.png';
-import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.png';
-import saiDatta from '../../assets/images/AboutSectionImages/SaiDatta Residency.jpg';
-import twinDiamonds from '../../assets/images/AboutSectionImages/Twin Diamonds.jpg';
-import vinayakHomes from '../../assets/images/AboutSectionImages/Vinayak Homes.jpg';
+import greenspace from '../../assets/images/AboutSectionImages/Greenspace.webp';
+import lotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.webp';
+import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.webp';
+import saiDatta from '../../assets/images/AboutSectionImages/SaiDatta Residency.webp';
+import twinDiamonds from '../../assets/images/AboutSectionImages/Twin Diamonds.webp';
+import vinayakHomes from '../../assets/images/AboutSectionImages/Vinayak Homes.webp';
 
 const carouselImages = [
 	{
