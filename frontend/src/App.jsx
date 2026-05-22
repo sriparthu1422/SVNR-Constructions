@@ -9,27 +9,17 @@ import {
 } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import ExploreVR from './pages/ExploreVR';
 import BookSiteVisitModal from './components/common/BookSiteVisitModal';
-
-const Home = React.lazy(() => import('./pages/Home'));
-const About = React.lazy(() => import('./pages/About'));
-const Contact = React.lazy(() => import('./pages/Contact'));
-const ExploreVR = React.lazy(() => import('./pages/ExploreVR'));
-const LiveProjects = React.lazy(() => import('./pages/projects/LiveProjects'));
-const LiveProjectDetails = React.lazy(() => import('./pages/projects/LiveProjectDetails'));
-const DeliveredProjects = React.lazy(() => import('./pages/projects/DeliveredProjects'));
-const DeliveredProjectDetails = React.lazy(() => import('./pages/projects/DeliveredProjectDetails'));
-const UpcomingProjects = React.lazy(() => import('./pages/projects/UpcomingProjects'));
-const NotFound = React.lazy(() => import('./pages/NotFound'));
-
-// Luxury branding-compliant loader fallback spinner
-const LoadingSpinner = () => (
-	<div className='flex items-center justify-center min-h-[60vh] bg-black'>
-		<div className='relative w-12 h-12'>
-			<div className='absolute inset-0 rounded-full border-4 border-white/10 border-t-yellow-500 animate-spin'></div>
-		</div>
-	</div>
-);
+import LiveProjects from './pages/projects/LiveProjects';
+import LiveProjectDetails from './pages/projects/LiveProjectDetails';
+import DeliveredProjects from './pages/projects/DeliveredProjects';
+import DeliveredProjectDetails from './pages/projects/DeliveredProjectDetails';
+import UpcomingProjects from './pages/projects/UpcomingProjects';
+import NotFound from './pages/NotFound';
 
 import ReactGA from 'react-ga4';
 
@@ -95,51 +85,49 @@ function AppContent() {
 				{!isExploreVR && <ChatWidget />}
 				<Navbar onBookVisit={openModal} />
 				<main className='flex-grow'>
-					<React.Suspense fallback={<LoadingSpinner />}>
-						<Routes>
-							<Route
-								path='/'
-								element={<Home openBookVisit={openModal} />}
-							/>
-							<Route
-								path='/about-us'
-								element={<About />}
-							/>
+					<Routes>
+						<Route
+							path='/'
+							element={<Home openBookVisit={openModal} />}
+						/>
+						<Route
+							path='/about-us'
+							element={<About />}
+						/>
 
-							<Route
-								path='/live-projects'
-								element={<LiveProjects />}
-							/>
-							<Route
-								path='/live-projects/:id'
-								element={<LiveProjectDetails />}
-							/>
-							<Route
-								path='/delivered-projects'
-								element={<DeliveredProjects />}
-							/>
-							<Route
-								path='/delivered-projects/:id'
-								element={<DeliveredProjectDetails />}
-							/>
-							<Route
-								path='/upcoming-projects'
-								element={<UpcomingProjects />}
-							/>
-							<Route
-								path='/contact'
-								element={<Contact />}
-							/>
-							<Route
-								path='/explore-vr'
-								element={<ExploreVR />}
-							/>
-							<Route
-								path='*'
-								element={<NotFound />}
-							/>
-						</Routes>
-					</React.Suspense>
+						<Route
+							path='/live-projects'
+							element={<LiveProjects />}
+						/>
+						<Route
+							path='/live-projects/:id'
+							element={<LiveProjectDetails />}
+						/>
+						<Route
+							path='/delivered-projects'
+							element={<DeliveredProjects />}
+						/>
+						<Route
+							path='/delivered-projects/:id'
+							element={<DeliveredProjectDetails />}
+						/>
+						<Route
+							path='/upcoming-projects'
+							element={<UpcomingProjects />}
+						/>
+						<Route
+							path='/contact'
+							element={<Contact />}
+						/>
+						<Route
+							path='/explore-vr'
+							element={<ExploreVR />}
+						/>
+						<Route
+							path='*'
+							element={<NotFound />}
+						/>
+					</Routes>
 				</main>
 				{!isExploreVR && <Footer />}
 				<BookSiteVisitModal

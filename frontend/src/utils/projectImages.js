@@ -1,15 +1,15 @@
 /** @format */
 
 // Local image imports for all projects
-import manasaSarovar from '../assets/images/AboutSectionImages/Manasa Sarovar.webp';
-import vinayakHomes from '../assets/images/AboutSectionImages/Vinayak Homes.webp';
-import saiDattaResidency from '../assets/images/AboutSectionImages/SaiDatta Residency.webp';
-import greenspace from '../assets/images/AboutSectionImages/Greenspace.webp';
-import theLotusResidency from '../assets/images/AboutSectionImages/Lotus Residency.webp';
-import theBreeze from '../assets/images/AboutSectionImages/The Breeze.webp';
-import ankuraFarms from '../assets/images/AboutSectionImages/AnkuraFarms.webp';
-import theAyati from '../assets/images/HomeImage/TheAyati2.webp';
-import twinDiamonds from '../assets/images/AboutSectionImages/Twin Diamonds.webp';
+import manasaSarovar from '../assets/images/AboutSectionImages/Manasa Sarovar.png';
+import vinayakHomes from '../assets/images/AboutSectionImages/Vinayak Homes.jpg';
+import saiDattaResidency from '../assets/images/AboutSectionImages/SaiDatta Residency.jpg';
+import greenspace from '../assets/images/AboutSectionImages/Greenspace.png';
+import theLotusResidency from '../assets/images/AboutSectionImages/Lotus Residency.png';
+import theBreeze from '../assets/images/AboutSectionImages/The Breeze.png';
+import ankuraFarms from '../assets/images/AboutSectionImages/AnkuraFarms.png';
+import theAyati from '../assets/images/HomeImage/TheAyati2.jpeg';
+import twinDiamonds from '../assets/images/AboutSectionImages/Twin Diamonds.jpg';
 
 // Map project names (lowercase) to their local images
 const localImageMap = {

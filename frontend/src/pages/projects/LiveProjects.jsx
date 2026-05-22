@@ -14,8 +14,8 @@ import ProjectSkeleton from '../../components/ui/ProjectSkeleton';
 import getProjectImage from '../../utils/projectImages';
 
 // Fallback data
-import ankuraFarms from '../../assets/images/AboutSectionImages/AnkuraFarms.webp';
-import TheAyati from '../../assets/images/HomeImage/TheAyati2.webp';
+import ankuraFarms from '../../assets/images/AboutSectionImages/AnkuraFarms.png';
+import TheAyati from '../../assets/images/HomeImage/TheAyati2.jpeg';
 
 const fallbackProjects = [
 	{

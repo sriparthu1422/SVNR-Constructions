@@ -13,11 +13,11 @@ import HeroSection from '../components/sections/HeroSection';
 import AboutSection from '../components/sections/AboutSection';
 import ProjectSlider from '../components/common/ProjectSlider';
 import { Link } from 'react-router-dom';
-import SvnrConstruction from '../assets/images/HomeImage/svnrconstruction.webp';
-import TheAyati0 from '../assets/images/HomeImage/TheAyati0.webp';
-import TheAyati1 from '../assets/images/HomeImage/TheAyati1.webp';
-import TheAyati2 from '../assets/images/HomeImage/TheAyati2.webp';
-import TheAyati3 from '../assets/images/HomeImage/TheAyati3.webp';
+import SvnrConstruction from '../assets/images/HomeImage/svnrconstruction.png';
+import TheAyati0 from '../assets/images/HomeImage/TheAyati0.jpeg';
+import TheAyati1 from '../assets/images/HomeImage/TheAyati1.jpeg';
+import TheAyati2 from '../assets/images/HomeImage/TheAyati2.jpeg';
+import TheAyati3 from '../assets/images/HomeImage/TheAyati3.jpeg';
 import ScrollReveal from '../components/ui/ScrollReveal';
 const ProjectCard = ({ title, status, location, img }) => (
 	<div className='group relative overflow-hidden rounded-lg bg-stone-900 border border-white/10'>

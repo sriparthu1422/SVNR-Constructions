@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 import getProjectImage from '../../utils/projectImages';
 
 // Fallback data in case the API is unreachable
-import theBreeze from '../../assets/images/AboutSectionImages/The Breeze.webp';
-import theLotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.webp';
-import greenspace from '../../assets/images/AboutSectionImages/Greenspace.webp';
-import saiDattaResidency from '../../assets/images/AboutSectionImages/SaiDatta Residency.webp';
-import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.webp';
-import vinayakHomes from '../../assets/images/AboutSectionImages/Vinayak Homes.webp';
+import theBreeze from '../../assets/images/AboutSectionImages/The Breeze.png';
+import theLotusResidency from '../../assets/images/AboutSectionImages/Lotus Residency.png';
+import greenspace from '../../assets/images/AboutSectionImages/Greenspace.png';
+import saiDattaResidency from '../../assets/images/AboutSectionImages/SaiDatta Residency.jpg';
+import manasaSarovar from '../../assets/images/AboutSectionImages/Manasa Sarovar.png';
+import vinayakHomes from '../../assets/images/AboutSectionImages/Vinayak Homes.jpg';
 
 // Desired display order for delivered projects
 const DELIVERED_ORDER = [
